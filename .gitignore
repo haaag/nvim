@@ -1,0 +1,6 @@
+ls/
+undodir/
+spell/
+git/
+
+plugin/packer_compiled.vim

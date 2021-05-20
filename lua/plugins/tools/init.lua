@@ -1,0 +1,8 @@
+require('plugins.tools.startify')
+require('plugins.tools.nvim-tree')
+require('plugins.tools.vimwiki')
+require('plugins.tools.kommentary')
+require('plugins.tools.vim-rooter')
+require('plugins.tools.telescope')
+require('plugins.tools.telescope-functions')
+require('plugins.tools.floaterm')
