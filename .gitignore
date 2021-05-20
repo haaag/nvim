@@ -2,5 +2,5 @@ ls/
 undodir/
 spell/
 git/
-
+*.bk
 plugin/packer_compiled.vim
