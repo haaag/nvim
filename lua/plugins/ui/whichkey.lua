@@ -3,47 +3,6 @@ vim.g.which_key_timeout = 50
 vim.g.which_key_use_floating_win = 0
 vim.g.which_key_sep = ' '
 vim.g.which_key_max_size = 0
---[[
-local keymap = {
-
-    -- w = {':w!<CR>', 'save file'}, -- set a single command and text
-    W = {'<Cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("  Grep For > ")})<CR>', 'grep'}, -- set a single command and text
-    j = 'split args', -- only set a text for an already configured keymap
-
-    -- ['<CR>'] = {'@q', 'macro q'}, -- setting a special key
-    f = { -- set a nested structure
-        name = '+find',
-        b = {'<Cmd>Telescope buffers<CR>', 'buffers'},
-        h = {'<Cmd>Telescope help_tags<CR>', 'help tags'},
-        c = {
-            name = '+commands',
-            c = {'<Cmd>Telescope commands<CR>', 'commands'},
-            h = {'<Cmd>Telescope command_history<CR>', 'history'}
-        },
-        q = {'<Cmd>Telescope quickfix<CR>', 'quickfix'},
-        g = {
-            name = '+git',
-            g = {'<Cmd>Telescope git_commits<CR>', 'commits'},
-            c = {'<Cmd>Telescope git_bcommits<CR>', 'bcommits'},
-            b = {'<Cmd>Telescope git_branches<CR>', 'branches'},
-            s = {'<Cmd>Telescope git_status<CR>', 'status'},
-        },
-        v = {
-            name = '+vimfiles',
-            a = {'<Cmd>lua require("plugins.tools.telescope-functions").search_dotfiles_vim()<CR>', 'neovim'},
-            o = {'<Cmd>lua require("plugins.tools.telescope-functions").search_dotfiles()<CR>', 'dotfiles'},
-            i = {'<Cmd>lua require("plugins.tools.telescope-functions").search_dotfiles_vim_bk()<CR>', 'old neovim'}
-        },
-    }
-}
-
-local visual_keymap = {
-    K = {':move \'<-2<CR>gv-gv', 'move line up'},
-    J = {':move \'>+1<CR>gv-gv', 'move line down'},
-}
-
-wk.register_keymap('leader', keymap)
-wk.register_keymap('visual', visual_keymap) ]]
 
 -- Disable automapping in Maximizer
 vim.g.maximizer_set_default_mapping = 0
@@ -122,6 +81,7 @@ which_key_map.c = {
 which_key_map.l = {
     name = '+lsp',
     a = {'', ''},
+    d = {':TroubleToggle<CR>', 'TroubleToggle'},
     c = {':Lspsaga show_line_diagnostics<CR>', 'Show Line Diagnostic'},
     h = {':Lspsaga lsp_finder<CR>', 'Lsp Finder'},
     k = {':Lspsaga hover_doc<CR>', 'Hover'},
@@ -129,6 +89,7 @@ which_key_map.l = {
     P = {':lua require"lspsaga.provider".preview_definition()<CR>', 'Preview Definition'},
     p = {':Lspsaga diagnostic_jump_prev<CR>', 'Prev Diagnostic'},
     t = {':TodoTelescope<CR>', 'TodoTelescope'},
+    T = {'call v:lua.toggle_diagnostics()<CR>', 'ToggleDiagnostics'},
     r = {':Lspsaga rename<CR>', 'Rename'},
     s = {':Lspsaga signature_help<CR>', 'Signature Help'},
     u = {':lua require"lspsaga.action".smart_scroll_with_saga(1)<CR>', 'Smart scroll with Saga Next'},
@@ -154,47 +115,3 @@ local local_keymap = {
 
 wk.register_keymap('leader', which_key_map)
 wk.register_keymap('localleader', local_keymap)
-
--- Plug-ins Mapping: {{{
--------------------
---[[ local map = vim.api.nvim_set_keymap
-local options = {noremap = true, silent = true} ]]
-
--- Diagnostic with LspSaga:
---------------------------
---[[ map('n', '[e', ':Lspsaga diagnostic_jump_next<CR>', options)
-map('n', ']e', ':Lspsaga diagnostic_jump_prev<CR>', options) ]]
-
--- }}}
-
--- make
---[[ which_key_map.m = {
-    name = '+make',
-    m = {':lua require("funcs.terminal").dedicated("make", "make", "tabnew")<CR>', 'make'},
-    c = {':lua require("funcs.terminal").dedicated("make", "make clean", "tabnew")<CR>', 'clean'},
-    a = {':lua require("funcs.terminal").dedicated("make", "make all", "tabnew")<CR>', 'all'},
-    o = {':lua require("funcs.terminal").dedicated("make", "make open", "tabnew")<CR>', 'open'},
-} ]]
-
--- navigation
---[[ which_key_map.n = {
-    name = '+navigation',
-    s = {'<Cmd>VifmSelectFile<CR>', 'vifm select'},
-} ]]
-
--- tabs
---[[ which_key_map.t = {
-    name = '+tabs',
-    n = {':tabnew<CR>', 'new'},
-    o = {':tabonly<CR>', 'close others'},
-    c = {':tabclose<CR>', 'close'},
-    m = {':tabmove ', 'move'},
-    e = {':tabedit <C-r>=expand("%:p:h")<CR>/', 'edit cwd'},
-} ]]
-
---[[ -- unicode
-which_key_map.u = {
-    name = '+unicode',
-    t = {'<Cmd>lua require("funcs.unicode").replace_hex_to_char()<CR>', 'hx2ch'},
-    f = {'<Cmd>lua require("funcs.unicode").replace_char_to_hex()<CR>', 'ch2hx'},
-} ]]
