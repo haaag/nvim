@@ -23,6 +23,10 @@ vim.cmd [[ autocmd Filetype python nnoremap <buffer> <F7> :Format<CR> ]]
 -- Syntax highlight for Deluge files
 vim.cmd [[ au BufNewFile,BufRead /*.dg setf deluge ]]
 
+-- Fold method for json files
+vim.cmd [[ autocmd FileType json set foldmethod=expr]]
+vim.cmd [[ autocmd FileType json set foldexpr=nvim_treesitter#foldexpr() ]]
+
 -- sings
 -- vim.cmd [[ highlight LspDiagnosticsDefaultWarning guifg='BrightRed' ]]
 --
