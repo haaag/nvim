@@ -19,7 +19,6 @@ o.mouse = "a"                                   -- Enable your mouse
 o.splitbelow = true                             -- Horizontal splits will automatically be below
 o.termguicolors = true                          -- xx
 o.splitright = true                             -- Vertical splits will automatically be to the right
-o.t_Co = "256"                                  -- Support 256 colors
 o.conceallevel = 2                              -- So that I can see `` in markdown files
 o.tabstop = 2                                   -- Insert 2 spaces for a tab
 o.shiftwidth = 2                                -- Change the number of space characters inserted for indentation
@@ -44,10 +43,14 @@ o.inccommand = "split"                          -- substitute live update
 o.hlsearch = false                              -- Disable Highlight search
 o.foldmethod = "expr"
 o.path = [[ ** ]]
+-- vim.bo.swapfile = false
 vim.bo.swapfile = false
 cmd [[ set spelllang=en_us,es ]]                -- Spellcheck
 cmd 'filetype plugin on'
 cmd [[set undofile]]
+cmd('set colorcolumn=99999')                    -- fix indentline for now
+--[[ cmd('set ts=4')                                 -- Insert 2 spaces for a tab
+cmd('set sw=4')                                 -- Change the number of space characters inserted for indentation ]]
 
 
 -- Window-Scoped Options:
