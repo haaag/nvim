@@ -24,16 +24,16 @@ return require('packer').startup(function()
     use 'mattn/emmet-vim'
     use 'windwp/nvim-ts-autotag'
     use 'p00f/nvim-ts-rainbow'
-    use 'Yggdroot/indentLine'
     use 'lukas-reineke/format.nvim'
     use 'glepnir/lspsaga.nvim'
     use 'simrat39/symbols-outline.nvim'
     use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" }
     use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
+    use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
     -- use 'RRethy/vim-illuminate'
     -- use 'mtdl9/vim-log-highlighting'
     -- use 'wfxr/minimap.vim'
-    -- use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
+    -- use 'Yggdroot/indentLine'
     -- use 'cstrap/python-snippets'
     -- }}}
     -- StatusLine and Bufferline {{{
@@ -72,8 +72,8 @@ return require('packer').startup(function()
     -- use 'sainnhe/edge'
     -- }}}
     -- Git: {{{
-    -- use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
-    use 'mhinz/vim-signify'
+    use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
+    -- use 'mhinz/vim-signify'
     -- }}}
     -- General Plugins: {{{
     use 'windwp/nvim-autopairs'
