@@ -71,3 +71,6 @@ vim.api.nvim_set_keymap("i", "<Tab>", "v:lua.tab_complete()", opts)
 vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", opts)
 vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", opts)
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", opts)
+
+-- https://libredd.it/r/neovim/comments/nmjz68/tip_make_vsnip_run_at_startup_so_that_it_will_not/
+vim.api.nvim_exec([[ autocmd FileType * call vsnip#get_complete_items(bufnr()) ]], false)
