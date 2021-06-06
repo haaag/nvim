@@ -1,7 +1,7 @@
 local colorscheme = require('plugins.themes.colorscheme')
 local Theme = {}
 
--- Set theme for bubbly, bufferline
+-- Set theme bufferline
 -----------------------------------
 -- Choose from: {
   -- default,
@@ -10,6 +10,7 @@ local Theme = {}
   -- gruvbox,
   -- gruvbox_material,
   -- edge
+  -- tokyonight
   -- }
 
 Theme.colorscheme = function()

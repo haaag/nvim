@@ -111,9 +111,9 @@ end
 
 M.tokyonight = function()
     local color = {
-        background = "#1D202F",
+        background = "#24283b",
         foreground = "#a9b1d6",
-        black = "#414868",
+        black = "#1a1b26",
         red = "#f7768e",
         green = "#9ece6a",
         yellow = "#e0af68",
