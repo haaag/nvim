@@ -1,11 +1,12 @@
 -- General Settings:
 --------------------
 local o = vim.o
+local b = vim.bo
 local wo = vim.wo
 local cmd = vim.cmd
 local HOME = tostring(os.getenv("HOME"))
 
--- Editor Options:
+-- Editor Options: {{{
 -----------------
 cmd [[ set title titlestring=%(%{expand(\"%:~:.:h\")}%)/%t ]]
 o.clipboard = "unnamed,unnamedplus"             -- Yank and paste with the system clipboard
@@ -43,25 +44,27 @@ o.inccommand = "split"                          -- substitute live update
 o.hlsearch = false                              -- Disable Highlight search
 o.foldmethod = "expr"
 o.path = [[ ** ]]
+b.sts = 2 -- softtabstop
+b.sw = 2 -- shiftwidth
+b.ts = 2 -- tabstop
 -- vim.bo.swapfile = false
 vim.bo.swapfile = false
 cmd [[ set spelllang=en_us,es ]]                -- Spellcheck
 cmd 'filetype plugin on'
 cmd [[set undofile]]
 cmd('set colorcolumn=99999')                    -- fix indentline for now
---[[ cmd('set ts=4')                                 -- Insert 2 spaces for a tab
-cmd('set sw=4')                                 -- Change the number of space characters inserted for indentation ]]
-
-
--- Window-Scoped Options:
-------------------------
+-- }}}
+-- Window-Scoped Options: {{{
 wo.signcolumn = "yes"                           -- Always show the signcolumn, otherwise it would shift the text each time
 -- wo.signcolumn = "no"                            -- Always show the signcolumn, otherwise it would shift the text each time
 wo.number = true                                -- Relative number
 wo.relativenumber = true                        -- Relative number
 wo.wrap = false                                 -- Wrap Lines
 wo.cursorline = true                            -- Enable highlighting of the current line
+-- }}}
+-- Others: {{{
+  -- Disables automatic commenting on newline:
+  cmd [[ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o ]]
+-- }}}
 
--- Disables automatic commenting on newline:
--------------------------------------------
-cmd [[ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o ]]
+-- vim:foldmethod=marker
