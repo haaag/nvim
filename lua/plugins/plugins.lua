@@ -10,8 +10,6 @@ return require('packer').startup(function()
     use 'neovim/nvim-lspconfig'
     use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use 'nvim-treesitter/nvim-treesitter-textobjects'
-    -- use 'romgrk/nvim-treesitter-context'
-    -- use 'nvim-lua/lsp-status.nvim'
     -- }}}
     -- Code Utility {{{
     use 'sbdchd/neoformat'
@@ -26,15 +24,9 @@ return require('packer').startup(function()
     use 'p00f/nvim-ts-rainbow'
     use 'lukas-reineke/format.nvim'
     use 'glepnir/lspsaga.nvim'
-    use 'simrat39/symbols-outline.nvim'
-    use { "folke/todo-comments.nvim", requires = "nvim-lua/plenary.nvim" }
-    use { "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" }
-    use {'lukas-reineke/indent-blankline.nvim', branch = 'lua'}
-    -- use 'RRethy/vim-illuminate'
-    -- use 'mtdl9/vim-log-highlighting'
-    -- use 'wfxr/minimap.vim'
-    -- use 'Yggdroot/indentLine'
-    -- use 'cstrap/python-snippets'
+    use { 'folke/todo-comments.nvim', requires = 'nvim-lua/plenary.nvim' }
+    use { 'folke/trouble.nvim', requires = 'kyazdani42/nvim-web-devicons' }
+    use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua' }
     -- }}}
     -- StatusLine and Bufferline {{{
     use {
@@ -71,9 +63,16 @@ return require('packer').startup(function()
     -- use 'datwaft/bubbly.nvim'
     -- use 'sainnhe/edge'
     -- }}}
+    -- UML: {{{
+    use 'weirongxu/plantuml-previewer.vim'
+    use 'tyru/open-browser.vim'
+    -- }}}
+    -- Syntax: {{{
+    use 'chrisbra/csv.vim'
+    use 'aklt/plantuml-syntax'
+    -- }}}
     -- Git: {{{
     use {'lewis6991/gitsigns.nvim', requires = {'nvim-lua/plenary.nvim'}}
-    -- use 'mhinz/vim-signify'
     -- }}}
     -- General Plugins: {{{
     use 'windwp/nvim-autopairs'
@@ -93,5 +92,18 @@ return require('packer').startup(function()
         requires = {'liuchengxu/vim-which-key'}
     }
 end)
+    -- }}}
+    -- Removed: {{{
+    -- use 'mhinz/vim-signify'
+    -- use 'romgrk/nvim-treesitter-context'
+    -- use 'nvim-lua/lsp-status.nvim'
+    -- use 'simrat39/symbols-outline.nvim'
+    -- use 'RRethy/vim-illuminate'
+    -- use 'mtdl9/vim-log-highlighting'
+    -- use 'wfxr/minimap.vim'
+    -- use 'Yggdroot/indentLine'
+    -- use 'cstrap/python-snippets'
+    -- use { 'phaazon/hop.nvim' }
+    -- }}}
 
 -- vim: set ft=lua fdm=marker fmr={{{,}}}:
