@@ -1,6 +1,6 @@
 -- local wk = require('whichkey_setup')
 vim.g.which_key_timeout = 50
-vim.g.which_key_use_floating_win = 0
+vim.g.which_key_use_floating_win = 1
 vim.g.which_key_sep = ' '
 vim.g.which_key_max_size = 0
 

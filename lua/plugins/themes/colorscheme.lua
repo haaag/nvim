@@ -108,7 +108,6 @@ M.edge = function()
     return color
 end
 
-
 M.tokyonight = function()
     local color = {
         background = "#24283b",
@@ -123,6 +122,24 @@ M.tokyonight = function()
         white = "#c0caf5",
         lightgrey = "#545c7e",
         darkgrey = "#545c7e"
+    }
+    return color
+end
+
+M.solarized = function()
+    local color = {
+        background = "#fdf6e3",
+        foreground = "#657b83",
+        black = "#002b36",
+        red = "#dc322f",
+        green = "#7d8d09",
+        yellow = "#e0af68",
+        blue = "#b58900",
+        purple = "#9d7cd8",
+        cyan = "#7d8d09",
+        white = "#eee8d5",
+        lightgrey = "#002b36",
+        darkgrey = "#002b36"
     }
     return color
 end

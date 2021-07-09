@@ -4,6 +4,7 @@ require('lualine').setup {
     options = {
         -- theme = 'onedark',
         theme = 'tokyonight',
+        -- theme = 'solarized',
         section_separators = '',
         component_separators = '',
         icons_enabled = true

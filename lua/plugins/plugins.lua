@@ -26,13 +26,8 @@ return require('packer').startup(function()
     use 'glepnir/lspsaga.nvim'
     use { 'folke/todo-comments.nvim', requires = 'nvim-lua/plenary.nvim' }
     use { 'folke/trouble.nvim', requires = 'kyazdani42/nvim-web-devicons' }
-    use { 'lukas-reineke/indent-blankline.nvim', branch = 'lua' }
-    -- }}}
-    -- StatusLine and Bufferline {{{
-    use {
-        'akinsho/nvim-bufferline.lua',
-        requires = 'kyazdani42/nvim-web-devicons'
-    }
+    use { 'lukas-reineke/indent-blankline.nvim', branch = 'master' }
+    use 'kristijanhusak/vim-carbon-now-sh'
     -- }}}
     -- Telescope: {{{
     use {
@@ -60,6 +55,7 @@ return require('packer').startup(function()
         requires = {'kyazdani42/nvim-web-devicons', opt = true}
     }
     use 'folke/tokyonight.nvim'
+    use 'shaunsingh/solarized.nvim'
     -- use 'datwaft/bubbly.nvim'
     -- use 'sainnhe/edge'
     -- }}}
@@ -81,7 +77,7 @@ return require('packer').startup(function()
     use 'ojroques/nvim-bufdel'
     use 'vimwiki/vimwiki'
     use 'iamcco/markdown-preview.nvim'
-    use 'junegunn/goyo.vim'
+    -- use 'junegunn/goyo.vim'
     use 'junegunn/limelight.vim'
     use 'tjdevries/cyclist.vim'
     use 'szw/vim-maximizer'
@@ -91,6 +87,18 @@ return require('packer').startup(function()
         'AckslD/nvim-whichkey-setup.lua',
         requires = {'liuchengxu/vim-which-key'}
     }
+    -- use 'folke/which-key.nvim'
+    -- }}}
+    -- UI: {{{
+    use "Pocco81/TrueZen.nvim"
+    use 'karb94/neoscroll.nvim'
+      -- StatusLine and Bufferline {{{
+      use {
+          'akinsho/nvim-bufferline.lua',
+          requires = 'kyazdani42/nvim-web-devicons'
+      }
+      -- }}}
+    -- }}}
 end)
     -- }}}
     -- Removed: {{{
