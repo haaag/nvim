@@ -7,4 +7,7 @@ g.rooter_change_directory_for_non_project_files = 'current'
 g.rooter_manual_only = 0
 
 -- To stop Rooter echoing the project directory:
-g.rooter_silent_chdir = 1
+g.rooter_silent_chdir = 0
+
+--
+vim.cmd [[ let g:rooter_patterns = ['.git', 'Makefile', '*.sln', 'build/env.sh', 'deluge'] ]]

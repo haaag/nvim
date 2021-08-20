@@ -67,7 +67,7 @@ require'nvim-treesitter.configs'.setup {
 -- Text objects: swap
 -- Define your own mappings to swap the node under the cursor with the next or previous one, like function parameters or arguments.
 
-require'nvim-treesitter.configs'.setup {
+--[[ require'nvim-treesitter.configs'.setup {
   textobjects = {
     swap = {
       enable = true,
@@ -79,4 +79,4 @@ require'nvim-treesitter.configs'.setup {
       },
     },
   },
-}
+} ]]

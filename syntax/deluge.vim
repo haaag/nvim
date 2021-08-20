@@ -4,11 +4,11 @@ if !exists("main_syntax")
   elseif exists("b:current_syntax")
     finish
   endif
-  let main_syntax = 'javascript'
+  let main_syntax = 'deluge'
 endif
 
 " Dollar sign is permitted anywhere in an identifier
-if (v:version > 704 || v:version == 704 && has('patch1142')) && main_syntax == 'javascript'
+if (v:version > 704 || v:version == 704 && has('patch1142')) && main_syntax == 'deluge'
   syntax iskeyword @,48-57,_,192-255,$
 else
   setlocal iskeyword+=$
@@ -140,11 +140,11 @@ syntax region  jsTemplateExpression matchgroup=jsTemplateBrace start=+\%([^\\]\%
 
 " Built-in values
 " REFERENCE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
-syntax keyword jsBuiltinValues undefined null NaN true GET PUT POST false Infinity globalThis global contained
-syntax keyword jsBuiltinValues window document module exports require console arguments contained
+syntax keyword jsBuiltinValues undefined null NaN true GET PUT POST invokeurl false Infinity globalThis global contained
+syntax keyword jsBuiltinValues .crm info window document module exports require console arguments contained
 
 " Built-in objects
-syntax keyword jsBuiltinObjects Object Function Boolean Symbol Error EvalError InternalError RangeError ReferenceError SyntaxError TypeError URIError contained
+syntax keyword jsBuiltinObjects Object Function crm Boolean Symbol Error EvalError InternalError RangeError ReferenceError SyntaxError TypeError URIError contained
 syntax keyword jsBuiltinObjects Number BigInt Math Date String RegExp contained
 syntax keyword jsBuiltinObjects Array Int8Array Uint8Array Uint8ClampedArray Int16Array Uint16Array Int32Array Uint32Array Float32Array Float64Array BigInt64Array BigUint64Array contained
 syntax keyword jsBuiltinObjects Map Set WeakMap WeakSet contained
@@ -152,7 +152,7 @@ syntax keyword jsBuiltinObjects ArrayBuffer SharedArrayBuffer Atomics DataView J
 syntax keyword jsBuiltinObjects Promise Generator GeneratorFunction AsyncFunction Reflect Proxy Intl WebAssembly contained
 
 " Built-in functions
-syntax keyword jsBuiltinFunctions eval uneval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape require contained
+syntax keyword jsBuiltinFunctions eval invokeurl uneval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape require contained
 
 " Numbers
 " REFERENCE: http://www.ecma-international.org/ecma-262/10.0/index.html#prod-NumericLiteral
@@ -457,7 +457,12 @@ highlight default link jsExceptionBraces jsBraces
 highlight default link jsWith Keyword
 highlight default link jsWithParens jsParens
 
-let b:current_syntax = "javascript"
-if main_syntax == 'javascript'
+let b:current_syntax = "deluge"
+if main_syntax == 'deluge'
   unlet main_syntax
 endif
+
+" let b:current_syntax = "javascript"
+" if main_syntax == 'javascript'
+"   unlet main_syntax
+" endif

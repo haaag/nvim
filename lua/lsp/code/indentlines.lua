@@ -14,16 +14,17 @@ local g = vim.g
 -- My Chart
 -----------
 g.indentLine_char_list = {"▏"}
+-- g.indentLine_char_list = {"|"}
 g.indentLine_color_tty_dark = 1
 g.indent_blankline_extra_indent_level = -1
 
 -- Excluded
 -----------
 g.indentLine_fileTypeExclude = {
-    'help', 'terminal', 'LuaTree', 'packer', 'Packer', 'startify', 'tagbar', 'dashboard', 'vimwiki'
+    'help', 'terminal', 'LuaTree', 'packer', 'Packer', 'startify', 'tagbar', 'dashboard', 'vimwiki', "which-key"
 }
 g.indentLine_bufTypeExclude = {
-    'help', 'terminal', 'LuaTree', 'packer', 'Packer'
+    'help', 'terminal', 'LuaTree', 'packer', 'Packer', 'vimwiki'
 }
 
 -- Others

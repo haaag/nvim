@@ -30,11 +30,6 @@ map('v', '<S-Tab>', '<', {})
 map('x', 'K', ':move \'<-2<CR>gv-gv\'', options)
 map('x', 'J', ':move \'>+1<CR>gv-gv\'', options)
 
--- Tab switch buffer
---------------------
---[[ map('n', '<TAB>', ':bnext<CR>', options)
-map('n', '<S-TAB>', ':bprevious<CR>', options) ]]
-
 -- Use alt + hjkl to resize windows:
 ------------------------------------
 map('n', '<M-j>', ':resize -2<CR>', options)
@@ -83,10 +78,27 @@ map('n', '<F8>', ':set spell!<CR>', options)
 map('n', 'C-k', ':cnext', options)
 map('n', 'C-j', ':cprev', options)
 
--- Edit Files
--------------
-map('n', '<leader>Si', ':e ~/.config/nvim/init.lua<CR>', options)
-map('n', '<leader>Sp', ':e ~/.config/nvim/lua/plugins/plugins.lua<CR>', options)
-map('n', '<leader>Sm', ':e ~/.config/nvim/lua/keys/plugins-mappings.lua<CR>', options)
-map('n', '<leader>Sz', ':e ~/.config/zsh/.zshrc<CR>', options)
-map('n', '<leader>Sb', ':e ~/apps/vimwiki/cookbook/cookbook.md<CR>', options)
+-- copy whole file content
+-- map("n", "<C-a>", ":%y+<CR>", options)
+
+-- More molecular undo of text
+map("i", ",", ",<c-g>u", silent)
+map("i", ".", ".<c-g>u", silent)
+map("i", "!", "!<c-g>u", silent)
+map("i", "?", "?<c-g>u", silent)
+map("i", ";", ";<c-g>u", silent)
+map("i", ":", ":<c-g>u", silent)
+
+-- Keep search results centred
+map("n", "n", "nzzzv", silent)
+map("n", "N", "Nzzzv", silent)
+-- map("n", "J", "mzJ`z", silent)
+
+-- Simpler increment/decrement integers
+map("n", "+", "<C-a>", silent)
+map("v", "+", "<C-a>", silent)
+map("n", "-", "<C-x>", silent)
+map("v", "-", "<C-x>", silent)
+
+-- Make Y yank to end of the line
+map("n", "Y", "y$", silent)

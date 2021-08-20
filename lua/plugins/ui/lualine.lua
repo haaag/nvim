@@ -2,9 +2,7 @@ local theme = require('plugins.themes.local-theme').colorscheme()
 
 require('lualine').setup {
     options = {
-        -- theme = 'onedark',
-        theme = 'tokyonight',
-        -- theme = 'solarized',
+        theme = theme.lualine,
         section_separators = '',
         component_separators = '',
         icons_enabled = true
@@ -19,6 +17,7 @@ require('lualine').setup {
                 color_added = theme.green,
                 color_modified = theme.blue,
                 color_removed = theme.red,
+                symbols = {added = ' ', modified = ' ', removed = ' '}
             }
         },
         lualine_x = {
@@ -43,7 +42,5 @@ require('lualine').setup {
     }
 }
 
---[[ section_separators = {'', ''},
--- component_separators = {'', ''}, ]]
-
 --   
+

@@ -1,5 +1,6 @@
 local custom_attach = function(client)
     print("Python LSP started.");
+    require "lsp_signature".on_attach()
 end
 
 local lsp = require 'lspconfig'

@@ -49,7 +49,8 @@ M.onedark = function()
         cyan = "#56b6c2",
         white = "#979eab",
         lightgrey = "#5c6370",
-        darkgrey = "#5c6370"
+        darkgrey = "#5c6370",
+        lualine = "onedark"
     }
     return color
 end
@@ -113,6 +114,7 @@ M.tokyonight = function()
         background = "#24283b",
         foreground = "#a9b1d6",
         black = "#1a1b26",
+        black2 = "#1a1b26",
         red = "#f7768e",
         green = "#9ece6a",
         yellow = "#e0af68",
@@ -121,7 +123,9 @@ M.tokyonight = function()
         cyan = "#7dcfff",
         white = "#c0caf5",
         lightgrey = "#545c7e",
-        darkgrey = "#545c7e"
+        darkgrey = "#545c7e",
+        lualine = "tokyonight",
+        global = "tokyonight"
     }
     return color
 end
@@ -138,8 +142,70 @@ M.solarized = function()
         purple = "#9d7cd8",
         cyan = "#7d8d09",
         white = "#eee8d5",
-        lightgrey = "#002b36",
-        darkgrey = "#002b36"
+        lightgrey = "#073642",
+        darkgrey = "#073643",
+        lualine = "solarized"
+    }
+    return color
+end
+
+M.dracula = function()
+    local color = {
+        background = "#282A36",
+        foreground = "#F8F8F2",
+        black = "#000000",
+        red = "#FF5555",
+        green = "#50FA7B",
+        yellow = "#F1FA8C",
+        blue = "#8BE9FD",
+        purple = "#BD93F9",
+        cyan = "#8BE9FD",
+        white = "#E6E6E6",
+        lightgrey = "#BFBFBF",
+        darkgrey = "#4D4D4D",
+        lualine = "dracula-nvim"
+    }
+    return color
+end
+
+
+M.gruvbox_soft = function()
+    local color = {
+        background = "#32302f",
+        foreground = "#fbf1c7",
+        black = "#32302f",
+        black2 = "#3c3836",
+        red = "#cc241d",
+        green = "#98971a",
+        yellow = "#d79921",
+        blue = "#458588",
+        purple = "#b16286",
+        cyan = "#689d6a",
+        white = "#ebdbb2",
+        lightgrey = "#a89984",
+        darkgrey = "#928374",
+        lualine = "gruvbox"
+    }
+    return color
+end
+
+
+M.gruvbox_flat = function()
+    local color = {
+        background = "#1d2021",
+        foreground = "#d4be98",
+        black = "#1D2021",
+        black2 = "#17191a",
+        red = "#ea6962",
+        green = "#a9b665",
+        yellow = "#d8a657",
+        blue = "#7daea3",
+        purple = "#d3869b",
+        cyan = "#89b482",
+        white = "#d4be98",
+        lightgrey = "#a89984",
+        darkgrey = "#928374",
+        lualine = "gruvbox-flat"
     }
     return color
 end
