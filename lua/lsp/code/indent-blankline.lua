@@ -5,7 +5,10 @@ local cmd = vim.cmd
 local indent = 2
 
 g.indentLine_enabled = 1
-g.indent_blankline_char = "▏"
+-- g.indent_blankline_char = "▏"
+g.indent_blankline_char = '│' -- U+2502
+-- g.indent_blankline_char ='┆' " U+2506
+-- g.indent_blankline_char='┊' " U+250A
 -- g.indent_blankline_char = "|"
 --[[ g.indent_blankline_show_current_context = true
 g.indent_blankline_use_treesitter = true ]]

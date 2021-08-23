@@ -11,6 +11,7 @@ require('lsp.config.format')
 require('lsp.config.cpp')
 require('lsp.config.jsonls')
 require('lsp.config.deluge')
+require('lsp.config.css-ls')
 
 -- Plugins configs
 ------------------
