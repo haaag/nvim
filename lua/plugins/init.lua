@@ -15,6 +15,7 @@ return require('packer').startup(function()
     use 'sbdchd/neoformat'
     use 'preservim/tagbar'
     use 'hrsh7th/nvim-compe'
+    use { 'ms-jpq/coq_nvim', branch = 'coq'}
     use 'baskerville/vim-sxhkdrc'
     use 'hrsh7th/vim-vsnip'
     use 'hrsh7th/vim-vsnip-integ'
@@ -83,6 +84,7 @@ return require('packer').startup(function()
     use 'tweekmonster/startuptime.vim'
     use 'airblade/vim-rooter'
     -- use 'iamcco/markdown-preview.nvim'
+    use 'davidgranstrom/nvim-markdown-preview'
     -- }}}
     -- UI: {{{
     -- use "Pocco81/TrueZen.nvim"

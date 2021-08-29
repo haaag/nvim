@@ -1,5 +1,6 @@
 local theme = require('plugins.themes.local-theme').colorscheme()
 
+-- Setup Lualine
 require('lualine').setup {
     options = {
         theme = theme.lualine,

@@ -47,7 +47,8 @@ which_key_map.f = {
         name = '+commands',
         c = {'<Cmd>Telescope commands<CR>', 'commands'},
         h = {'<Cmd>Telescope command_history<CR>', 'history'}
-    }
+    },
+    l = {'<Cmd>Telescope current_buffer_fuzzy_find<CR>', 'search in buffer'}
 }
 
 which_key_map.g = {
@@ -88,7 +89,9 @@ which_key_map.l = {
     d = {':TroubleToggle<CR>', 'TroubleToggle'},
     c = {':Lspsaga show_line_diagnostics<CR>', 'Show Line Diagnostic'},
     h = {':Lspsaga lsp_finder<CR>', 'Lsp Finder'},
-    k = {':Lspsaga hover_doc<CR>', 'Hover'},
+    -- k = {':Lspsaga hover_doc<CR>', 'Hover'},
+    -- k = {':lua require("lspsaga.hover").render_hover_doc()<CR>', "hover"},
+    k = {'<cmd>lua vim.lsp.buf.hover()<CR>', 'hover'},
     n = {':Lspsaga diagnostic_jump_next<CR>', 'Next Diagnostic'},
     P = {
         ':lua require"lspsaga.provider".preview_definition()<CR>',
@@ -114,8 +117,9 @@ which_key_map.S = {
     p = {':e ~/.config/nvim/lua/plugins/init.lua<CR>', 'plugins'},
     h = {':Startify<CR>', 'Startify Home'},
     z = {':e ~/.config/zsh/.zshrc<CR>', 'zshrc'},
+    Z = {':e ~/apps/vimwiki/Zoho.md<CR>', 'zohowiki'},
     b = {':e ~/apps/vimwiki/cookbook/cookbook.md<CR>', 'cookbook'},
-    v = {'<Cmd>VimwikiIndex<CR>', 'VimWiki'}
+    v = {'<Cmd>VimwikiIndex<CR>', 'VimWiki'},
 }
 
 local local_keymap = {
