@@ -1,3 +1,3 @@
 require('keys.mappings')
 require('keys.plugins-mappings')
--- require('keys.which-key')
+require('keys.which-key')

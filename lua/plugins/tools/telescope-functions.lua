@@ -11,14 +11,14 @@ M.search_dotfiles_vim = function()
                 previewer = false,
                 winblend = 10,
                 prompt_title = "< nvim >",
-                cwd = HOME .. "/.dotfiles/.config/nvim/"
+                cwd = HOME .. "/.config/nvim/"
             }))
 end
 
 M.dotfiles_nvim = function()
     require("telescope.builtin").find_files {
         prompt_title = "< nvim config >",
-        cwd = "~/.dotfiles/.config/nvim/",
+        cwd = "~/.config/nvim/",
         layout_strategy = "horizontal",
         layout_config = {preview_width = 0.65, width = 0.75}
     }
@@ -49,7 +49,7 @@ M.search_dotfiles_vim_bk = function()
                 previewer = false,
                 winblend = 10,
                 prompt_title = "< nvim.bk >",
-                cwd = HOME .. "/.dotfiles/.config/nvim.bk/"
+                cwd = HOME .. "/.config/nvim.bk/"
             }))
 end
 return M
