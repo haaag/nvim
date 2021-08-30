@@ -15,7 +15,7 @@ return require('packer').startup(function()
     use 'sbdchd/neoformat'
     use 'preservim/tagbar'
     use 'hrsh7th/nvim-compe'
-    use { 'ms-jpq/coq_nvim', branch = 'coq'}
+    use {'ms-jpq/coq_nvim', branch = 'coq'}
     use 'baskerville/vim-sxhkdrc'
     use 'hrsh7th/vim-vsnip'
     use 'hrsh7th/vim-vsnip-integ'
@@ -91,10 +91,11 @@ return require('packer').startup(function()
     use 'norcalli/nvim-colorizer.lua'
     use 'karb94/neoscroll.nvim'
     use 'mhinz/vim-startify'
-    use {
+    --[[ use {
         'AckslD/nvim-whichkey-setup.lua',
         requires = {'liuchengxu/vim-which-key'}
-    }
+    } ]]
+    use {'folke/which-key.nvim'}
     use {
         'yamatsum/nvim-web-nonicons',
         requires = {'kyazdani42/nvim-web-devicons'}
