@@ -1,11 +1,11 @@
-local custom_attach = function(client)
-    print("Python LSP started.");
-    require "lsp_signature".on_attach()
-end
+--- python lsp simple config
+----------------------------
 
 local lsp = require 'lspconfig'
--- lsp.pyls.setup{on_attach=custom_attach}
--- lsp.jedi_language_server.setup{on_attach=custom_attach}
+local custom_attach = function(client)
+    print("Python LSP started.");
+end
+
 lsp.pyright.setup{on_attach=custom_attach}
 
 vim.g.python3_host_prog = 'python3'
