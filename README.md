@@ -25,7 +25,7 @@
 * [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs) -- A super powerful autopairs for Neovim.
 * [machakann/vim-sandwich](https://github.com/machakann/vim-sandwich) -- Plugin to manipulate character pairs quickly.
 
-## General
+### General
 * [hoob3rt/lualine.nvim](https://github.com/hoob3rt/lualine.nvim) -- A blazing fast and easy to configure neovim statusline.
 * [akinsho/nvim-bufferline.lua](https://github.com/akinsho/bufferline.nvim) -- A snazzy buffer line.
 * [airblade/vim-rooter](https://github.com/airblade/vim-rooter) -- Changes the working directory to the project root.
