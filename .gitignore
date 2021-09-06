@@ -1,6 +1,10 @@
-ls/
-undodir/
-spell/
-git/
-*.bk
-plugin/packer_compiled.vim
+
+ls/lua-language-server/
+plugin
+spell
+syntax/deluge.vim.bk1
+syntax/deluge.vim.last
+syntax/deluge.vim.orig
+undodir
+lua/plugins/init.lua.bk
+lua/utils/personal-functions.lua
