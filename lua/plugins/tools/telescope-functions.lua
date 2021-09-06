@@ -10,7 +10,7 @@ M.search_dotfiles_vim = function()
             {
                 previewer = false,
                 winblend = 10,
-                prompt_title = "< nvim >",
+                prompt_title = "< nvim config >",
                 cwd = HOME .. "/.config/nvim/"
             }))
 end
@@ -32,19 +32,9 @@ M.search_dotfiles = function()
     }
 end
 
-M.search_backup = function()
-    require("telescope.builtin").find_files(
-        require("telescope.themes").get_dropdown(
-            {
-                prompt_title = "< dotfiles backup >",
-                cwd = HOME .. "/bigarch/home/backup/rsync/.dotfiles/",
-                find_command = {'fd', '-H', '-t', 'f'}
-            }))
-end
-
 M.search_dotfiles_vim_bk = function()
     require("telescope.builtin").find_files(
-        require("telescope.themes").get_dropdown(
+        require("telescope.themes").get_ivy(
             {
                 previewer = false,
                 winblend = 10,

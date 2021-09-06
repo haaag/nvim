@@ -1,19 +1,19 @@
 local g = vim.g
 
---[[ g.startify_custom_header = {
+g.startify_custom_header = {
 '',
 '',
-'                                       ██            ',
-'                                      ░░             ',
-'    ███████   █████   ██████  ██    ██ ██ ██████████ ',
-'   ░░██░░░██ ██░░░██ ██░░░░██░██   ░██░██░░██░░██░░██',
-'    ░██  ░██░███████░██   ░██░░██ ░██ ░██ ░██ ░██ ░██',
-'    ░██  ░██░██░░░░ ░██   ░██ ░░████  ░██ ░██ ░██ ░██',
-'    ███  ░██░░██████░░██████   ░░██   ░██ ███ ░██ ░██',
-'   ░░░   ░░  ░░░░░░  ░░░░░░     ░░    ░░ ░░░  ░░  ░░ ',
+'                      ██            ',
+'                     ░░             ',
+'    ███████  ██    ██ ██ ██████████ ',
+'   ░░██░░░██░██   ░██░██░░██░░██░░██',
+'    ░██  ░██░░██ ░██ ░██ ░██ ░██ ░██',
+'    ░██  ░██ ░░████  ░██ ░██ ░██ ░██',
+'    ███  ░██  ░░██   ░██ ███ ░██ ░██',
+'   ░░░   ░░    ░░    ░░ ░░░  ░░  ░░ ',
 '',
 '',
-} ]]
+}
 g.webdevicons_enable_startify = 1
 g.startify_enable_special = 0
 g.startify_session_autoload = 1
@@ -23,7 +23,7 @@ g.startify_fortune_use_unicode = 1
 g.startify_session_persistence = 1
 
 
-vim.g.startify_custom_header = 'startify#pad(startify#fortune#cowsay())'
+-- vim.g.startify_custom_header = 'startify#pad(startify#fortune#cowsay())'
 
 -- Use Nvim-web-devicons for Startify
 function _G.webDevIcons(path)
@@ -42,11 +42,3 @@ g.startify_lists = {
   { type = 'dir', header = { "   Current Directory "..vim.fn.getcwd()..":" } },
   { type = 'bookmarks', header = { '   Bookmarks' } }
 }
-
---[[ g.startify_bookmarks = {
-  { p = '~/.config/nvim/lua/plugins/plugins.lua'},
-  { i = '~/.config/nvim/init.lua'},
-  { m = '~/.config/nvim/lua/keys/plugins-mappings.lua'},
-  { z = '~/.dotfiles/.config/zsh/.zshrc'},
-  { b = '~/apps/vimwiki/cookbook/cookbook.md' },
-} ]]

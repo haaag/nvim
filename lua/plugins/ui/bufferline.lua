@@ -2,6 +2,7 @@ vim.o.termguicolors = true
 local theme = require('plugins.themes.local-theme').colorscheme()
 local bufferline = require "bufferline"
 
+
 bufferline.setup {
     options = {
         offsets = {{filetype = "NvimTree", text = "", padding = 1}},
@@ -36,6 +37,8 @@ bufferline.setup {
             guibg = theme.black2
         },
         buffer_selected = {
+            --[[ guifg = theme.black2,
+            guibg = theme.blue, ]]
             guifg = theme.white,
             guibg = theme.black,
             gui = "bold"

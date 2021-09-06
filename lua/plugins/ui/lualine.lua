@@ -6,7 +6,8 @@ require('lualine').setup {
         theme = theme.lualine,
         section_separators = '',
         component_separators = '',
-        icons_enabled = true
+        icons_enabled = true,
+	disabled_filetypes = {"NvimTree", "tagbar"}
     },
     sections = {
         lualine_a = {{'mode', upper = true}},

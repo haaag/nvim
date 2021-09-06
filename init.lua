@@ -1,18 +1,3 @@
--- Plugins List:
-require('plugins')
+local modules = {"general", "keys", "lsp", "plugins"}
 
--- General:
-require('general')
-require('keys')
-
--- Lsp:
-require('lsp')
-
--- UI:
-require('plugins.ui')
-
--- Themes n' Color:
-require('plugins.themes')
-
--- Tools:
-require('plugins.tools')
+for i = 1, #modules, 1 do pcall(require, modules[i]) end
