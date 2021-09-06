@@ -78,9 +78,6 @@ map('n', '<F8>', ':set spell!<CR>', options)
 map('n', 'C-k', ':cnext', options)
 map('n', 'C-j', ':cprev', options)
 
--- copy whole file content
--- map("n", "<C-a>", ":%y+<CR>", options)
-
 -- More molecular undo of text
 map("i", ",", ",<c-g>u", silent)
 map("i", ".", ".<c-g>u", silent)
@@ -95,10 +92,13 @@ map("n", "N", "Nzzzv", silent)
 -- map("n", "J", "mzJ`z", silent)
 
 -- Simpler increment/decrement integers
-map("n", "+", "<C-a>", silent)
+--[[ map("n", "+", "<C-a>", silent)
 map("v", "+", "<C-a>", silent)
 map("n", "-", "<C-x>", silent)
-map("v", "-", "<C-x>", silent)
+map("v", "-", "<C-x>", silent) ]]
 
 -- Make Y yank to end of the line
 map("n", "Y", "y$", silent)
+
+-- copy whole file content
+-- map("n", "<C-a>", ":%y+<CR>", options)

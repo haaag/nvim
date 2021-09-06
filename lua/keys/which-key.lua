@@ -4,7 +4,7 @@ require("which-key").setup {
         registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
         spelling = {
             enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-            suggestions = 20 -- how many suggestions should be shown in the list?
+            suggestions = 10 -- how many suggestions should be shown in the list?
         },
         -- the presets plugin, adds help for a bunch of default keybindings in Neovim
         -- No actual key bindings are created
@@ -62,139 +62,144 @@ require("which-key").setup {
 local wk = require("which-key")
 
 wk.register({
-  ['='] = {'<cmd>lua vim.lsp.buf.formatting()<CR>', 'formatting'},
-  ['/'] = {'<Plug>kommentary_line_default', 'kommentary', noremap = false},
-  ['?'] = {':NvimTreeFindFile<CR>', 'treefind'},
-  ['<F1>'] = {':FloatermToggle<CR>', 'toggle_term'},
-  ['<F2>'] = {':TagbarToggle<CR>', 'tagbar'},
-  ['<F3>'] = {':NvimTreeToggle<CR>', 'nvimtree'},
-  ['[e'] = {'<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', 'next diag'}
+    ['='] = {'<cmd>lua vim.lsp.buf.formatting()<CR>', 'formatting'},
+    ['/'] = {'<Plug>kommentary_line_default', 'kommentary', noremap = false},
+    ['?'] = {':NvimTreeFindFile<CR>', 'treefind'},
+    ['<F1>'] = {':FloatermToggle<CR>', 'toggle_term'},
+    ['<F2>'] = {':TagbarToggle<CR>', 'tagbar'},
+    ['<F3>'] = {':NvimTreeToggle<CR>', 'nvimtree'}
+    -- ['[e'] = {'<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', 'next diag'}
 }, {prefix = "<leader>"})
 
 -- find
 wk.register({
-  f = {
-    name = '+find',
-    c = {
-      name = '+commands',
-      c = {'<Cmd>Telescope commands<CR>', 'commands'},
-      h = {'<Cmd>Telescope command_history<CR>', 'history'}
-    },
-    l = {'<Cmd>Telescope current_buffer_fuzzy_find<CR>', 'search in buffer'}
-  }
+    f = {
+        name = '+find',
+        c = {
+            name = '+commands',
+            c = {'<Cmd>Telescope commands<CR>', 'commands'},
+            h = {'<Cmd>Telescope command_history<CR>', 'history'}
+        },
+        l = {'<Cmd>Telescope current_buffer_fuzzy_find<CR>', 'search in buffer'}
+    }
 }, {prefix = "<leader>"})
 
 -- quickfix
 wk.register({
-  q = {
-    name = '+quickfix',
     q = {
-        ':lua require("funcs.quicklist").create_from_buffer()<CR>',
-        'from buffer'
-    },
-    G = {':clast<CR>', 'last'},
-    g = {':cfirst<CR>', 'first'},
-    c = {':cclose<CR>', 'close'},
-    o = {':copen<CR>', 'open'}
-  }
+        name = '+quickfix',
+        q = {
+            ':lua require("funcs.quicklist").create_from_buffer()<CR>',
+            'from buffer'
+        },
+        G = {':clast<CR>', 'last'},
+        g = {':cfirst<CR>', 'first'},
+        c = {':cclose<CR>', 'close'},
+        o = {':copen<CR>', 'open'}
+    }
 }, {prefix = "<leader>"})
 
 -- buffers
 wk.register({
-  b = {
-    name = '+buffer',
-    d = {':BufDel<CR>', 'close'},
-    g = {':BufferLinePick<CR>', 'choose buffer'},
-    o = {':only<CR>', 'only buffer'},
-    O = {':MaximizerToggle<CR>', 'MaximizerToggle'},
-    c = {':ColorizerToggle<CR>', 'ColorizerToggle'},
-  }
-})
+    b = {
+        name = '+buffer',
+        d = {':BufDel<CR>', 'close'},
+        g = {':BufferLinePick<CR>', 'choose buffer'},
+        o = {':only<CR>', 'only buffer'},
+        O = {':MaximizerToggle<CR>', 'MaximizerToggle'},
+        c = {':ColorizerToggle<CR>', 'ColorizerToggle'}
+    }
+}, {prefix = "<leader>"})
 
 -- startify
 wk.register({
     S = {
-      name = '+startify',
-      h = {':Startify<CR>', 'Startify Home'},
-      p = {':e ~/.config/nvim/lua/plugins/init.lua<CR>', 'plugins'},
-      z = {':e ~/.config/zsh/.zshrc<CR>', 'zshrc'},
-      Z = {':e ~/apps/vimwiki/Zoho.md<CR>', 'zohowiki'},
-      b = {':e ~/apps/vimwiki/cookbook/cookbook.md<CR>', 'cookbook'},
-      v = {'<Cmd>VimwikiIndex<CR>', 'VimWiki'}
+        name = '+startify',
+        h = {':Startify<CR>', 'Startify Home'},
+        p = {':e ~/.config/nvim/lua/plugins/init.lua<CR>', 'plugins'},
+        z = {':e ~/.config/zsh/.zshrc<CR>', 'zshrc'},
+        Z = {':e ~/apps/vimwiki/Zoho.md<CR>', 'zohowiki'},
+        b = {':e ~/apps/vimwiki/cookbook/cookbook.md<CR>', 'cookbook'},
+        v = {'<Cmd>VimwikiIndex<CR>', 'VimWiki'}
     }
 }, {prefix = "<leader>"})
 
 -- lsp and syntax
 wk.register({
     l = {
-      name = '+lsp',
-      a = {'', ''},
-      d = {':TroubleToggle<CR>', 'TroubleToggle'},
-      c = {':Lspsaga show_line_diagnostics<CR>', 'Show Line Diagnostic'},
-      h = {':Lspsaga lsp_finder<CR>', 'Lsp Finder'},
-      -- k = {':Lspsaga hover_doc<CR>', 'Hover'},
-      k = {'<cmd>lua vim.lsp.buf.hover()<CR>', 'hover'},
-      n = {':Lspsaga diagnostic_jump_next<CR>', 'Next Diagnostic'},
-      P = {
-          ':lua require"lspsaga.provider".preview_definition()<CR>',
-          'Preview Definition'
-      },
-      p = {':Lspsaga diagnostic_jump_prev<CR>', 'Prev Diagnostic'},
-      t = {':TodoTelescope<CR>', 'TodoTelescope'},
-      T = {'call v:lua.toggle_diagnostics()<CR>', 'ToggleDiagnostics'},
-      r = {':Lspsaga rename<CR>', 'Rename'},
-      s = {':Lspsaga signature_help<CR>', 'Signature Help'},
-      u = {
-          ':lua require"lspsaga.action".smart_scroll_with_saga(1)<CR>',
-          'Smart scroll with Saga Next'
-      },
-      U = {
-          ':lua require"lspsaga.action".smart_scroll_with_saga(-1)<CR>',
-          'Smart scroll with Saga Prev'
-      }
+        name = '+lsp',
+        a = {'', ''},
+        -- d = {':TroubleToggle<CR>', 'TroubleToggle'},
+        c = {':Lspsaga show_line_diagnostics<CR>', 'Show Line Diagnostic'},
+        f = {':Neoformat<CR>', 'formatting'},
+        h = {':Lspsaga lsp_finder<CR>', 'Lsp Finder'},
+        k = {'<cmd>lua vim.lsp.buf.hover()<CR>', 'hover'},
+        -- n = {':Lspsaga diagnostic_jump_next<CR>', 'Next Diagnostic'},
+	n = {'<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', "Next Diagnostic"},
+        P = {
+            ':lua require"lspsaga.provider".preview_definition()<CR>',
+            'Preview Definition'
+        },
+        -- p = {':Lspsaga diagnostic_jump_prev<CR>', 'Prev Diagnostic'},
+	p = {'<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', "Prev Diagnostic"},
+        t = {':TodoTelescope<CR>', 'TodoTelescope'},
+        T = {'call v:lua.toggle_diagnostics()<CR>', 'ToggleDiagnostics'},
+	r = {':lua vim.lsp.buf.rename()<CR>', 'Rename'},
+        -- s = {':Lspsaga signature_help<CR>', 'Signature Help'},
+        s = {':COQnow<CR>', 'coq init'},
+        u = {
+            ':lua require"lspsaga.action".smart_scroll_with_saga(1)<CR>',
+            'Smart scroll with Saga Next'
+        },
+        U = {
+            ':lua require"lspsaga.action".smart_scroll_with_saga(-1)<CR>',
+            'Smart scroll with Saga Prev'
+        }
     }
 }, {prefix = "<leader>"})
 
 -- telescope
 wk.register({
-  t = {
-    name = "+telescope",
-    d = {
-      '<Cmd>lua require("plugins.tools.telescope-functions").search_dotfiles()<CR>',
-      'dotfiles'
-    },
-    g = {
-      ':lua require("telescope.builtin").grep_string({ search = vim.fn.input("  RG ❯ ")})<CR>',
-      'grep'
-    },
-    w = {
-      ':lua require("telescope.builtin").grep_string { search = vim.fn.expand("<cword>") }<CR>',
-      'grep current word'
-    },
-    o = {
-      ':lua require"telescope.builtin".oldfiles()<cr>', 'recent opened files'
-    },
-    v = {
-      '<Cmd>lua require("plugins.tools.telescope-functions").dotfiles_nvim()<CR>',
-      'nvim_config'
+    t = {
+        name = "+telescope",
+        b = {
+            '<Cmd>lua require("plugins.tools.telescope-functions").search_dotfiles_vim_bk()<CR>',
+            'nvim bk files'
+        },
+        d = {
+            '<Cmd>lua require("plugins.tools.telescope-functions").search_dotfiles()<CR>',
+            'dotfiles'
+        },
+        g = {
+            ':lua require("telescope.builtin").grep_string({ search = vim.fn.input("  RG ❯ ")})<CR>',
+            'grep'
+        },
+        w = {
+            ':lua require("telescope.builtin").grep_string { search = vim.fn.expand("<cword>") }<CR>',
+            'grep current word'
+        },
+        o = {':Telescope oldfiles theme=get_ivy<cr>', 'recent opened'},
+        v = {
+            '<Cmd>lua require("plugins.tools.telescope-functions").dotfiles_nvim()<CR>',
+            'nvim_config'
+        }
     }
-  }
 }, {prefix = "<leader>"})
 
 -- git
 wk.register({
-  g = {
-    name = '+git',
-    g = {'<Cmd>Telescope git_commits<CR>', 'commits'},
-    c = {'<Cmd>Telescope git_bcommits<CR>', 'bcommits'},
-    b = {'<Cmd>Telescope git_branches<CR>', 'branches'},
-    s = {'<Cmd>Telescope git_status<CR>', 'status'}
-  }
+    g = {
+        name = '+git',
+        g = {'<Cmd>Telescope git_commits<CR>', 'commits'},
+        c = {'<Cmd>Telescope git_bcommits<CR>', 'bcommits'},
+        b = {'<Cmd>Telescope git_branches<CR>', 'branches'},
+        s = {'<Cmd>Telescope git_status<CR>', 'status'}
+    }
 }, {prefix = "<leader>"})
 
 -- kommentary
 local visual_keymap = {
-  ['/'] = {'<Plug>kommentary_visual_default', 'kommentary', noremap=false},
+    ['/'] = {'<Plug>kommentary_visual_default', 'kommentary', noremap = false}
 }
 
 wk.register(visual_keymap, {mode = "v", prefix = "<leader>"})

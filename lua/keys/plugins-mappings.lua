@@ -5,7 +5,8 @@ local options = {noremap = true, silent = true}
 
 -- Telescope Builtin:
 --------------------
-map('n', '<C-f>', ':lua require"telescope.builtin".find_files()<cr>', options)
+-- map('n', '<C-f>', ':lua require"telescope.builtin".find_files()<cr>', options)
+map('n', '<C-f>', ':Telescope find_files<cr>', options)
 map('n', '<leader>pb', ':lua require("telescope.builtin").buffers(require("telescope.themes").get_dropdown({hidden = true, winblend = 10, previewer = false}))<CR>', options)
 map('n', '<leader>mp', ':lua require("telescope.builtin").keymaps()<cr>', options)
 
