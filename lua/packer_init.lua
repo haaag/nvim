@@ -31,9 +31,10 @@ end
 
 return packer.init {
     display = {
-        open_fn = function()
+	    open_fn = nil
+        --[[ open_fn = function()
             return require("packer.util").float {border = "single"}
-        end
+        end ]]
     },
     git = {
         clone_timeout = 600 -- Timeout, in seconds, for git clones
