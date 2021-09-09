@@ -15,8 +15,6 @@
 * [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) -- A collection of common configurations for Neovim's built-in language server client.
 
 ### Code Utilities
-* [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) -- Treesitter configurations and abstraction layer for Neovim.
-* [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) -- Highly extendable fuzzy finder over lists.
 * [preservim/tagbar](https://github.com/preservim/tagbar) -- A class outline viewer for Vim.
 * [sbdchd/neoformat](https://github.com/sbdchd/neoformat) -- For formatting code.
 * [ms-jpq/coq_nvim](https://github.com/ms-jpq/coq_nvim) -- Completion: Fast as FUCK and loads of features.
@@ -24,6 +22,12 @@
 * [b3nj5m1n/kommentary](https://github.com/b3nj5m1n/kommentary) -- Comment text in and out.
 * [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs) -- A super powerful autopairs for Neovim.
 * [machakann/vim-sandwich](https://github.com/machakann/vim-sandwich) -- Plugin to manipulate character pairs quickly.
+
+### Syntax
+* [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) -- Treesitter configurations and abstraction layer for Neovim.
+
+### Finder
+* [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) -- Highly extendable fuzzy finder over lists.
 
 ### General
 * [hoob3rt/lualine.nvim](https://github.com/hoob3rt/lualine.nvim) -- A blazing fast and easy to configure neovim statusline.
@@ -42,6 +46,7 @@
 * [vimwiki/vimwiki](https://github.com/vimwiki/vimwiki) -- Personal wiki for Vim.
 * [karb94/neoscroll.nvim](https://github.com/karb94/neoscroll.nvim) -- Smooth scrolling.
 * [kyazdani42/nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua) -- File Explorer For Neovim Written In Lua.
+* [tjdevries/cyclist.vim](tjdevries/cyclist.vim) -- cycle + listchars = cyclist.vim.
 
 ### Themes
 * [eddyekofo94/gruvbox-flat.nvim](https://github.com/eddyekofo94/gruvbox-flat.nvim) -- Dark beautiful Neovim theme.
