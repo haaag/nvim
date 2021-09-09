@@ -8,7 +8,7 @@ g.indentLine_enabled = 1
 g.indent_blankline_char = "▏"
 -- g.indent_blankline_char = "|"
 -- g.indent_blankline_char = '│' -- U+2502
--- g.indent_blankline_char ='┆' " U+2506
+-- g.indent_blankline_char ='┆' -- U+2506
 -- g.indent_blankline_char='┊' " U+250A
 -- g.indent_blankline_char = "|"
 --[[ g.indent_blankline_show_current_context = true
@@ -16,9 +16,9 @@ g.indent_blankline_use_treesitter = true ]]
 g.indent_blankline_use_treesitter = true
 g.indent_blankline_show_trailing_blankline_indent = false
 g.indent_blankline_show_current_context = true
-vim.wo.colorcolumn = "99999"
+-- vim.wo.colorcolumn = "99999"
 
-cmd "hi IndentBlanklineChar guifg=#45403d"
+-- cmd "hi IndentBlanklineChar guifg=#45403d"
 -- cmd "hi IndentBlanklineChar guifg=#2a2e36"
 -- cmd "hi IndentBlanklineChar guifg=#545c7e"
 

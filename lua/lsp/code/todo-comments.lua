@@ -19,7 +19,9 @@ require("todo-comments").setup {
         INFO = {icon = " ", color = "hint", alt = {"INFO"}},
         VAR = {icon = "", color = "default"},
         CHECK = {icon = " ", color = "warning"},
-        END = {icon = " ", color = "error"}
+        END = {icon = " ", color = "error"},
+	CHANGE = {icon = " ", color = "error"}
+
     },
     -- highlighting of the line containing the todo comment
     -- * before: highlights before the keyword (typically comment characters)
