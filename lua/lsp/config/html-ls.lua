@@ -5,7 +5,6 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 local custom_attach = function(client)
     print("Html LSP started.");
-    require"lsp_signature".on_attach()
 end
 
 local lsp = require 'lspconfig'
