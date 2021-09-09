@@ -55,12 +55,12 @@ b.swapfile = false                                      -- swapfile
 cmd [[ set spelllang=en_us,es ]]                        -- Spellcheck
 cmd [[ filetype plugin on ]]                            --
 cmd [[ set undofile ]]                                  --
-cmd [[ set colorcolumn=99999 ]]                         -- fix indentline for now
 cmd [[ set title titlestring=%(%{expand(\"%:~:.:h\")}%)/%t ]]
---[[ o.backup = false                                        -- This is recommended by coc
-o.writebackup = false                                   -- This is recommended by coc
-o.foldmethod = "expr"                                   -- foldmethod
-cmd('set colorcolumn=99999')                            -- fix indentline for now ]]
+-- cmd [[ set colorcolumn=99999 ]]                         -- fix indentline for now
+-- o.backup = false                                        -- This is recommended by coc
+-- o.writebackup = false                                   -- This is recommended by coc
+-- o.foldmethod = "expr"                                   -- foldmethod
+-- cmd('set colorcolumn=99999')                            -- fix indentline for now
 
 -- window-scoped options:
 -------------------------
