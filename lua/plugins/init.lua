@@ -33,8 +33,8 @@ return require("packer").startup(function()
             {"nvim-lua/popup.nvim"}, {"nvim-lua/plenary.nvim"},
             {"nvim-telescope/telescope-fzy-native.nvim"}
         },
-        config = [[require('plugins.tools.telescope')]],
-        cmd = "Telescope"
+        config = [[require('plugins.tools.telescope')]]
+        -- cmd = "Telescope"
     }
 
     -- utilities
@@ -144,9 +144,9 @@ return require("packer").startup(function()
     -- better indent highlight
     use {
         "lukas-reineke/indent-blankline.nvim",
-        config = [[require('lsp.code.indent-blankline')]],
-        event = "BufRead",
-        after = "gruvbox-flat.nvim"
+        config = [[require('lsp.code.indent-blankline')]]
+        -- event = "BufRead",
+        -- after = "gruvbox-flat.nvim"
     }
 
     -- syntax highlight for sxhkd
@@ -179,5 +179,8 @@ return require("packer").startup(function()
         cmd = 'StartupTime',
         config = [[vim.g.startuptime_tries = 10]]
     }
+
+    -- ....
+    use 'tjdevries/cyclist.vim'
 
 end)
