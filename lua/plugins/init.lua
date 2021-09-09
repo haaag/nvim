@@ -102,7 +102,10 @@ return require("packer").startup(function()
     }
 
     -- git
-    use {"lewis6991/gitsigns.nvim", config = [[require('plugins.ui.gitsigns')]]}
+    use {
+        "lewis6991/gitsigns.nvim",
+        config = function() require('gitsigns').setup() end
+    }
 
     -- comment
     use {"b3nj5m1n/kommentary"}
