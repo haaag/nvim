@@ -111,16 +111,25 @@ wk.register({
     }
 }, {prefix = "<leader>"})
 
--- startify
+-- wiki
 wk.register({
     S = {
-        name = '+startify',
-        h = {':Startify<CR>', 'Startify Home'},
+        name = '+wiki',
         p = {':e ~/.config/nvim/lua/plugins/init.lua<CR>', 'plugins'},
         z = {':e ~/.config/zsh/.zshrc<CR>', 'zshrc'},
         Z = {':e ~/apps/vimwiki/Zoho.md<CR>', 'zohowiki'},
         b = {':e ~/apps/vimwiki/cookbook/cookbook.md<CR>', 'cookbook'},
-        v = {'<Cmd>VimwikiIndex<CR>', 'VimWiki'}
+        v = {':e ~/apps/vimwiki/index.md<CR>', 'VimWiki'}
+    }
+}, {prefix = "<leader>"})
+
+
+-- commands
+wk.register({
+    p = {
+        name = '+commands',
+        s = {':PackerSync<CR>', 'PackerSync'},
+        c = {':PackerCompile<CR>', 'PackerCompile'}
     }
 }, {prefix = "<leader>"})
 
