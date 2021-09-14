@@ -68,11 +68,10 @@ wk.register({
     ['<F1>'] = {':FloatermToggle<CR>', 'toggle_term'},
     ['<F2>'] = {':TagbarToggle<CR>', 'tagbar'},
     ['<F3>'] = {':NvimTreeToggle<CR>', 'nvimtree'}
-    -- ['[e'] = {'<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', 'next diag'}
 }, {prefix = "<leader>"})
 
 -- find
-wk.register({
+--[[ wk.register({
     f = {
         name = '+find',
         c = {
@@ -81,6 +80,25 @@ wk.register({
             h = {'<Cmd>Telescope command_history<CR>', 'history'}
         },
         l = {'<Cmd>Telescope current_buffer_fuzzy_find<CR>', 'search in buffer'}
+    }
+}, {prefix = "<leader>"}) ]]
+
+-- debug
+wk.register({
+    d = {
+        name = "+debugging",
+        b = {
+            "<cmd>lua require'dap'.toggle_breakpoint()<cr>", 'toggle breakpoint'
+        },
+        r = {"<cmd>lua require'dap'.run_to_cursor()<cr>", "run to cursor"},
+        p = {"<cmd>lua require'dap'.repl.open()<cr>", "repl open"},
+        c = {"<cmd>lua require'dap'.continue()<cr>", "continue"},
+        s = {
+            name = "+step",
+            o = {"<cmd>lua require'dap'.step_over()<cr>", "step over"},
+            i = {"<cmd>lua require'dap'.step_into()<cr>", "step into"}
+        },
+        x = {"<cmd>lua require'dap'.close()<cr>", "close"}
     }
 }, {prefix = "<leader>"})
 
@@ -123,7 +141,6 @@ wk.register({
     }
 }, {prefix = "<leader>"})
 
-
 -- commands
 wk.register({
     p = {
@@ -144,16 +161,16 @@ wk.register({
         h = {':Lspsaga lsp_finder<CR>', 'Lsp Finder'},
         k = {'<cmd>lua vim.lsp.buf.hover()<CR>', 'hover'},
         -- n = {':Lspsaga diagnostic_jump_next<CR>', 'Next Diagnostic'},
-	n = {'<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', "Next Diagnostic"},
+        n = {'<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', "Next Diagnostic"},
         P = {
             ':lua require"lspsaga.provider".preview_definition()<CR>',
             'Preview Definition'
         },
         -- p = {':Lspsaga diagnostic_jump_prev<CR>', 'Prev Diagnostic'},
-	p = {'<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', "Prev Diagnostic"},
+        p = {'<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', "Prev Diagnostic"},
         t = {':TodoTelescope<CR>', 'TodoTelescope'},
         T = {'call v:lua.toggle_diagnostics()<CR>', 'ToggleDiagnostics'},
-	r = {':lua vim.lsp.buf.rename()<CR>', 'Rename'},
+        r = {':lua vim.lsp.buf.rename()<CR>', 'Rename'},
         -- s = {':Lspsaga signature_help<CR>', 'Signature Help'},
         s = {':COQnow<CR>', 'coq init'},
         u = {
@@ -169,24 +186,28 @@ wk.register({
 
 -- telescope
 wk.register({
-    t = {
-        name = "+telescope",
-        b = {
-            '<Cmd>lua require("plugins.tools.telescope-functions").search_dotfiles_vim_bk()<CR>',
-            'nvim bk files'
-        },
+    f = {
+        name = "+find",
+        b = {':Telescope file_browser<CR>', 'files browser'},
         d = {
             '<Cmd>lua require("plugins.tools.telescope-functions").search_dotfiles()<CR>',
             'dotfiles'
         },
         g = {
             ':lua require("telescope.builtin").grep_string({ search = vim.fn.input("  RG ❯ ")})<CR>',
-            'grep'
+            'search in files'
         },
+        l = {'<Cmd>Telescope current_buffer_fuzzy_find<CR>', 'search in buffer'},
+
         w = {
             ':lua require("telescope.builtin").grep_string { search = vim.fn.expand("<cword>") }<CR>',
             'grep current word'
         },
+        u = {
+            '<Cmd>lua require("plugins.tools.telescope-functions").search_dotfiles_vim_bk()<CR>',
+            'nvim.bk files'
+        },
+
         o = {':Telescope oldfiles theme=get_ivy<cr>', 'recent opened'},
         v = {
             '<Cmd>lua require("plugins.tools.telescope-functions").dotfiles_nvim()<CR>',
