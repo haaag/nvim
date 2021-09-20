@@ -7,7 +7,7 @@ require'nvim-treesitter.configs'.setup {
     }, -- one of "all", "language", or a list of languages
     highlight = {
         enable = true, -- false will disable the whole extension
-        indent = {enable = true},
+        indent = {enable = false},
         -- disable = {} -- list of language that will be disabled
         disable = { "c", "rust" }  -- list of language that will be disabled
     }
