@@ -15,7 +15,8 @@ local Theme = {}
   -- }
 
 Theme.colorscheme = function()
-    local colors = colorscheme.gruvbox_flat()
+    local colors = colorscheme.gruvbox()
+    -- local colors = colorscheme.gruvbox_flat()
     -- local colors = colorscheme.tokyonight()
     -- local colors = colorscheme.solarized()
     -- local colors = colorscheme.dracula()
