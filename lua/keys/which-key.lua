@@ -62,12 +62,20 @@ require("which-key").setup {
 local wk = require("which-key")
 
 wk.register({
+    ['<F1>'] = {"<cmd>:ToggleTerm<CR>", "terminal"},
+    ['<F2>'] = {':TagbarToggle<CR>', 'tagbar'},
+    ['<F3>'] = {':NvimTreeToggle<CR>', 'nvimtree'},
+    ['<C-F>'] = {':Telescope find_files<CR>', 'find files'},
+    ['<F4>'] = { "<cmd>lua _lazygit_toggle()<CR>", "lazygit"},
+})
+
+wk.register({
     ['='] = {'<cmd>lua vim.lsp.buf.formatting()<CR>', 'formatting'},
     ['/'] = {'<Plug>kommentary_line_default', 'kommentary', noremap = false},
-    ['?'] = {':NvimTreeFindFile<CR>', 'treefind'},
-    ['<F1>'] = {':FloatermToggle<CR>', 'toggle_term'},
-    ['<F2>'] = {':TagbarToggle<CR>', 'tagbar'},
-    ['<F3>'] = {':NvimTreeToggle<CR>', 'nvimtree'}
+    ['?'] = {':NvimTreeFindFile<CR>', 'treefind'}
+    -- ['<F1>'] = {':FloatermToggle<CR>', 'toggle_term'},
+    --[[ ['<F2>'] = {':TagbarToggle<CR>', 'tagbar'},
+    ['<F3>'] = {':NvimTreeToggle<CR>', 'nvimtree'} ]]
 }, {prefix = "<leader>"})
 
 -- find
@@ -123,6 +131,10 @@ wk.register({
         name = '+buffer',
         d = {':BufDel<CR>', 'close'},
         g = {':BufferLinePick<CR>', 'choose buffer'},
+        l = {
+            ':lua require("telescope.builtin").buffers(require("telescope.themes").get_dropdown({hidden = true, winblend = 10, previewer = false}))<CR>',
+            'buffer list'
+        },
         o = {':only<CR>', 'only buffer'},
         O = {':MaximizerToggle<CR>', 'MaximizerToggle'},
         c = {':ColorizerToggle<CR>', 'ColorizerToggle'}
@@ -157,20 +169,23 @@ wk.register({
         a = {'', ''},
         -- d = {':TroubleToggle<CR>', 'TroubleToggle'},
         c = {':Lspsaga show_line_diagnostics<CR>', 'Show Line Diagnostic'},
+        D = {'<cmd>lua vim.lsp.buf.declaration()<CR>', 'Declaration'},
         f = {':Neoformat<CR>', 'formatting'},
         h = {':Lspsaga lsp_finder<CR>', 'Lsp Finder'},
-        k = {'<cmd>lua vim.lsp.buf.hover()<CR>', 'hover'},
-        -- n = {':Lspsaga diagnostic_jump_next<CR>', 'Next Diagnostic'},
-        n = {'<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', "Next Diagnostic"},
+        -- k = {'<cmd>lua vim.lsp.buf.hover()<CR>', 'hover'},
+        k = {':Lspsaga hover_doc<CR>', 'hover'},
+        n = {':Lspsaga diagnostic_jump_next<CR>', 'Next Diagnostic'},
+        -- n = {'<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', "Next Diagnostic"},
         P = {
             ':lua require"lspsaga.provider".preview_definition()<CR>',
             'Preview Definition'
         },
-        -- p = {':Lspsaga diagnostic_jump_prev<CR>', 'Prev Diagnostic'},
-        p = {'<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', "Prev Diagnostic"},
+        p = {':Lspsaga diagnostic_jump_prev<CR>', 'Prev Diagnostic'},
+        -- p = {'<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', "Prev Diagnostic"},
         t = {':TodoTelescope<CR>', 'TodoTelescope'},
         T = {'call v:lua.toggle_diagnostics()<CR>', 'ToggleDiagnostics'},
-        r = {':lua vim.lsp.buf.rename()<CR>', 'Rename'},
+        -- r = {':lua vim.lsp.buf.rename()<CR>', 'Rename'},
+        r = {':Lspsaga rename<CR>', 'Rename'},
         -- s = {':Lspsaga signature_help<CR>', 'Signature Help'},
         s = {':COQnow<CR>', 'coq init'},
         u = {
@@ -197,6 +212,10 @@ wk.register({
             ':lua require("telescope.builtin").grep_string({ search = vim.fn.input("  RG ❯ ")})<CR>',
             'search in files'
         },
+        G = {
+            ':lua require("plugins.tools.telescope-functions").projects_files()<CR>',
+            'git projects'
+        },
         l = {'<Cmd>Telescope current_buffer_fuzzy_find<CR>', 'search in buffer'},
 
         w = {
@@ -212,6 +231,10 @@ wk.register({
         v = {
             '<Cmd>lua require("plugins.tools.telescope-functions").dotfiles_nvim()<CR>',
             'nvim_config'
+        },
+        z = {
+            '<Cmd>lua require("plugins.tools.telescope-functions").work_files()<CR>',
+            'work files'
         }
     }
 }, {prefix = "<leader>"})
