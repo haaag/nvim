@@ -16,7 +16,10 @@ return require("packer").startup(function()
     use {"wbthomason/packer.nvim"}
 
     -- lsp config
-    use {"neovim/nvim-lspconfig"}
+    use {
+        "neovim/nvim-lspconfig",
+        config = [[require('lsp.config.lspconfig')]]
+    }
 
     -- treesitter
     use {
