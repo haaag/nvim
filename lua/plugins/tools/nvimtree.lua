@@ -6,7 +6,7 @@ if not present then return end
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
 local g = vim.g
 
--- vim.o.termguicolors = true
+vim.o.termguicolors = true
 
 g.nvim_tree_side = "left"
 g.nvim_tree_width = 28
