@@ -2,7 +2,6 @@ vim.o.termguicolors = true
 local theme = require('plugins.themes.local-theme').colorscheme()
 local bufferline = require "bufferline"
 
-
 bufferline.setup {
     options = {
         offsets = {{filetype = "NvimTree", text = "", padding = 1}},
@@ -23,19 +22,10 @@ bufferline.setup {
         always_show_bufferline = true
     },
     highlights = {
-        fill = {
-            guifg = theme.darkgrey,
-            guibg = theme.black2
-        },
-        background = {
-            guifg = theme.darkgrey,
-            guibg = theme.black2
-        },
+        fill = {guifg = theme.darkgrey, guibg = theme.black2},
+        background = {guifg = theme.darkgrey, guibg = theme.black2},
         -- buffers
-        buffer_visible = {
-            guifg = theme.lightgrey,
-            guibg = theme.black2
-        },
+        buffer_visible = {guifg = theme.lightgrey, guibg = theme.black2},
         buffer_selected = {
             --[[ guifg = theme.black2,
             guibg = theme.blue, ]]
@@ -44,62 +34,23 @@ bufferline.setup {
             gui = "bold"
         },
         -- tabs
-        tab = {
-            guifg = theme.lightgrey,
-            guibg = theme.background
-        },
-        tab_selected = {
-            guifg = theme.black2,
-            guibg = theme.blue
-        },
-        tab_close = {
-            guifg = theme.red,
-            guibg = theme.black
-        },
-        indicator_selected = {
-            guifg = theme.black,
-            guibg = theme.black
-        },
+        tab = {guifg = theme.lightgrey, guibg = theme.background},
+        tab_selected = {guifg = theme.black2, guibg = theme.blue},
+        tab_close = {guifg = theme.red, guibg = theme.black},
+        indicator_selected = {guifg = theme.black, guibg = theme.black},
         -- separators
-        separator = {
-            guifg = theme.black2,
-            guibg = theme.black2
-        },
-        separator_visible = {
-            guifg = theme.black2,
-            guibg = theme.black2
-        },
-        separator_selected = {
-            guifg = theme.black2,
-            guibg = theme.black2
-        },
+        separator = {guifg = theme.black2, guibg = theme.black2},
+        separator_visible = {guifg = theme.black2, guibg = theme.black2},
+        separator_selected = {guifg = theme.black2, guibg = theme.black2},
         -- modified
-        modified = {
-            guifg = theme.red,
-            guibg = theme.black2
-        },
-        modified_visible = {
-            guifg = theme.red,
-            guibg = theme.black2
-        },
-        modified_selected = {
-            guifg = theme.green,
-            guibg = theme.black
-        },
+        modified = {guifg = theme.red, guibg = theme.black2},
+        modified_visible = {guifg = theme.red, guibg = theme.black2},
+        modified_selected = {guifg = theme.green, guibg = theme.black},
         -- close buttons
 
-        close_button = {
-            guifg = theme.lightgrey,
-            guibg = theme.black2
-        },
-        close_button_visible = {
-            guifg = theme.lightgrey,
-            guibg = theme.black2
-        },
-        close_button_selected = {
-            guifg = theme.red,
-            guibg = theme.black
-        }
+        close_button = {guifg = theme.lightgrey, guibg = theme.black2},
+        close_button_visible = {guifg = theme.lightgrey, guibg = theme.black2},
+        close_button_selected = {guifg = theme.red, guibg = theme.black}
     }
 }
 
