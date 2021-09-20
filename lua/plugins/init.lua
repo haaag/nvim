@@ -1,5 +1,5 @@
--- Check if packer is installed (~/local/share/nvim/site/pack)
---------------------------------------------------------------
+-- packer
+---------
 local present, _ = pcall(require, "packer_init")
 local packer
 
@@ -34,7 +34,16 @@ return require("packer").startup(function()
             {"nvim-telescope/telescope-fzy-native.nvim"}
         },
         config = [[require('plugins.tools.telescope')]]
-        -- cmd = "Telescope"
+    }
+
+    -- project
+    use {
+        "ahmedkhalf/project.nvim",
+        config = function()
+            require("project_nvim").setup {
+                patterns = {"init.lua", ".env", ".git", "deluge"}
+            }
+        end
     }
 
     -- utilities
@@ -47,7 +56,7 @@ return require("packer").startup(function()
         cmd = "NvimTreeToggle"
     }
 
-    -- tagbar
+    -- -- tagbar
     use {"preservim/tagbar", cmd = "TagbarToggle"}
 
     -- display icons
@@ -66,7 +75,6 @@ return require("packer").startup(function()
                 ['auto_start'] = true
             }
             require('coq')
-            -- print("COQ Loaded.")
             vim.cmd [[ COQnow -s ]]
         end,
         event = "VimEnter"
@@ -104,6 +112,7 @@ return require("packer").startup(function()
     -- git
     use {
         "lewis6991/gitsigns.nvim",
+        -- config = [[require('plugins.ui.gitsigns')]]
         config = function() require('gitsigns').setup() end
     }
 
@@ -111,45 +120,58 @@ return require("packer").startup(function()
     use {"b3nj5m1n/kommentary"}
 
     -- theme: gruvbox-flat
-    use {
-        "eddyekofo94/gruvbox-flat.nvim",
-        config = [[require('plugins.themes')]]
-    }
+    -- use {
+    --    "eddyekofo94/gruvbox-flat.nvim",
+    --    config = [[require('plugins.themes')]]
+    -- }
 
     -- theme: tokyonight
-    use {'folke/tokyonight.nvim', config = [[require('plugins.themes')]]}
+    use {
+        'folke/tokyonight.nvim',
+        config = [[require('plugins.themes')]]
+        -- config = function() require('plugins.themes') end
+    }
+
+    -- theme: gruvbox
+    use {
+        "ellisonleao/gruvbox.nvim",
+        requires = {"rktjmp/lush.nvim"},
+        config = [[require('plugins.themes')]]
+        -- config = function()
+        --    vim.o.background = "dark" -- or "light" for light mode
+        --    vim.cmd([[colorscheme gruvbox]])
+        -- end
+    }
 
     -- tabline
     use {
         "akinsho/nvim-bufferline.lua",
-        config = [[require('plugins.ui.bufferline')]],
-        event = "BufRead",
-        after = "gruvbox-flat.nvim"
+        config = [[require('plugins.ui.bufferline')]]
+        --[[ event = "BufRead",
+        after = "gruvbox-flat.nvim" ]]
     }
 
-    -- statusline
-    use {
-        "hoob3rt/lualine.nvim",
-        config = [[require('plugins.ui.lualine')]],
-        event = "BufRead",
-        after = "gruvbox-flat.nvim"
-    }
+    -- -- statusline
+    -- use {
+    --     "hoob3rt/lualine.nvim",
+    --     config = [[require('plugins.ui.lualine')]]
+    --     --[[ event = "BufRead",
+    --     after = "gruvbox-flat.nvim" ]]
+    -- }
 
     -- highlight todo comments
     use {
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim",
-        config = [[require('lsp.code.todo-comments')]],
-        event = "BufRead",
-        after = "gruvbox-flat.nvim"
+        config = [[require('lsp.code.todo-comments')]]
+        --[[ event = "BufRead",
+        after = "gruvbox-flat.nvim" ]]
     }
 
     -- better indent highlight
     use {
         "lukas-reineke/indent-blankline.nvim",
         config = [[require('lsp.code.indent-blankline')]]
-        -- event = "BufRead",
-        -- after = "gruvbox-flat.nvim"
     }
 
     -- syntax highlight for sxhkd
@@ -170,11 +192,11 @@ return require("packer").startup(function()
         ft = {"markdown", "md"}
     }
 
-    -- rooter
-    use {
-        "airblade/vim-rooter",
-        config = [[require('plugins.tools.vim-rooter')]]
-    }
+    -- -- rooter
+    -- use {
+    --     "airblade/vim-rooter",
+    --     config = [[require('plugins.tools.vim-rooter')]]
+    -- }
 
     -- profiling
     use {
@@ -185,5 +207,44 @@ return require("packer").startup(function()
 
     -- ....
     use 'tjdevries/cyclist.vim'
+
+    -- debugging
+    use {
+        "mfussenegger/nvim-dap",
+        config = function() require("plugins.tools.dap").setup() end
+    }
+
+    -- dap-ui
+    use {
+        'rcarriga/nvim-dap-ui',
+        config = function() require('plugins.tools.dap-ui').setup() end
+    }
+
+    -- lsp-saga
+    use {
+        'glepnir/lspsaga.nvim',
+        requires = {"neovim/nvim-lspconfig"},
+        config = [[require('plugins.tools.lsp-saga')]]
+        --[[ config = function()
+            local saga = require 'lspsaga'
+            saga.init_lsp_saga()
+        end ]]
+    }
+
+    -- toggleterm
+    use {
+        "akinsho/toggleterm.nvim",
+        config = [[require('plugins.tools.terminal')]]
+    }
+
+    -- nonicons
+    --[[ use {
+		'yamatsum/nvim-nonicons',
+		requires = {'kyazdani42/nvim-web-devicons'},
+		config = function()
+			local icons = require('nvim-nonicons')
+			icons.get('file')
+		end
+	} ]]
 
 end)

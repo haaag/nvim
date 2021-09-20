@@ -29,7 +29,11 @@ vim.cmd [[ au BufNewFile,BufRead /*.dg setf deluge ]]
 
 -- sings
 -- vim.cmd [[ highlight LspDiagnosticsDefaultWarning guifg='BrightRed' ]]
---
+
+-- css and html
+-- vim.cmd [[ autocmd Filetype css setlocal tabstop=2 expandtab shiftwidth=2 ]]
+-- vim.cmd [[ autocmd Filetype html setlocal tabstop=2 expandtab shiftwidth=2 ]]
+-- vim.cmd [[ autocmd Filetype javascript setlocal tabstop=2 expandtab shiftwidth=2 ]]
 
 local u = require('utils')
 
