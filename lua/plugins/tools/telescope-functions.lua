@@ -42,4 +42,27 @@ M.search_dotfiles_vim_bk = function()
                 cwd = HOME .. "/.config/nvim.bk/"
             }))
 end
+
+M.work_files = function()
+    require("telescope.builtin").find_files(
+        require("telescope.themes").get_dropdown(
+            {
+                previewer = false,
+                winblend = 10,
+                prompt_title = "< work files >",
+                cwd = HOME .. "/work/"
+            }))
+end
+
+M.projects_files = function()
+    require('telescope.builtin').find_files(
+        require('telescope.themes').get_dropdown(
+            {
+                previewer = false,
+                winblend = 10,
+                prompt_title = "< work files >",
+                cwd = HOME .. "/code/git/"
+            }))
+end
+
 return M
