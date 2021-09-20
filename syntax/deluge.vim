@@ -140,8 +140,8 @@ syntax region  jsTemplateExpression matchgroup=jsTemplateBrace start=+\%([^\\]\%
 
 " Built-in values
 " REFERENCE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
-syntax keyword jsBuiltinValues undefined null NaN true GET PUT POST invokeurl false Infinity globalThis global contained
-syntax keyword jsBuiltinValues .crm info window document module exports require console arguments contained
+syntax keyword jsBuiltinValues undefined null NaN true GET PUT POST invokeurl false today Infinity globalThis global contained
+syntax keyword jsBuiltinValues zoho crm info window document module exports require console arguments contained
 
 " Built-in objects
 syntax keyword jsBuiltinObjects Object Function crm Boolean Symbol Error EvalError InternalError RangeError ReferenceError SyntaxError TypeError URIError contained
@@ -152,7 +152,7 @@ syntax keyword jsBuiltinObjects ArrayBuffer SharedArrayBuffer Atomics DataView J
 syntax keyword jsBuiltinObjects Promise Generator GeneratorFunction AsyncFunction Reflect Proxy Intl WebAssembly contained
 
 " Built-in functions
-syntax keyword jsBuiltinFunctions eval invokeurl uneval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape require contained
+syntax keyword jsBuiltinFunctions eval crm invokeurl uneval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape require contained
 
 " Numbers
 " REFERENCE: http://www.ecma-international.org/ecma-262/10.0/index.html#prod-NumericLiteral
