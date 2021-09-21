@@ -1,104 +1,105 @@
--- General mappings
--------------------
-local map = vim.api.nvim_set_keymap
-local options = {noremap = true, silent = true}
-local silent = {silent = true}
+local M = {}
 
--- Leader Key:
---------------
-map('n', '<Space>', '<NOP>', options)
-vim.g.mapleader = ' '
+M.load_keys = function()
+    local map = vim.api.nvim_set_keymap
+    local options = {noremap = true, silent = true}
+    local silent = {silent = true}
 
--- Alternate way to save
-------------------------
-map('n', '<C-s>', ':w<CR>', options)
+    -- Leader Key:
+    map('n', '<Space>', '<NOP>', options)
+    vim.g.mapleader = ' '
 
--- Window Movement:
--------------------
-map('n', '<C-h>', '<C-w>h', silent)
-map('n', '<C-j>', '<C-w>j', silent)
-map('n', '<C-k>', '<C-w>k', silent)
-map('n', '<C-l>', '<C-w>l', silent)
+    -- Alternate way to save
+    map('n', '<C-s>', ':w<CR>', options)
 
--- Indent with Tab and Shift-Tab
---------------------------------
-map('v', '<Tab>', '>', {})
-map('v', '<S-Tab>', '<', {})
+    -- Window Movement:
+    map('n', '<C-h>', '<C-w>h', silent)
+    map('n', '<C-j>', '<C-w>j', silent)
+    map('n', '<C-k>', '<C-w>k', silent)
+    map('n', '<C-l>', '<C-w>l', silent)
 
--- Move selected line / block of text in visual mode
-----------------------------------------------------
-map('x', 'K', ':move \'<-2<CR>gv-gv\'', options)
-map('x', 'J', ':move \'>+1<CR>gv-gv\'', options)
+    -- Indent with Tab and Shift-Tab
+    map('v', '<Tab>', '>', {})
+    map('v', '<S-Tab>', '<', {})
 
--- Use alt + hjkl to resize windows:
-------------------------------------
-map('n', '<M-j>', ':resize -2<CR>', options)
-map('n', '<M-k>', ':resize +2<CR>', options)
-map('n', '<M-h>', ':vertical resize -2<CR>', options)
-map('n', '<M-l>', ':vertical resize +2<CR>', options)
+    -- Move selected line / block of text in visual mode
+    map('x', 'K', ':move \'<-2<CR>gv-gv\'', options)
+    map('x', 'J', ':move \'>+1<CR>gv-gv\'', options)
 
--- Make J, K, L, and H move the cursor MORE.
---------------------------------------------
-map('n', 'J', '}', options)
-map('v', 'J', '}', options)
-map('n', 'K', '{', options)
-map('v', 'K', '{', options)
+    -- Use alt + hjkl to resize windows:
+    map('n', '<M-j>', ':resize -2<CR>', options)
+    map('n', '<M-k>', ':resize +2<CR>', options)
+    map('n', '<M-h>', ':vertical resize -2<CR>', options)
+    map('n', '<M-l>', ':vertical resize +2<CR>', options)
 
--- Shortcut to use blackhole register by default
-------------------------------------------------
-map('v', 'd', '"_d', options)
-map('v', 'D', '"_D', options)
-map('v', 'c', '"_c', options)
-map('v', 'C', '"_C', options)
-map('v', 'x', '"_x', options)
-map('v', 'X', '"_X', options)
-map('n', 'd', '"_d', options)
-map('n', 'D', '"_D', options)
-map('n', 'c', '"_c', options)
-map('n', 'C', '"_C', options)
-map('n', 'x', '"_x', options)
-map('n', 'X', '"_X', options)
+    -- Make J, K, L, and H move the cursor MORE.
+    map('n', 'J', '}', options)
+    map('v', 'J', '}', options)
+    map('n', 'K', '{', options)
+    map('v', 'K', '{', options)
 
--- Moving aroung in command mode
---------------------------------
-map('c', '<C-h>', '<left>', options)
-map('c', '<C-j>', '<down>', options)
-map('c', '<C-k>', '<up>', options)
-map('c', '<C-l>', '<right>', options)
+    -- Shortcut to use blackhole register by default
+    map('v', 'd', '"_d', options)
+    map('v', 'D', '"_D', options)
+    map('v', 'c', '"_c', options)
+    map('v', 'C', '"_C', options)
+    map('v', 'x', '"_x', options)
+    map('v', 'X', '"_X', options)
+    map('n', 'd', '"_d', options)
+    map('n', 'D', '"_D', options)
+    map('n', 'c', '"_c', options)
+    map('n', 'C', '"_C', options)
+    map('n', 'x', '"_x', options)
+    map('n', 'X', '"_X', options)
 
--- Source current luafile
--------------------------
-map('n', '<F5>', ':luafile %<CR>', options)
+    -- Moving aroung in command mode
+    map('c', '<C-h>', '<left>', options)
+    map('c', '<C-j>', '<down>', options)
+    map('c', '<C-k>', '<up>', options)
+    map('c', '<C-l>', '<right>', options)
 
--- Set spell
-------------
-map('n', '<F8>', ':set spell!<CR>', options)
+    -- Source current luafile
+    map('n', '<F5>', ':luafile %<CR>', options)
 
--- QuickFix List
-map('n', 'C-k', ':cnext', options)
-map('n', 'C-j', ':cprev', options)
+    -- Set spell
+    map('n', '<F8>', ':set spell!<CR>', options)
 
--- More molecular undo of text
-map("i", ",", ",<c-g>u", silent)
-map("i", ".", ".<c-g>u", silent)
-map("i", "!", "!<c-g>u", silent)
-map("i", "?", "?<c-g>u", silent)
-map("i", ";", ";<c-g>u", silent)
-map("i", ":", ":<c-g>u", silent)
+    -- QuickFix List
+    map('n', 'C-k', ':cnext', options)
+    map('n', 'C-j', ':cprev', options)
 
--- Keep search results centred
-map("n", "n", "nzzzv", silent)
-map("n", "N", "Nzzzv", silent)
--- map("n", "J", "mzJ`z", silent)
+    -- More molecular undo of text
+    map("i", ",", ",<c-g>u", silent)
+    map("i", ".", ".<c-g>u", silent)
+    map("i", "!", "!<c-g>u", silent)
+    map("i", "?", "?<c-g>u", silent)
+    map("i", ";", ";<c-g>u", silent)
+    map("i", ":", ":<c-g>u", silent)
 
--- Simpler increment/decrement integers
---[[ map("n", "+", "<C-a>", silent)
-map("v", "+", "<C-a>", silent)
-map("n", "-", "<C-x>", silent)
-map("v", "-", "<C-x>", silent) ]]
+    -- Keep search results centred
+    map("n", "n", "nzzzv", silent)
+    map("n", "N", "Nzzzv", silent)
+    -- map("n", "J", "mzJ`z", silent)
 
--- Make Y yank to end of the line
-map("n", "Y", "y$", silent)
+    -- Make Y yank to end of the line
+    map("n", "Y", "y$", silent)
 
--- copy whole file content
--- map("n", "<C-a>", ":%y+<CR>", options)
+    -- BufferLine
+    map('n', '<C-S-k>', ':BufferLineCycleNext<CR>', options)
+    map('n', '<C-S-j>', ':BufferLineCyclePrev<CR>', options)
+
+    -- Simpler increment/decrement integers
+    -- map("n", "+", "<C-a>", silent)
+    -- map("v", "+", "<C-a>", silent)
+    -- map("n", "-", "<C-x>", silent)
+    -- map("v", "-", "<C-x>", silent)
+
+    -- Move lines
+    -- map("v", "K", ":move \'<-2<CR>gv-gv", {})
+    -- map("v", "J", ":move \'>+1<CR>gv-gv", {})
+
+    -- copy whole file content
+    -- map("n", "<C-a>", ":%y+<CR>", options)
+end
+
+return M
