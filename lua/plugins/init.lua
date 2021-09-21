@@ -132,7 +132,6 @@ return require("packer").startup(function()
     use {
         'folke/tokyonight.nvim',
         config = [[require('plugins.themes')]]
-        -- config = function() require('plugins.themes') end
     }
 
     -- theme: gruvbox
@@ -140,10 +139,6 @@ return require("packer").startup(function()
         "ellisonleao/gruvbox.nvim",
         requires = {"rktjmp/lush.nvim"},
         config = [[require('plugins.themes')]]
-        -- config = function()
-        --    vim.o.background = "dark" -- or "light" for light mode
-        --    vim.cmd([[colorscheme gruvbox]])
-        -- end
     }
 
     -- tabline
@@ -195,12 +190,6 @@ return require("packer").startup(function()
         ft = {"markdown", "md"}
     }
 
-    -- -- rooter
-    -- use {
-    --     "airblade/vim-rooter",
-    --     config = [[require('plugins.tools.vim-rooter')]]
-    -- }
-
     -- profiling
     use {
         'dstein64/vim-startuptime',
@@ -228,10 +217,6 @@ return require("packer").startup(function()
         'glepnir/lspsaga.nvim',
         requires = {"neovim/nvim-lspconfig"},
         config = [[require('plugins.tools.lsp-saga')]]
-        --[[ config = function()
-            local saga = require 'lspsaga'
-            saga.init_lsp_saga()
-        end ]]
     }
 
     -- toggleterm
