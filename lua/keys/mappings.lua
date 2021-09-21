@@ -88,6 +88,13 @@ M.load_keys = function()
     map('n', '<C-S-k>', ':BufferLineCycleNext<CR>', options)
     map('n', '<C-S-j>', ':BufferLineCyclePrev<CR>', options)
 
+    -- Lsp Mappings:
+    map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', options)
+    map('n', 'gr', ':lua vim.lsp.buf.references()<CR>', options)
+    map('n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', options)
+    map('n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', options)
+    map('n', '[c', ':Lspsaga show_line_diagnostics<CR>', options)
+
     -- Simpler increment/decrement integers
     -- map("n", "+", "<C-a>", silent)
     -- map("v", "+", "<C-a>", silent)
