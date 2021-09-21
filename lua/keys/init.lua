@@ -1,3 +1,2 @@
-require('keys.mappings')
-require('keys.plugins-mappings')
+require('keys.mappings').load_keys()
 require('keys.which-key')
