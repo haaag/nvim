@@ -235,4 +235,10 @@ return require("packer").startup(function()
 		end
 	} ]]
 
+    -- maximizer
+    use {
+        "szw/vim-maximizer",
+        cmd = "MaximizerToggle"
+    }
+
 end)
