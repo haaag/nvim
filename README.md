@@ -47,6 +47,7 @@
 * [karb94/neoscroll.nvim](https://github.com/karb94/neoscroll.nvim) -- Smooth scrolling.
 * [kyazdani42/nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua) -- File Explorer For Neovim Written In Lua.
 * [tjdevries/cyclist.vim](tjdevries/cyclist.vim) -- cycle + listchars = cyclist.vim.
+* [szw/vim-maximizer](https://github.com/szw/vim-maximizer) -- Maximizes and restores the current window in Vim.
 
 ### Themes
 * [ellisonleao/gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim) -- A port of gruvbox community theme to lua with treesitter support!
