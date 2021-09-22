@@ -27,6 +27,13 @@ M.load_autocmd = function()
     cmd [[ filetype plugin on ]]
     cmd [[ set title titlestring=%(%{expand(\"%:~:.:h\")}%)/%t ]]
 
+    -- Disables automatic commenting on newline:
+    cmd [[ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o ]]
+
+    -- Omnicomplete
+    cmd [[ inoremap <expr> <c-j> (\"\\<C-n>\")' ]]
+    cmd [[ inoremap <expr> <c-k> (\"\\<C-p>\")' ]]
+
     -- Neoformat py
     cmd [[ autocmd Filetype python nnoremap <buffer> <F7> :w<CR>:Neoformat! python black<CR> ]]
 
@@ -36,12 +43,14 @@ M.load_autocmd = function()
     -- Neoformat lua
     cmd [[ autocmd Filetype lua nnoremap <buffer> <F7> :w<CR>:Neoformat! lua "$HOME/.luarocks/bin/lua-format -i --no-keep-simple-function-one-line --column-limit=120"<CR> ]]
 
-    -- Disables automatic commenting on newline:
-    cmd [[ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o ]]
+    -- javascript
+    cmd [[ autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 ]]
 
-    -- Omnicomplete
-    cmd [[ inoremap <expr> <c-j> (\"\\<C-n>\")' ]]
-    cmd [[ inoremap <expr> <c-k> (\"\\<C-p>\")' ]]
+    -- html
+    cmd [[ autocmd FileType html setlocal shiftwidth=2 tabstop=2 ]]
+
+    -- css
+    cmd [[ autocmd FileType css setlocal shiftwidth=2 tabstop=2 ]]
 end
 
 return M
