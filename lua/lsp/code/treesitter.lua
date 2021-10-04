@@ -79,6 +79,13 @@ require'nvim-treesitter.configs'.setup {
     }
 }
 
+-- Use treesitter to autoclose and autorename html tag
+require'nvim-treesitter.configs'.setup {
+  autotag = {
+    enable = true,
+  }
+}
+
 --[[ require"nvim-treesitter.configs".setup {
     playground = {
         enable = true,
