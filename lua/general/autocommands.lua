@@ -22,7 +22,7 @@ M.load_autocmd = function()
     cmd [[ autocmd BufNewFile,BufRead /*.dg setf deluge ]]
 
     -- Highlight on Yank
-    cmd [[ autocmd TextYankPost * silent! lua require('vim.highlight').on_yank({higroup = 'IncSearch', timeout = 600}) ]]
+    cmd [[ autocmd TextYankPost * silent! lua require('vim.highlight').on_yank({higroup = 'IncSearch', timeout = 300}) ]]
 
     cmd [[ filetype plugin on ]]
     cmd [[ set title titlestring=%(%{expand(\"%:~:.:h\")}%)/%t ]]
@@ -33,6 +33,9 @@ M.load_autocmd = function()
     -- Omnicomplete
     cmd [[ inoremap <expr> <c-j> (\"\\<C-n>\")' ]]
     cmd [[ inoremap <expr> <c-k> (\"\\<C-p>\")' ]]
+
+    -- Neoformat js
+    cmd [[ autocmd Filetype javascript nnoremap <buffer> <F7> :w<CR>:Neoformat! javascript prettier<CR> ]]
 
     -- Neoformat py
     cmd [[ autocmd Filetype python nnoremap <buffer> <F7> :w<CR>:Neoformat! python black<CR> ]]
