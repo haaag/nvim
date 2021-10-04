@@ -23,6 +23,7 @@
 * [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs) -- A super powerful autopairs for Neovim.
 * [machakann/vim-sandwich](https://github.com/machakann/vim-sandwich) -- Plugin to manipulate character pairs quickly.
 * [andymass/vim-matchup](https://github.com/andymass/vim-matchup)   -- It extends vim's % key.
+* [matze/vim-move](https://github.com/matze/vim-move) -- moves lines/selections
 
 ### Syntax
 * [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) -- Treesitter configurations and abstraction layer for Neovim.
