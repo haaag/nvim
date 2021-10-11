@@ -6,7 +6,10 @@ local custom_attach = function(client)
     print("Python LSP started.");
 end
 
-lsp.pyright.setup{on_attach=custom_attach}
+lsp.pyright.setup{
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    on_attach=custom_attach,
+}
 
 -- vim.g.python3_host_prog = 'python3'
 vim.g.python3_host_prog = HOME .. '/.local/debugpy/bin/python';

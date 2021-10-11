@@ -1,5 +1,6 @@
 local lspconfig = require'lspconfig'
 local configs = require'lspconfig/configs'
+
 -- Check if it's already defined for when reloading this file.
 if not lspconfig.deluge then
   configs.deluge = {
@@ -17,4 +18,8 @@ end
 local custom_attach = function(client)
     print("Deluge LSP started.");
 end
-lspconfig.deluge.setup{on_attach=custom_attach}
+
+lspconfig.deluge.setup{
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    on_attach=custom_attach
+}

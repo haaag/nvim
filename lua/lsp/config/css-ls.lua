@@ -1,17 +1,10 @@
--- Enable (broadcasting) snippet capability for completion
--- local attach = require('lsp.config.utils')
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
+-- css lsp
+local lsp = require'lspconfig'
 local custom_attach = function(client)
     print("CSS LSP started.");
-    -- print(string.format("%s LSP started.", client));
 end
 
-require'lspconfig'.cssls.setup {
-    capabilities = capabilities,
+lsp.cssls.setup {
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
     on_attach = custom_attach
 }
-
--- local lsp = require'lspconfig'
--- lsp.cssls.setup{on_attach=attach.custom("CSS")}
