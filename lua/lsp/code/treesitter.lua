@@ -1,5 +1,6 @@
--- Beautiful nvim-treesitter simple config.
--------------------------------------------
+-- beautiful nvim-treesitter simple config.
+local theme = require('plugins.themes.local-theme').colorscheme()
+
 require'nvim-treesitter.configs'.setup {
     ensure_installed = {
         "python", "javascript", "html", "bash", "lua", "json", "css", "cpp",
@@ -9,12 +10,11 @@ require'nvim-treesitter.configs'.setup {
         enable = true, -- false will disable the whole extension
         indent = {enable = false},
         -- disable = {} -- list of language that will be disabled
-        disable = { "c", "rust" }  -- list of language that will be disabled
+        disable = {"c", "rust"} -- list of language that will be disabled
     }
 }
 
 -- Define your own text objects mappings similar to ip (inner paragraph) and ap (a paragraph).
-
 require'nvim-treesitter.configs'.setup {
     textobjects = {
         select = {
@@ -40,7 +40,6 @@ require'nvim-treesitter.configs'.setup {
 
 -- Text objects: select
 -- Define your own text objects mappings similar to ip (inner paragraph) and ap (a paragraph).
-
 require'nvim-treesitter.configs'.setup {
     textobjects = {
         select = {
@@ -80,23 +79,11 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- Use treesitter to autoclose and autorename html tag
-require'nvim-treesitter.configs'.setup {
-  autotag = {
-    enable = true,
-  }
-}
-
---[[ require"nvim-treesitter.configs".setup {
-    playground = {
-        enable = true,
-        disable = {},
-        updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
-        persist_queries = false -- Whether the query persists across vim sessions
-    }
-} ]]
+-- windwp/nvim-ts-autotag
+require'nvim-treesitter.configs'.setup {autotag = {enable = true}}
 
 -- Incremental selection based on the named nodes from the grammar.
---[[ require'nvim-treesitter.configs'.setup {
+require'nvim-treesitter.configs'.setup {
     incremental_selection = {
         enable = true,
         keymaps = {
@@ -106,12 +93,21 @@ require'nvim-treesitter.configs'.setup {
             node_decremental = "grm"
         }
     }
-} ]]
+}
 
--- windwp/nvim-ts-autotag
--------------------------
--- require'nvim-treesitter.configs'.setup {autotag = {enable = true}}
+-- nvim-ts-context-commentstring
+require'nvim-treesitter.configs'.setup {context_commentstring = {enable = true}}
 
 -- p00f/nvim-ts-rainbow
-----------------------
--- require'nvim-treesitter.configs'.setup {rainbow = {enable = true, extended_mode = true,}}
+require'nvim-treesitter.configs'.setup {
+    rainbow = {
+        enable = true,
+        extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
+        colors = {
+            theme.red, theme.yellow, theme.blue, theme.purple,
+            theme.cyan
+        },
+        max_file_lines = nil -- Do not enable for files with more than n lines, int
+        -- termcolors = {} -- table of colour name strings
+    }
+}
