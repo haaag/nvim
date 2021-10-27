@@ -35,7 +35,7 @@ M.load_options = function()
         tabstop = 4, -- Insert 4 spaces for a tab
         shiftwidth = 4, -- Change the number of space characters inserted for indentation
         spelllang = 'en_us,es', -- Spellchecker
-        autoindent = true, -- Good auto indent
+        autoindent = false, -- Good auto indent
         smarttab = true, -- Makes tabbing smarter will realize you have 1 vs 4
         smartindent = true, -- Makes indenting smart
         expandtab = true, -- Converts tabs to spaces
@@ -46,13 +46,13 @@ M.load_options = function()
         cursorline = true, -- highlight the current line
         wrap = true, -- Wrap Lines
         scrolloff = 8, -- Minimal number of lines to keep above and below the cursor
-        sidescrolloff = 8 -- same as above, except for left and right, if nowrap is set
-
+        sidescrolloff = 8, -- same as above, except for left and right, if nowrap is set
+        foldmethod = "expr", -- foldmethod,
+        timeoutlen = 300,
+        smartcase = true
+        -- listchars = { tab = '»»', trail = '·' }
     }
     for k, v in pairs(default_options) do set[k] = v end
-
-    -- completion global settings
-    vim.o.completeopt = "menuone,noselect"
 
 end
 
@@ -66,14 +66,22 @@ end
             'loaded_2html_plugin',
             'loaded_matchit',
             'loaded_matchparen',
-            'loaded_spec'
-            -- 'loaded_netrw'
-            -- 'loaded_netrwPlugin'
+            'loaded_spec',
+            'loaded_netrw',
+            'loaded_netrwPlugin'
         }
 
         for _, i in pairs(disable_plugs) do
             vim.g['loaded_' .. i] = 1
         end
     end
+
+    -- netrw
+    -- local g = vim.g
+    -- g.netrw_banner = false
+    -- g.netrw_winsize = 25
+    -- g.netrw_liststyle = 3
+    -- g.netrw_keepdir = 0
+    -- g.netrw_altfile = 1
 
 return M

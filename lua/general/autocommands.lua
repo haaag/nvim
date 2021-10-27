@@ -18,9 +18,6 @@ M.load_autocmd = function()
     -- Automatically deletes all trailing whitespace on save.
     cmd [[ autocmd BufWritePre * %s/\s\+$//e ]]
 
-    -- Syntax highlight for Deluge files
-    cmd [[ autocmd BufNewFile,BufRead /*.dg setf deluge ]]
-
     -- Highlight on Yank
     cmd [[ autocmd TextYankPost * silent! lua require('vim.highlight').on_yank({higroup = 'IncSearch', timeout = 300}) ]]
 
@@ -34,17 +31,17 @@ M.load_autocmd = function()
     cmd [[ inoremap <expr> <c-j> (\"\\<C-n>\")' ]]
     cmd [[ inoremap <expr> <c-k> (\"\\<C-p>\")' ]]
 
+    -- Source luafile
+    cmd [[ autocmd Filetype lua nnoremap <buffer> <F5> :w<CR>:luafile %<CR> ]]
+
     -- Neoformat js
     cmd [[ autocmd Filetype javascript nnoremap <buffer> <F7> :w<CR>:Neoformat! javascript prettier<CR> ]]
-
-    -- Neoformat py
-    cmd [[ autocmd Filetype python nnoremap <buffer> <F7> :w<CR>:Neoformat! python black<CR> ]]
 
     -- Neoformat md
     cmd [[ autocmd Filetype markdown nnoremap <buffer> <F7> :w<CR>:Neoformat! markdown prettier <CR> ]]
 
     -- Neoformat lua
-    cmd [[ autocmd Filetype lua nnoremap <buffer> <F7> :w<CR>:Neoformat! lua "$HOME/.luarocks/bin/lua-format -i --no-keep-simple-function-one-line --column-limit=120"<CR> ]]
+    cmd [[ autocmd Filetype lua nnoremap <buffer> <F7> :w<CR>:Neoformat! lua "$HOME/.luarocks/bin/lua-format -i --no-keep-simple-function-one-line --column-limit=130"<CR> ]]
 
     -- javascript
     cmd [[ autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 ]]
@@ -54,6 +51,10 @@ M.load_autocmd = function()
 
     -- css
     cmd [[ autocmd FileType css setlocal shiftwidth=2 tabstop=2 ]]
+
+    -- xprofile
+    cmd [[ autocmd BufNewFile,BufRead /*.xprofile setf sh ]]
+
 end
 
 return M
