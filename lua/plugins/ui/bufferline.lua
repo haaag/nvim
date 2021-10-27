@@ -1,62 +1,75 @@
+vim.cmd [[packadd nvim-bufferline.lua]]
 vim.o.termguicolors = true
 local theme = require('plugins.themes.local-theme').colorscheme()
 local bufferline = require "bufferline"
 
 bufferline.setup {
     options = {
+        numbers = "ordinal", -- | "ordinal" | "buffer_id" | "both"
+        -- close_command = "BufDel",
+        close_command = "bdelete! %d",
         offsets = {{filetype = "NvimTree", text = "", padding = 1}},
         -- buffer_close_icon = "",
+        close_icon = "",
         modified_icon = "",
         indicator_icon = '▎',
-        -- close_icon = "",
         left_trunc_marker = "",
         right_trunc_marker = "",
-        max_name_length = 15,
-        max_prefix_length = 15,
+        max_name_length = 20,
+        max_prefix_length = 20,
         tab_size = 22,
         show_tab_indicators = true,
         enforce_regular_tabs = false,
         view = "multiwindow",
         show_buffer_close_icons = true,
         separator_style = "thick", -- "slant" | "thick" | "thin"
-        -- mappings = true,
-        always_show_bufferline = true
+        always_show_bufferline = true,
+        name_formatter = function(buf) -- buf contains a "name", "path" and "bufnr"
+            -- remove extension from markdown files for example
+            if buf.name:match('%.md') then
+                return vim.fn.fnamemodify(buf.name, ':t:r')
+            end
+        end
     },
     highlights = {
         fill = {guifg = theme.darkgrey, guibg = theme.other_background},
-        background = {guifg = theme.darkgrey, guibg = theme.black2},
-
-        -- buffers
-        buffer_visible = {guifg = theme.lightgrey, guibg = theme.oth},
-        buffer_selected = {
-            -- guifg = theme.black2,
-            -- guibg = theme.blue,
-            -- guibg = theme.background,
-            guifg = theme.white,
-            guibg = theme.black2,
-            gui = "bold"
-        },
-
-        -- tabs
-        tab = {guifg = theme.lightgrey, guibg = theme.background},
-        tab_selected = {guifg = theme.black2, guibg = theme.blue},
-        tab_close = {guifg = theme.red, guibg = theme.other_background},
-        indicator_selected = {guifg = theme.blue, guibg = theme.black},
-
-        -- separators
-        separator = {guifg = theme.black2, guibg = theme.black2},
-        separator_visible = {guifg = theme.black2, guibg = theme.black2},
-        separator_selected = {guifg = theme.black2, guibg = theme.black2},
-
-        -- modified
-        modified = {guifg = theme.red, guibg = theme.black2},
-        modified_visible = {guifg = theme.red, guibg = theme.black2},
-        modified_selected = {guifg = theme.green, guibg = theme.black},
-
-        -- close buttons
-        close_button = {guifg = theme.lightgrey, guibg = theme.black2},
-        close_button_visible = {guifg = theme.lightgrey, guibg = theme.other_background},
-        close_button_selected = {guifg = theme.red, guibg = theme.black}
+        -- fill = {guifg = theme.darkgrey, guibg = theme.background},
+    --     background = {guifg = theme.darkgrey, guibg = theme.black2},
+    --
+    --     -- buffers
+    --     buffer_visible = {guifg = theme.lightgrey, guibg = theme.oth},
+    --     buffer_selected = {
+    --         -- guifg = theme.black2,
+    --         -- guibg = theme.blue,
+    --         -- guibg = theme.background,
+    --         guifg = theme.white,
+    --         guibg = theme.black2,
+    --         gui = "bold"
+    --     },
+    --
+    --     -- tabs
+    --     tab = {guifg = theme.lightgrey, guibg = theme.background},
+    --     tab_selected = {guifg = theme.black2, guibg = theme.blue},
+    --     tab_close = {guifg = theme.red, guibg = theme.other_background},
+    --     indicator_selected = {guifg = theme.blue, guibg = theme.black},
+    --
+    --     -- separators
+    --     separator = {guifg = theme.black2, guibg = theme.black2},
+    --     separator_visible = {guifg = theme.black2, guibg = theme.black2},
+    --     separator_selected = {guifg = theme.black2, guibg = theme.black2},
+    --
+    --     -- modified
+    --     modified = {guifg = theme.red, guibg = theme.black2},
+    --     modified_visible = {guifg = theme.red, guibg = theme.black2},
+    --     modified_selected = {guifg = theme.green, guibg = theme.black},
+    --
+    --     -- close buttons
+    --     close_button = {guifg = theme.lightgrey, guibg = theme.black2},
+    --     close_button_visible = {
+    --         guifg = theme.lightgrey,
+    --         guibg = theme.other_background
+    --     },
+    --     close_button_selected = {guifg = theme.red, guibg = theme.black}
     }
 }
 
