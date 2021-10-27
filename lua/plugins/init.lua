@@ -15,10 +15,17 @@ return require("packer").startup(function()
     -- Packer can manage itself as an optional plugin
     use {"wbthomason/packer.nvim"}
 
-    -- lsp config
+    -- lspconfig
     use {
         "neovim/nvim-lspconfig",
-        config = [[require('lsp.config.lspconfig')]]
+        config = [[require('lsp.config.lspconfig')]],
+        event = "BufRead"
+    }
+
+    -- better python indentation
+    use {
+        "Vimjas/vim-python-pep8-indent",
+        ft = {'py', 'python'}
     }
 
     -- treesitter
@@ -29,14 +36,24 @@ return require("packer").startup(function()
         run = ":TSUpdate"
     }
 
-    -- telescope
+    -- ts-context-commentstring
     use {
-        "nvim-telescope/telescope.nvim",
-        requires = {
-            {"nvim-lua/popup.nvim"}, {"nvim-lua/plenary.nvim"},
-            {"nvim-telescope/telescope-fzy-native.nvim"}
-        },
-        config = [[require('plugins.tools.telescope')]]
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        requires = {'nvim-treesitter/nvim-treesitter'},
+        after = "nvim-treesitter"
+    }
+
+    -- rainbow auto pair
+    use {
+        "p00f/nvim-ts-rainbow",
+        requires = {'nvim-treesitter/nvim-treesitter'},
+        after = "nvim-treesitter"
+    }
+
+    -- text objects
+    use {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        after = "nvim-treesitter"
     }
 
     -- project
@@ -44,54 +61,24 @@ return require("packer").startup(function()
         "ahmedkhalf/project.nvim",
         config = function()
             require("project_nvim").setup {
-                patterns = {"init.lua", ".env", ".git", "deluge"}
+                patterns = {".env", ".git", "deluge", "projects", "app"}
             }
-        end
+        end,
+        event = "BufRead"
     }
 
-    -- utilities
-    use {"folke/which-key.nvim"}
-
-    -- file manager
+    -- vista tagbar
     use {
-        "kyazdani42/nvim-tree.lua",
-        config = [[require('plugins.tools.nvimtree')]],
-        cmd = "NvimTreeToggle"
+        "liuchengxu/vista.vim",
+        config = function ()
+            local g = vim.g
+            g.vista_sidebar_width = 45
+        end,
+        cmd = "Vista"
     }
-
-    -- -- tagbar
-    use {"preservim/tagbar", cmd = "TagbarToggle"}
-
-    -- display icons
-    use {"kyazdani42/nvim-web-devicons"}
 
     -- code formatting
-    use {"sbdchd/neoformat"}
-
-    -- code completion
-    use {
-        "ms-jpq/coq_nvim",
-        branch = "coq",
-        config = function()
-            vim.g.coq_settings = {
-                ['keymap.jump_to_mark'] = '<c-n>',
-                ['auto_start'] = true
-            }
-            require('coq')
-            vim.cmd [[ COQnow -s ]]
-        end,
-        event = "VimEnter"
-    }
-
-    -- completion snippets
-    use {"ms-jpq/coq.artifacts", branch = "artifacts"}
-
-    -- auto pair []
-    use {
-        "windwp/nvim-autopairs",
-        config = [[require('lsp.code.autopairs')]],
-        after = "coq_nvim"
-    }
+    use {"sbdchd/neoformat", cmd = "Neoformat"}
 
     -- Plugin to manipulate character pairs quickly
     use {"machakann/vim-sandwich", event = "VimEnter"}
@@ -99,11 +86,154 @@ return require("packer").startup(function()
     -- vim-matchup - It extends vim's % key
     use {"andymass/vim-matchup", event = "CursorMoved"}
 
-    -- colarizer
-    use {"norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle"}
+    -- vim-move
+    use {
+        'matze/vim-move',
+        config = function()
+            local g = vim.g
+            g.move_key_modifier = 'S-M'
+        end,
+        opt = false
+    }
+
+    -- code action
+    use {'weilbith/nvim-code-action-menu', cmd = 'CodeActionMenu'}
+
+    -- tokyonight
+    use {
+        'folke/tokyonight.nvim',
+        config = [[require('plugins.themes.tokyonight')]]
+    }
+
+    -- gruvbox
+    -- use {
+    --     "ellisonleao/gruvbox.nvim",
+    --     requires = {"rktjmp/lush.nvim"},
+    --     config = [[require('plugins.themes.gruvbox-nvim')]],
+    --     disable = true
+    -- }
+
+    -- gruvbox-flat
+    -- use {
+    --     "eddyekofo94/gruvbox-flat.nvim",
+    --     config = [[require('plugins.themes.gruvbox-flat')]]
+    -- }
+
+    -- statusline
+    use {
+        'nvim-lualine/lualine.nvim',
+        requires = {'kyazdani42/nvim-web-devicons'},
+        -- config = [[require('plugins.ui.lualine')]],
+        config = [[require('plugins.ui.lualine-bubble')]],
+    }
+
+    -- nvim-cmp
+    -- use {
+    --     'hrsh7th/nvim-cmp',
+    --     requires = {
+    --         {'neovim/nvim-lspconfig'},
+    --         {'hrsh7th/cmp-nvim-lsp', after = "nvim-lspconfig"},
+    --         {'hrsh7th/cmp-vsnip', after = "cmp-nvim-lsp"},
+    --         {'hrsh7th/cmp-buffer', after = "cmp-vsnip"},
+    --         {'hrsh7th/cmp-path', after = "cmp-buffer"},
+    --         {'f3fora/cmp-spell', after = "cmp-path"},
+    --         {'rafamadriz/friendly-snippets', after = "cmp-spell"}
+    --     },
+    --     config = [[require('lsp.code.cmp')]],
+    --     event = "InsertEnter *"
+    -- }
+
+    use {
+        'hrsh7th/nvim-cmp',
+        requires = {
+            {'neovim/nvim-lspconfig'},
+            {'hrsh7th/cmp-nvim-lsp'},
+            {'hrsh7th/cmp-nvim-lua'},
+            {'hrsh7th/cmp-vsnip'},
+            {'hrsh7th/cmp-buffer'},
+            {'hrsh7th/cmp-path'},
+            {'f3fora/cmp-spell'},
+            {'rafamadriz/friendly-snippets'},
+            {'hrsh7th/vim-vsnip'},
+            {'lukas-reineke/cmp-under-comparator'}
+        },
+        config = [[require('lsp.code.cmp')]],
+        -- event = "InsertEnter *"
+    }
+
+    -- snippets
+    --[[ use {
+        'hrsh7th/vim-vsnip',
+        requires = {'hrsh7th/nvim-cmp'},
+        after = "nvim-cmp"
+    } --]]
+
+    -- completion icons
+    use {'onsails/lspkind-nvim', after = "nvim-cmp"}
+
+    -- auto pair []
+    use {
+        "windwp/nvim-autopairs",
+        config = [[require('lsp.code.autopairs')]],
+        after = "nvim-cmp"
+    }
+
+    -- auto tags
+    use {'windwp/nvim-ts-autotag', after = "nvim-cmp"}
+
+    -- comment
+    use {
+        "numToStr/Comment.nvim",
+        config = function() require('Comment').setup() end,
+        after = "nvim-cmp"
+    }
+
+    -- telescope
+    use {
+        "nvim-telescope/telescope.nvim",
+        requires = {
+            {"nvim-lua/popup.nvim"}, {"nvim-lua/plenary.nvim"},
+            {"nvim-telescope/telescope-fzy-native.nvim"},
+            {'jvgrootveld/telescope-zoxide'}
+        },
+        config = [[require('plugins.tools.telescope')]],
+        cmd = {"Telescope"}
+    }
+
+    -- tabline
+    use {
+        "akinsho/nvim-bufferline.lua",
+        config = [[require('plugins.ui.bufferline')]],
+        event = "BufRead"
+    }
+
+    -- maximizer
+    use {
+        "szw/vim-maximizer",
+        cmd = "MaximizerToggle",
+        config = function() vim.g.maximizer_set_default_mapping = 1 end
+    }
 
     -- better buffer del
-    use {"ojroques/nvim-bufdel"}
+    use {"ojroques/nvim-bufdel", cmd = "BufDel"}
+
+    -- git
+    use {
+        "lewis6991/gitsigns.nvim",
+        requires = {'nvim-lua/plenary.nvim'},
+        config = function()
+            vim.cmd [[ packadd plenary.nvim ]]
+            require('gitsigns').setup()
+        end,
+        event = "BufRead"
+    }
+
+    -- ranger
+    use {
+        'kevinhwang91/rnvimr',
+        config = function() vim.g.rnvimr_enable_bw = 1 end,
+        cmd = "RnvimrToggle"
+    }
 
     -- smooth scroll
     use {
@@ -112,133 +242,132 @@ return require("packer").startup(function()
         event = "WinScrolled"
     }
 
-    -- git
+    -- display icons
     use {
-        "lewis6991/gitsigns.nvim",
-        -- config = [[require('plugins.ui.gitsigns')]]
-        config = function() require('gitsigns').setup() end
+        "kyazdani42/nvim-web-devicons",
+        config = [[require('plugins.ui.icons')]]
     }
 
-    -- comment
-    use {"b3nj5m1n/kommentary"}
+    -- nonicons
+    -- use {'yamatsum/nvim-nonicons', requires = {'kyazdani42/nvim-web-devicons'}}
 
-    -- theme: gruvbox-flat
-    -- use {
-    --    "eddyekofo94/gruvbox-flat.nvim",
-    --    config = [[require('plugins.themes')]]
-    -- }
-
-    -- theme: tokyonight
-    use {
-        'folke/tokyonight.nvim',
-        config = [[require('plugins.themes')]]
-    }
-
-    -- theme: gruvbox
-    use {
-        "ellisonleao/gruvbox.nvim",
-        requires = {"rktjmp/lush.nvim"},
-        config = [[require('plugins.themes')]]
-    }
-
-    -- tabline
-    use {
-        "akinsho/nvim-bufferline.lua",
-        config = [[require('plugins.ui.bufferline')]]
-        --[[ event = "BufRead",
-        after = "gruvbox-flat.nvim" ]]
-    }
-
-    -- -- statusline
-    -- use {
-    --     "hoob3rt/lualine.nvim",
-    --     config = [[require('plugins.ui.lualine')]]
-    --     --[[ event = "BufRead",
-    --     after = "gruvbox-flat.nvim" ]]
-    -- }
+    -- colorizer
+    use {"norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle"}
 
     -- highlight todo comments
     use {
         "folke/todo-comments.nvim",
         requires = "nvim-lua/plenary.nvim",
-        config = [[require('lsp.code.todo-comments')]]
-        --[[ event = "BufRead",
-        after = "gruvbox-flat.nvim" ]]
+        config = [[require('lsp.code.todo-comments')]],
+        event = "BufRead"
     }
 
-    -- better indent highlight
+    -- indent highlight
     use {
         "lukas-reineke/indent-blankline.nvim",
-        config = [[require('lsp.code.indent-blankline')]]
+        config = [[require('lsp.code.indent-blankline')]],
+        opt = false
     }
 
     -- syntax highlight for sxhkd
     use {"baskerville/vim-sxhkdrc", ft = {"sxhkdrc"}}
 
-    -- markdown
+    -- which-key
+    use {"folke/which-key.nvim"}
+
+    -- cycle + listchars
+    use {'tjdevries/cyclist.vim', event = "VimEnter"}
+
+    -- toggleterm
+    use {
+        "akinsho/toggleterm.nvim",
+        config = [[require('plugins.tools.terminal')]],
+        cmd = {"ToggleTerm"}
+    }
+
+    -- nvim-markdown-preview
     use {
         'davidgranstrom/nvim-markdown-preview',
         config = [[require('plugins.tools.markdown-preview')]],
-        ft = {'markdown', 'md'}
+        ft = {'markdown', 'md'},
+        cmd = 'MarkdownPreview'
     }
 
     -- vimwiki
     use {
         "vimwiki/vimwiki",
         config = [[require('plugins.tools.vimwiki')]],
-        cmd = "VimwikiIndex",
-        ft = {"markdown", "md"}
+        ft = {"vimwiki", "markdown", "md"}
     }
 
-    -- profiling
+    -- jump-hop
     use {
-        'dstein64/vim-startuptime',
-        cmd = 'StartupTime',
-        config = [[vim.g.startuptime_tries = 10]]
+        'phaazon/hop.nvim',
+        as = 'hop',
+        config = function() require'hop'.setup {} end,
+        cmd = {"HopWord", "HopLine", "HopPattern"}
     }
 
-    -- ....
-    use 'tjdevries/cyclist.vim'
+    -- better filetype.vim
+    use {'nathom/filetype.nvim'}
 
-    -- debugging
+    -- nnn file manager
     use {
-        "mfussenegger/nvim-dap",
-        config = function() require("plugins.tools.dap").setup() end
-    }
+	"luukvbaal/nnn.nvim",
+	config = function() require("nnn").setup({
+        explorer = {
+            width = 30
+        },
+    }) end,
+    cmd = {'NnnExplorer', 'NnnPicker'}
+}
 
-    -- dap-ui
+    -- nvim-tree
     use {
-        'rcarriga/nvim-dap-ui',
-        config = function() require('plugins.tools.dap-ui').setup() end
+        "kyazdani42/nvim-tree.lua",
+        config = [[require('plugins.tools.nvimtree')]],
+        opt = true,
+        cmd = {"NvimTreeToggle", "NvimTreeFindFile"}
     }
 
-    -- lsp-saga
-    use {
-        'glepnir/lspsaga.nvim',
-        requires = {"neovim/nvim-lspconfig"},
-        config = [[require('plugins.tools.lsp-saga')]]
-    }
-
-    -- toggleterm
-    use {
-        "akinsho/toggleterm.nvim",
-        config = [[require('plugins.tools.terminal')]]
-    }
-
-    -- nonicons
-    --[[ use {
-		'yamatsum/nvim-nonicons',
-		requires = {'kyazdani42/nvim-web-devicons'},
-		config = function()
-			local icons = require('nvim-nonicons')
-			icons.get('file')
-		end
-	} ]]
-
-    -- maximizer
-    use {
-        "szw/vim-maximizer",
-        cmd = "MaximizerToggle"
-    }
+    -- CursorHold bugg: https://github.com/neovim/neovim/issues/12587
+    use {'antoinemadec/FixCursorHold.nvim'}
 
 end)
+
+-- lightbulb
+-- use {
+--     'kosayoda/nvim-lightbulb',
+--     config = function ()
+--         vim.fn.sign_define('LightBulbSign', { text = "", texthl = "LspDiagnosticsDefaultHint" })
+--     end,
+--     after = "nvim-treesitter"
+-- }
+
+-- debugg
+-- use {
+--     "mfussenegger/nvim-dap",
+--     config = function() require("plugins.tools.dap").setup() end
+-- }
+-- -- dap-ui
+-- use {
+--     'rcarriga/nvim-dap-ui',
+--     config = function() require('plugins.tools.dap-ui').setup() end
+-- }
+
+-- themes: {{{
+-- gruvbox-flat
+-- use {
+--    "eddyekofo94/gruvbox-flat.nvim",
+--    config = [[require('plugins.themes')]]
+-- }
+
+-- enfocado
+-- use {'wuelnerdotexe/vim-enfocado', event="VimEnter"}
+
+-- gruvbox
+-- use {
+--     "ellisonleao/gruvbox.nvim",
+--     requires = {"rktjmp/lush.nvim"},
+--     config = [[require('plugins.themes.gruvbox-nvim')]]
+-- }
