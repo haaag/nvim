@@ -1,21 +1,19 @@
 -- indent-blankline
--------------------
 local g = vim.g
--- local cmd = vim.cmd
--- local indent = 2
 
--- chars: { "|", '│', '┆', '┊', "|"}
+-- local cmd = vim.cmd
+-- chars: { "|", '│', '┆', '┊', "|", "¦"}
 
 g.indentLine_enabled = 1
 g.indent_blankline_char = "▏"
--- g.indent_blankline_show_current_context = true
 g.indent_blankline_use_treesitter = true
 g.indent_blankline_show_trailing_blankline_indent = false
 g.indent_blankline_show_current_context = true
 
--- cmd "hi IndentBlanklineChar guifg=#45403d"
--- cmd "hi IndentBlanklineChar guifg=#2a2e36"
--- cmd "hi IndentBlanklineChar guifg=#545c7e"
+-- g.indent_blankline_show_current_context = true
+-- vim.cmd "hi IndentBlanklineChar guifg=#45403d"
+-- vim.cmd "hi IndentBlanklineChar guifg=#2a2e36"
+-- vim.cmd "hi IndentBlanklineChar guifg=#545c7e"
 
 g.indent_blankline_filetype_exclude = {
     'help', 'terminal', 'LuaTree', 'packer', 'Packer', 'startify', 'tagbar',
