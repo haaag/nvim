@@ -19,8 +19,8 @@ M.load_keys = function()
     map('n', '<C-l>', '<C-w>l', silent)
 
     -- Indent with Tab and Shift-Tab
-    map('v', '<Tab>', '>', {})
-    map('v', '<S-Tab>', '<', {})
+    -- map('v', '<Tab>', '>', {})
+    -- map('v', '<S-Tab>', '<', {})
 
     -- Move selected line / block of text in visual mode
     map('x', 'K', ':move \'<-2<CR>gv-gv\'', options)
@@ -59,7 +59,7 @@ M.load_keys = function()
     map('c', '<C-l>', '<right>', options)
 
     -- Source current luafile
-    map('n', '<F5>', ':luafile %<CR>', options)
+    map('n', '<F5>', ':MaximizerToggle<CR>', options)
 
     -- Set spell
     map('n', '<F8>', ':set spell!<CR>', options)
@@ -93,7 +93,12 @@ M.load_keys = function()
     map('n', 'gr', ':lua vim.lsp.buf.references()<CR>', options)
     map('n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', options)
     map('n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', options)
-    map('n', '[c', ':Lspsaga show_line_diagnostics<CR>', options)
+    map('n', '[s', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', options)
+
+    -- git
+    map('n', '[c', '<cmd>lua require("gitsigns.actions").prev_hunk()<CR>', options)
+    map('n', ']c', '<cmd>lua require("gitsigns.actions").next_hunk()<CR>', options)
+    map('n', ']a', '<cmd>lua require("gitsigns").preview_hunk()<CR>', options)
 
     -- Simpler increment/decrement integers
     -- map("n", "+", "<C-a>", silent)
@@ -102,8 +107,8 @@ M.load_keys = function()
     -- map("v", "-", "<C-x>", silent)
 
     -- Move lines
-    -- map("v", "K", ":move \'<-2<CR>gv-gv", {})
-    -- map("v", "J", ":move \'>+1<CR>gv-gv", {})
+    map("v", "K", ":move \'<-2<CR>gv-gv", {})
+    map("v", "J", ":move \'>+1<CR>gv-gv", {})
 
     -- copy whole file content
     -- map("n", "<C-a>", ":%y+<CR>", options)
