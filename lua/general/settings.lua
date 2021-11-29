@@ -48,6 +48,9 @@ M.load_options = function()
         scrolloff = 8, -- Minimal number of lines to keep above and below the cursor
         sidescrolloff = 8, -- same as above, except for left and right, if nowrap is set
         foldmethod = "expr", -- foldmethod,
+        -- foldmethod = "syntax",
+        foldexpr = "nvim_treesitter#foldexpr()",
+        -- foldtext = "v:lua.foldText()",
         timeoutlen = 300,
         smartcase = true
         -- listchars = { tab = '»»', trail = '·' }
