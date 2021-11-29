@@ -1,10 +1,11 @@
 -- nvim-cmp config
+local theme = require('plugins.themes.local-theme').colorscheme()
 vim.opt.completeopt = {"menu", "menuone", "noselect"}
 vim.opt.shortmess:append "c"
 
 local cmd = vim.cmd
--- cmd [[ packadd nvim-cmp ]]
 cmd [[ packadd lspkind-nvim ]]
+-- cmd [[ packadd nvim-cmp ]]
 -- cmd [[ packadd cmp-vsnip ]]
 -- cmd [[ packadd cmp-nvim-lsp ]]
 -- cmd [[ packadd cmp-buffer ]]
@@ -58,6 +59,7 @@ cmp.setup({
     sources = {
         { name = 'nvim_lsp' },
         { name = 'nvim_lua'  },
+        { name = 'rg', keyword_length = 3 },
         { name = 'buffer', keyword_length = 5 },
         { name = 'vsnip' },
         { name = 'path' },
@@ -67,8 +69,9 @@ cmp.setup({
         with_text = true,
         menu = {
             buffer = "[buf]",
-            nvim_lsp = "[LSP]",
+            nvim_lsp = "[lsp]",
             nvim_lua = "[api]",
+            rg = "[rg]",
             path = "[path]",
             vsnip = "[snip]",
       },
@@ -87,6 +90,51 @@ cmp.setup({
     }
 })
 
--- cmd [[highlight! link CmpItemAbbr Pmenu]]
--- cmd [[highlight! link CmpItemKind Pmenu]]
--- cmd [[highlight! link CmpItemMenu Pmenu]]
+-- cmd [[ highlight! CmpItemAbbrMatch guibg=NONE guifg=#7aa2f7 ]]
+-- cmd [[ highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#7aa2f7 ]]
+-- cmd [[ highlight! CmpItemKind guibg=NONE guifg=#9d7cd8 ]]
+-- cmd [[ highlight! CmpItemKindMethod guibg=NONE guifg=#9d7cd8 ]]
+-- cmd [[ highlight! CmpItemKindFunction guibg=NONE guifg=#9d7cd8 ]]
+-- cmd [[ highlight! CmpItemKindKeyword guibg=NONE guifg=#c0caf5 ]]
+-- cmd [[ highlight! CmpItemKindVariable guibg=NONE guifg=#7dcfff ]]
+--
+--
+cmd('highlight! CmpItemKindText guibg=NONE guifg=' .. theme.cyan)
+cmd('highlight! CmpItemAbbrMatch guibg=NONE guifg=' .. theme.blue)
+cmd('highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=' .. theme.blue)
+cmd('highlight! CmpItemKind guibg=NONE guifg=' .. theme.purple)
+cmd('highlight! CmpItemKindFunction guibg=NONE guifg=' .. theme.purple)
+cmd('highlight! CmpItemKindKeyword guibg=NONE guifg=' .. theme.white)
+cmd('highlight! CmpItemKindVariable guibg=NONE guifg=' .. theme.yellow)
+cmd('highlight! CmpItemKindMethod guibg=NONE guifg=' .. theme.purple)
+
+
+--[[
+lsp.CompletionItemKind = {}
+lsp.CompletionItemKind.Text = 1
+lsp.CompletionItemKind.Method = 2
+lsp.CompletionItemKind.Function = 3
+lsp.CompletionItemKind.Constructor = 4
+lsp.CompletionItemKind.Field = 5
+lsp.CompletionItemKind.Variable = 6
+lsp.CompletionItemKind.Class = 7
+lsp.CompletionItemKind.Interface = 8
+lsp.CompletionItemKind.Module = 9
+lsp.CompletionItemKind.Property = 10
+lsp.CompletionItemKind.Unit = 11
+lsp.CompletionItemKind.Value = 12
+lsp.CompletionItemKind.Enum = 13
+lsp.CompletionItemKind.Keyword = 14
+lsp.CompletionItemKind.Snippet = 15
+lsp.CompletionItemKind.Color = 16
+lsp.CompletionItemKind.File = 17
+lsp.CompletionItemKind.Reference = 18
+lsp.CompletionItemKind.Folder = 19
+lsp.CompletionItemKind.EnumMember = 20
+lsp.CompletionItemKind.Constant = 21
+lsp.CompletionItemKind.Struct = 22
+lsp.CompletionItemKind.Event = 23
+lsp.CompletionItemKind.Operator = 24
+lsp.CompletionItemKind.TypeParameter = 25
+lsp.CompletionItemKind = vim.tbl_add_reverse_lookup(lsp.CompletionItemKind) ]]
+

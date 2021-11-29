@@ -1,7 +1,6 @@
 -- indent-blankline
 local g = vim.g
 
--- local cmd = vim.cmd
 -- chars: { "|", '│', '┆', '┊', "|", "¦"}
 
 g.indentLine_enabled = 1
