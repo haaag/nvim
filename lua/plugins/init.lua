@@ -12,6 +12,10 @@ end
 local use = packer.use
 
 return require("packer").startup(function()
+    config = {
+    -- Move to lua dir so impatient.nvim can cache it
+    compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua'
+	}
     -- Packer can manage itself as an optional plugin
     use {"wbthomason/packer.nvim"}
 
@@ -19,7 +23,8 @@ return require("packer").startup(function()
     use {
         "neovim/nvim-lspconfig",
         config = [[require('lsp.config.lspconfig')]],
-        event = "BufRead"
+        -- event = "BufRead",
+        opt = false
     }
 
     -- better python indentation
@@ -100,49 +105,33 @@ return require("packer").startup(function()
     use {'weilbith/nvim-code-action-menu', cmd = 'CodeActionMenu'}
 
     -- tokyonight
+    -- use {
+    --     'folke/tokyonight.nvim',
+    --     config = [[require('plugins.themes.tokyonight')]]
+    -- }
+
+
+    -- gruvbox-flat
     use {
-        'folke/tokyonight.nvim',
-        config = [[require('plugins.themes.tokyonight')]]
+       "eddyekofo94/gruvbox-flat.nvim",
+       config = [[require('plugins.themes.gruvbox-flat')]]
     }
 
-    -- gruvbox
+    -- gruvbox original
     -- use {
     --     "ellisonleao/gruvbox.nvim",
     --     requires = {"rktjmp/lush.nvim"},
-    --     config = [[require('plugins.themes.gruvbox-nvim')]],
-    --     disable = true
-    -- }
-
-    -- gruvbox-flat
-    -- use {
-    --     "eddyekofo94/gruvbox-flat.nvim",
-    --     config = [[require('plugins.themes.gruvbox-flat')]]
+    --     config = [[require('plugins.themes.gruvbox-nvim')]]
     -- }
 
     -- statusline
     use {
         'nvim-lualine/lualine.nvim',
         requires = {'kyazdani42/nvim-web-devicons'},
-        -- config = [[require('plugins.ui.lualine')]],
         config = [[require('plugins.ui.lualine-bubble')]],
     }
 
-    -- nvim-cmp
-    -- use {
-    --     'hrsh7th/nvim-cmp',
-    --     requires = {
-    --         {'neovim/nvim-lspconfig'},
-    --         {'hrsh7th/cmp-nvim-lsp', after = "nvim-lspconfig"},
-    --         {'hrsh7th/cmp-vsnip', after = "cmp-nvim-lsp"},
-    --         {'hrsh7th/cmp-buffer', after = "cmp-vsnip"},
-    --         {'hrsh7th/cmp-path', after = "cmp-buffer"},
-    --         {'f3fora/cmp-spell', after = "cmp-path"},
-    --         {'rafamadriz/friendly-snippets', after = "cmp-spell"}
-    --     },
-    --     config = [[require('lsp.code.cmp')]],
-    --     event = "InsertEnter *"
-    -- }
-
+    -- code completion
     use {
         'hrsh7th/nvim-cmp',
         requires = {
@@ -155,18 +144,12 @@ return require("packer").startup(function()
             {'f3fora/cmp-spell'},
             {'rafamadriz/friendly-snippets'},
             {'hrsh7th/vim-vsnip'},
-            {'lukas-reineke/cmp-under-comparator'}
+            {'lukas-reineke/cmp-under-comparator'},
+            {'lukas-reineke/cmp-rg'}
         },
         config = [[require('lsp.code.cmp')]],
         -- event = "InsertEnter *"
     }
-
-    -- snippets
-    --[[ use {
-        'hrsh7th/vim-vsnip',
-        requires = {'hrsh7th/nvim-cmp'},
-        after = "nvim-cmp"
-    } --]]
 
     -- completion icons
     use {'onsails/lspkind-nvim', after = "nvim-cmp"}
@@ -174,7 +157,9 @@ return require("packer").startup(function()
     -- auto pair []
     use {
         "windwp/nvim-autopairs",
-        config = [[require('lsp.code.autopairs')]],
+        config = function ()
+           require('nvim-autopairs').setup()
+        end,
         after = "nvim-cmp"
     }
 
@@ -282,7 +267,7 @@ return require("packer").startup(function()
     use {
         "akinsho/toggleterm.nvim",
         config = [[require('plugins.tools.terminal')]],
-        cmd = {"ToggleTerm"}
+        cmd = {"ToggleTerm", "_lazygit_toggle"}
     }
 
     -- nvim-markdown-preview
@@ -330,44 +315,44 @@ return require("packer").startup(function()
         cmd = {"NvimTreeToggle", "NvimTreeFindFile"}
     }
 
-    -- CursorHold bugg: https://github.com/neovim/neovim/issues/12587
+    -- CursorHold bug: https://github.com/neovim/neovim/issues/12587
     use {'antoinemadec/FixCursorHold.nvim'}
 
+    -- vim-lastplace
+    -- use {'farmergreg/vim-lastplace'}
+
+    -- impatient
+    use {'lewis6991/impatient.nvim'}
+
+    -- trouble
+    use {
+        "folke/trouble.nvim",
+        requires = "kyazdani42/nvim-web-devicons",
+        config = [[require('lsp.code.trouble')]],
+        cmd = {'TroubleToggle', 'Trouble', 'TroubleClose'}
+    }
 end)
 
--- lightbulb
--- use {
---     'kosayoda/nvim-lightbulb',
---     config = function ()
---         vim.fn.sign_define('LightBulbSign', { text = "", texthl = "LspDiagnosticsDefaultHint" })
---     end,
---     after = "nvim-treesitter"
--- }
+-- Removed: {{{
 
--- debugg
--- use {
---     "mfussenegger/nvim-dap",
---     config = function() require("plugins.tools.dap").setup() end
--- }
--- -- dap-ui
--- use {
---     'rcarriga/nvim-dap-ui',
---     config = function() require('plugins.tools.dap-ui').setup() end
--- }
+    -- debugg
+    -- use {
+    --     "mfussenegger/nvim-dap",
+    --     config = function() require("plugins.tools.dap").setup() end
+    -- }
+    -- -- dap-ui
+    -- use {
+    --     'rcarriga/nvim-dap-ui',
+    --     config = function() require('plugins.tools.dap-ui').setup() end
+    -- }
 
--- themes: {{{
--- gruvbox-flat
--- use {
---    "eddyekofo94/gruvbox-flat.nvim",
---    config = [[require('plugins.themes')]]
--- }
+    -- themes: {{{
 
--- enfocado
--- use {'wuelnerdotexe/vim-enfocado', event="VimEnter"}
+    -- gruvbox original
+    -- use {
+    --     "ellisonleao/gruvbox.nvim",
+    --     requires = {"rktjmp/lush.nvim"},
+    --     config = [[require('plugins.themes.gruvbox-nvim')]]
+    -- }
 
--- gruvbox
--- use {
---     "ellisonleao/gruvbox.nvim",
---     requires = {"rktjmp/lush.nvim"},
---     config = [[require('plugins.themes.gruvbox-nvim')]]
--- }
+-- }}}
