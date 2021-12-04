@@ -1,13 +1,18 @@
 -- Function for nvim files.
 ---------------------------
+local cmd = vim.cmd
+cmd [[packadd telescope.nvim]]
+cmd [[packadd plenary.nvim]]
+
 local HOME = tostring(os.getenv("HOME"))
+local telescope = require("telescope.builtin")
+local theme = require("telescope.themes")
+local actions = require('telescope.actions')
 
 local M = {}
 
 M.search_dotfiles_vim = function()
-    require("telescope.builtin").find_files(
-        require("telescope.themes").get_dropdown(
-            {
+    telescope.find_files(theme.get_dropdown({
                 previewer = false,
                 winblend = 10,
                 prompt_title = "< nvim config >",
@@ -24,6 +29,18 @@ M.dotfiles_nvim = function()
     }
 end
 
+
+M.dotfiles_nvim_new = function()
+    require("telescope.builtin").find_files(
+        require("telescope.themes").get_ivy(
+            {
+                previewer = false,
+                winblend = 20,
+                prompt_title = "< nvim config >",
+                cwd = HOME .. "/.config/nvim/"
+            }))
+end
+
 M.search_dotfiles = function()
     require("telescope.builtin").find_files {
         prompt_title = "< dotfiles >",
@@ -32,7 +49,7 @@ M.search_dotfiles = function()
     }
 end
 
-M.search_dotfiles_vim_bk = function()
+M.dotfiles_nvim_bk = function()
     require("telescope.builtin").find_files(
         require("telescope.themes").get_ivy(
             {
@@ -47,11 +64,19 @@ M.work_files = function()
     require("telescope.builtin").find_files(
         require("telescope.themes").get_dropdown(
             {
-                previewer = false,
+                -- previewer = true,
                 winblend = 10,
                 prompt_title = "< work files >",
                 cwd = HOME .. "/work/"
             }))
+end
+
+M.work_files_new = function()
+    telescope.find_files {
+        prompt_title = "< work >",
+        cwd = "~/work/",
+        find_command = {'fd', '--type', 'f', '--hidden'}
+    }
 end
 
 M.projects_files = function()

@@ -1,6 +1,10 @@
+local cmd = vim.cmd
+cmd [[ packadd telescope.nvim ]]
+cmd [[ packadd plenary.nvim ]]
+cmd [[ packadd popup.nvim ]]
+
 local actions = require('telescope.actions')
 local telescope = require('telescope')
-require('telescope').load_extension('fzy_native')
 
 telescope.setup {
     defaults = {
