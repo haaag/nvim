@@ -10,20 +10,19 @@ vim.cmd [[ autocmd BufNewFile,BufRead /*.dg setf deluge ]]
 if not lspconfig.deluge then
     configs.deluge = {
         default_config = {
-            cmd = {'$HOME/apps/github/deluge/Deluge-Language-Parser/deluge'},
-            autostart = true,
+            cmd = {'$HOME/apps/github/deluge/Deluge-Language-Parser/deluge-server'},
             filetypes = {'deluge'},
-            root_dir = function(fname)
-                return lspconfig.util.find_git_ancestor(fname) or
-                           vim.loop.os_homedir()
-            end,
+            root_dir = lspconfig.util.root_pattern('.git', 'deluge'),
+            -- root_dir = function(fname)
+            --     return lspconfig.util.find_git_ancestor(fname) or
+            --     vim.loop.os_homedir()
+            -- end,
             settings = {}
         }
     }
 end
 
 lspconfig.deluge.setup {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(
-        vim.lsp.protocol.make_client_capabilities()),
+    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
     on_attach = custom_attach
 }
