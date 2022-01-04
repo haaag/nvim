@@ -1,17 +1,17 @@
 -- nvim-cmp config
+------------------
+local cmp_status_ok, cmp = pcall(require, "cmp")
+if not cmp_status_ok then
+  return
+end
+
+local lspkind = require('lspkind')
 local theme = require('plugins.themes.local-theme').colorscheme()
 vim.opt.completeopt = {"menu", "menuone", "noselect"}
 vim.opt.shortmess:append "c"
 
 local cmd = vim.cmd
 cmd [[ packadd lspkind-nvim ]]
--- cmd [[ packadd nvim-cmp ]]
--- cmd [[ packadd cmp-vsnip ]]
--- cmd [[ packadd cmp-nvim-lsp ]]
--- cmd [[ packadd cmp-buffer ]]
--- cmd [[ packadd cmp-path ]]
--- cmd [[ packadd cmp-spell ]]
--- cmd [[ packadd friendly-snippets ]]
 
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -21,10 +21,6 @@ end
 local feedkey = function(key, mode)
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
 end
-
--- Setup nvim-cmp.
-local cmp = require 'cmp'
-local lspkind = require('lspkind')
 
 cmp.setup({
     snippet = {expand = function(args) vim.fn["vsnip#anonymous"](args.body) end},
@@ -59,9 +55,9 @@ cmp.setup({
     sources = {
         { name = 'nvim_lsp' },
         { name = 'nvim_lua'  },
-        { name = 'rg', keyword_length = 3 },
         { name = 'buffer', keyword_length = 5 },
         { name = 'vsnip' },
+        { name = 'rg', keyword_length = 5 },
         { name = 'path' },
         { name = 'spell' }
     },
@@ -71,9 +67,9 @@ cmp.setup({
             buffer = "[buf]",
             nvim_lsp = "[lsp]",
             nvim_lua = "[api]",
-            rg = "[rg]",
             path = "[path]",
             vsnip = "[snip]",
+            rg = "[rg]",
       },
     })},
     experimental = {
@@ -90,14 +86,7 @@ cmp.setup({
     }
 })
 
--- cmd [[ highlight! CmpItemAbbrMatch guibg=NONE guifg=#7aa2f7 ]]
--- cmd [[ highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#7aa2f7 ]]
--- cmd [[ highlight! CmpItemKind guibg=NONE guifg=#9d7cd8 ]]
--- cmd [[ highlight! CmpItemKindMethod guibg=NONE guifg=#9d7cd8 ]]
--- cmd [[ highlight! CmpItemKindFunction guibg=NONE guifg=#9d7cd8 ]]
--- cmd [[ highlight! CmpItemKindKeyword guibg=NONE guifg=#c0caf5 ]]
--- cmd [[ highlight! CmpItemKindVariable guibg=NONE guifg=#7dcfff ]]
---
+
 --
 cmd('highlight! CmpItemKindText guibg=NONE guifg=' .. theme.cyan)
 cmd('highlight! CmpItemAbbrMatch guibg=NONE guifg=' .. theme.blue)
