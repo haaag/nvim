@@ -91,9 +91,9 @@ M.load_keys = function()
     -- Lsp Mappings:
     map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', options)
     map('n', 'gr', ':lua vim.lsp.buf.references()<CR>', options)
-    map('n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', options)
-    map('n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', options)
-    map('n', '[s', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', options)
+    map('n', '[e', '<cmd>lua vim.diagnostic.goto_next()<CR>', options)
+    map('n', ']e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', options)
+    map('n', '[s', '<cmd>lua vim.diagnostic.open_float()<CR>', options)
 
     -- git
     map('n', '[c', '<cmd>lua require("gitsigns.actions").prev_hunk()<CR>', options)
