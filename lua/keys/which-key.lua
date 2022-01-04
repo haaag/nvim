@@ -154,7 +154,7 @@ wk.register({
         a = {':CodeActionMenu<CR>', 'code action'},
         c = {':cclose<CR>', 'close quickfix'},
         d = {'<cmd>lua vim.lsp.buf.declaration()<CR>', 'Declaration'},
-        f = {':Neoformat<CR>', 'formatting'},
+        f = {':lua vim.lsp.buf.formatting_sync()<CR>', 'formatting'},
         k = {'<cmd>lua vim.lsp.buf.hover()<CR>', 'hover'},
         r = {':lua vim.lsp.buf.rename()<CR>', 'Rename'},
         t = {':TodoTelescope<CR>', 'TodoTelescope'}

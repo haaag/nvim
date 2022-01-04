@@ -7,9 +7,6 @@ if not status_ok then
     return
 end
 
--- Neoformat py
-cmd [[ autocmd Filetype python nnoremap <buffer> <F7> :w<CR>:Neoformat! python black<CR> ]]
-
 local custom_attach = function(client)
     print("Attached to " .. client.name);
 end
