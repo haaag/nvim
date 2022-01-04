@@ -16,7 +16,7 @@ g.indent_blankline_show_current_context = true
 
 g.indent_blankline_filetype_exclude = {
     'help', 'terminal', 'LuaTree', 'packer', 'Packer', 'startify', 'tagbar',
-    'vimwiki'
+    'vimwiki', 'alpha'
 }
 g.indent_blankline_buftype_exclude = {
     'help', 'terminal', 'LuaTree', 'packer', 'Packer', 'vimwiki'

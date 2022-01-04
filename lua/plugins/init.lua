@@ -13,9 +13,9 @@ local use = packer.use
 
 return require("packer").startup(function()
     config = {
-    -- Move to lua dir so impatient.nvim can cache it
-    compile_path = vim.fn.stdpath('config')..'/lua/packer_compiled.lua'
-	}
+        -- Move to lua dir so impatient.nvim can cache it
+        compile_path = vim.fn.stdpath('config') .. '/lua/packer_compiled.lua'
+    }
     -- Packer can manage itself as an optional plugin
     use {"wbthomason/packer.nvim"}
 
@@ -23,17 +23,14 @@ return require("packer").startup(function()
     use {
         "neovim/nvim-lspconfig",
         config = [[require('lsp.config.lspconfig')]],
-        -- event = "BufRead",
-        opt = false
+        event = "BufRead"
+        -- opt = false
     }
 
     -- better python indentation
-    use {
-        "Vimjas/vim-python-pep8-indent",
-        ft = {'py', 'python'}
-    }
+    use {"Vimjas/vim-python-pep8-indent", ft = {'py', 'python'}}
 
-    -- treesitter
+    -- treesitter {{{
     use {
         "nvim-treesitter/nvim-treesitter",
         config = [[require('lsp.code.treesitter')]],
@@ -61,12 +58,22 @@ return require("packer").startup(function()
         after = "nvim-treesitter"
     }
 
+    -- auto tags
+    use {'windwp/nvim-ts-autotag', after = "nvim-cmp"}
+
+    --
+    use {'nvim-treesitter/nvim-treesitter-refactor', after = "nvim-treesitter"}
+    -- }}}
+
+    -- nvim-lint
+    use {'mfussenegger/nvim-lint', config = [[require('lsp.code.nvim-lint')]]}
+
     -- project
     use {
         "ahmedkhalf/project.nvim",
         config = function()
             require("project_nvim").setup {
-                patterns = {".env", ".git", "deluge", "projects", "app"}
+                patterns = {".env", ".git", "deluge", "app"}
             }
         end,
         event = "BufRead"
@@ -75,7 +82,7 @@ return require("packer").startup(function()
     -- vista tagbar
     use {
         "liuchengxu/vista.vim",
-        config = function ()
+        config = function()
             local g = vim.g
             g.vista_sidebar_width = 45
         end,
@@ -104,18 +111,67 @@ return require("packer").startup(function()
     -- code action
     use {'weilbith/nvim-code-action-menu', cmd = 'CodeActionMenu'}
 
+    -- themes {{{
+
+    -- onedark
+    use {
+        'navarasu/onedark.nvim',
+        config = function()
+            vim.g.one_nvim_transparent_bg = true
+            require('onedark').setup()
+        end
+    }
+
     -- tokyonight
     -- use {
     --     'folke/tokyonight.nvim',
     --     config = [[require('plugins.themes.tokyonight')]]
     -- }
 
-
     -- gruvbox-flat
-    use {
-       "eddyekofo94/gruvbox-flat.nvim",
-       config = [[require('plugins.themes.gruvbox-flat')]]
-    }
+    -- use {
+    --    "eddyekofo94/gruvbox-flat.nvim",
+    --    config = [[require('plugins.themes.gruvbox-flat')]]
+    -- }
+
+    -- catppuccin
+    -- use {
+    --     "catppuccin/nvim",
+    --     as = "catppuccin",
+    --     config = [[require('plugins.themes.catppuccin')]]
+    -- }
+
+    -- oceanic next
+    -- use {
+    --     'mhartington/oceanic-next',
+    --     config = function ()
+    --         vim.g.oceanic_next_terminal_bold = 1
+    --         vim.g.oceanic_next_terminal_italic = 1
+    --         vim.cmd [[ colorscheme OceanicNext ]]
+    --     end
+    -- }
+
+    -- kanagawa
+    -- use {
+    --     "rebelot/kanagawa.nvim",
+    --     config = function ()
+    --         vim.cmd("colorscheme kanagawa")
+    --     end
+    -- }
+
+    -- vim-drak
+    -- use {
+    --     'Th3Whit3Wolf/one-nvim',
+    --     config = function ()
+    --         vim.cmd [[ colorscheme one-nvim ]]
+    --     end
+    -- }
+
+    -- onenord
+    -- use {
+    --     'rmehri01/onenord.nvim',
+    --     config = [[require('plugins.themes.onenord')]]
+    -- }
 
     -- gruvbox original
     -- use {
@@ -123,48 +179,40 @@ return require("packer").startup(function()
     --     requires = {"rktjmp/lush.nvim"},
     --     config = [[require('plugins.themes.gruvbox-nvim')]]
     -- }
+    -- }}}
 
     -- statusline
     use {
         'nvim-lualine/lualine.nvim',
         requires = {'kyazdani42/nvim-web-devicons'},
         config = [[require('plugins.ui.lualine-bubble')]],
+        after = "nvim-lspconfig"
     }
 
     -- code completion
     use {
         'hrsh7th/nvim-cmp',
         requires = {
-            {'neovim/nvim-lspconfig'},
-            {'hrsh7th/cmp-nvim-lsp'},
+            {'neovim/nvim-lspconfig'}, {'hrsh7th/cmp-nvim-lsp'},
             {'hrsh7th/cmp-nvim-lua'},
-            {'hrsh7th/cmp-vsnip'},
-            {'hrsh7th/cmp-buffer'},
-            {'hrsh7th/cmp-path'},
-            {'f3fora/cmp-spell'},
-            {'rafamadriz/friendly-snippets'},
-            {'hrsh7th/vim-vsnip'},
-            {'lukas-reineke/cmp-under-comparator'},
-            {'lukas-reineke/cmp-rg'}
+            {'hrsh7th/cmp-vsnip', config = [[require('lsp.code.vsnip')]]},
+            {'hrsh7th/cmp-buffer'}, {'hrsh7th/cmp-path'}, {'f3fora/cmp-spell'},
+            {'rafamadriz/friendly-snippets'}, {'hrsh7th/vim-vsnip'},
+            {'lukas-reineke/cmp-under-comparator'}, {'lukas-reineke/cmp-rg'}
         },
-        config = [[require('lsp.code.cmp')]],
+        config = [[require('lsp.code.cmp')]]
         -- event = "InsertEnter *"
     }
 
     -- completion icons
-    use {'onsails/lspkind-nvim', after = "nvim-cmp"}
+    use {'onsails/lspkind-nvim'}
 
     -- auto pair []
     use {
         "windwp/nvim-autopairs",
-        config = function ()
-           require('nvim-autopairs').setup()
-        end,
+        config = function() require('nvim-autopairs').setup() end,
         after = "nvim-cmp"
     }
-
-    -- auto tags
-    use {'windwp/nvim-ts-autotag', after = "nvim-cmp"}
 
     -- comment
     use {
@@ -233,9 +281,6 @@ return require("packer").startup(function()
         config = [[require('plugins.ui.icons')]]
     }
 
-    -- nonicons
-    -- use {'yamatsum/nvim-nonicons', requires = {'kyazdani42/nvim-web-devicons'}}
-
     -- colorizer
     use {"norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle"}
 
@@ -261,7 +306,7 @@ return require("packer").startup(function()
     use {"folke/which-key.nvim"}
 
     -- cycle + listchars
-    use {'tjdevries/cyclist.vim', event = "VimEnter"}
+    -- use {'tjdevries/cyclist.vim', event = "VimEnter"}
 
     -- toggleterm
     use {
@@ -293,20 +338,6 @@ return require("packer").startup(function()
         cmd = {"HopWord", "HopLine", "HopPattern"}
     }
 
-    -- better filetype.vim
-    use {'nathom/filetype.nvim'}
-
-    -- nnn file manager
-    use {
-	"luukvbaal/nnn.nvim",
-	config = function() require("nnn").setup({
-        explorer = {
-            width = 30
-        },
-    }) end,
-    cmd = {'NnnExplorer', 'NnnPicker'}
-}
-
     -- nvim-tree
     use {
         "kyazdani42/nvim-tree.lua",
@@ -318,11 +349,11 @@ return require("packer").startup(function()
     -- CursorHold bug: https://github.com/neovim/neovim/issues/12587
     use {'antoinemadec/FixCursorHold.nvim'}
 
-    -- vim-lastplace
-    -- use {'farmergreg/vim-lastplace'}
-
     -- impatient
     use {'lewis6991/impatient.nvim'}
+
+    -- better filetype.vim
+    use {'nathom/filetype.nvim'}
 
     -- trouble
     use {
@@ -331,28 +362,54 @@ return require("packer").startup(function()
         config = [[require('lsp.code.trouble')]],
         cmd = {'TroubleToggle', 'Trouble', 'TroubleClose'}
     }
+
+    -- alpha-nvim
+    use {
+        'goolord/alpha-nvim',
+        requires = {'kyazdani42/nvim-web-devicons'},
+        config = function()
+            require'alpha'.setup(require'alpha.themes.startify'.opts)
+        end
+    }
+
+    -- syntax for kitty.conf
+    use {"fladson/vim-kitty"}
 end)
 
 -- Removed: {{{
 
-    -- debugg
-    -- use {
-    --     "mfussenegger/nvim-dap",
-    --     config = function() require("plugins.tools.dap").setup() end
-    -- }
-    -- -- dap-ui
-    -- use {
-    --     'rcarriga/nvim-dap-ui',
-    --     config = function() require('plugins.tools.dap-ui').setup() end
-    -- }
+-- debugg
+-- use {
+--     "mfussenegger/nvim-dap",
+--     config = function() require("plugins.tools.dap").setup() end
+-- }
+-- dap-ui
+-- use {
+--     'rcarriga/nvim-dap-ui',
+--     config = function() require('plugins.tools.dap-ui').setup() end
+-- }
+-- twilight
+-- use {
+--     "folke/twilight.nvim",
+--     config = function() require("twilight").setup {} end,
+--     cmd = {"Twilight"}
+-- }
+-- nnn file manager
+-- use {
+--     "luukvbaal/nnn.nvim",
+--     config = function()
+--         require("nnn").setup({explorer = {width = 30}})
+--     end,
+--     cmd = {'NnnExplorer', 'NnnPicker'}
+-- }
 
-    -- themes: {{{
 
-    -- gruvbox original
-    -- use {
-    --     "ellisonleao/gruvbox.nvim",
-    --     requires = {"rktjmp/lush.nvim"},
-    --     config = [[require('plugins.themes.gruvbox-nvim')]]
-    -- }
+-- themes: {{{
+-- gruvbox original
+-- use {
+--     "ellisonleao/gruvbox.nvim",
+--     requires = {"rktjmp/lush.nvim"},
+--     config = [[require('plugins.themes.gruvbox-nvim')]]
+-- }
 
 -- }}}
