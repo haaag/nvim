@@ -1,5 +1,10 @@
 local theme = require('plugins.themes.local-theme').colorscheme()
-require("todo-comments").setup {
+local status_ok, todo_comments = pcall(require, "todo-comments")
+if not status_ok then
+    return
+end
+
+todo_comments.setup {
     signs = true, -- show icons in the signs column
     -- keywords recognized as todo comments
     keywords = {

@@ -1,7 +1,11 @@
 -- css lsp
-local lsp = require'lspconfig'
+local status_ok, lsp = pcall(require, "lspconfig")
+if not status_ok then
+    return
+end
+
 local custom_attach = function(client)
-    print("CSS LSP started.");
+    print("Attached to " .. client.name);
 end
 
 lsp.cssls.setup {

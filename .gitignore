@@ -8,3 +8,10 @@ syntax/deluge.vim.orig
 undodir
 lua/plugins/init.lua.bk
 lua/utils/personal-functions.lua
+lua/general/old_settings.lua
+lua/plugins/tools/nvimtree.lua.bk
+lua/general/old_settings.lua.bk
+lua/keys/old_mappings.lua
+lua/keys/plugins-mappings.lua
+tmp
+removed

@@ -1,10 +1,11 @@
---- Bash lsp simple config
---------------------------
-
-local lsp = require 'lspconfig'
+--- bashls
+local status_ok, lsp = pcall(require, "lspconfig")
+if not status_ok then
+    return
+end
 
 local custom_attach = function(client)
-    print("Bash LSP started");
+    print("Attached to " .. client.name);
 end
 
 lsp.bashls.setup{

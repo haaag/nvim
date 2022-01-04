@@ -1,5 +1,5 @@
 -- Lsp configs
---------------
+
 require('lsp.config.diagnostic')
 require('lsp.config.python-ls')
 require('lsp.config.bash-ls')

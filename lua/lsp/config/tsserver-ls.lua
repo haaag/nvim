@@ -1,11 +1,16 @@
---- LSP simple config
----------------------
-local custom_attach = function(client)
-    print("TsServer LSP started.");
+--- tsserver lsp
+local status_ok, lsp = pcall(require, "lspconfig")
+if not status_ok then
+    return
 end
 
-local lsp = require 'lspconfig'
-require'lspconfig'.eslint.setup{}
+local custom_attach = function(client)
+    print("Attached to " .. client.name);
+end
+
+-- eslint
+-- require'lspconfig'.eslint.setup{}
+
 lsp.tsserver.setup{
     capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
     on_attach=custom_attach

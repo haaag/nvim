@@ -1,10 +1,9 @@
-local cmd = vim.cmd
-cmd [[ packadd telescope.nvim ]]
-cmd [[ packadd plenary.nvim ]]
-cmd [[ packadd popup.nvim ]]
+local status_ok, telescope = pcall(require, "telescope")
+if not status_ok then
+  return
+end
 
 local actions = require('telescope.actions')
-local telescope = require('telescope')
 
 telescope.setup {
     defaults = {

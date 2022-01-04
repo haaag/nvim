@@ -15,7 +15,10 @@ local Theme = {}
   -- }
 
 Theme.colorscheme = function()
-    local colors = colorscheme.gruvbox()
+    local colors = colorscheme.onedark()
+    -- local colors = colorscheme.oceanic()
+    -- local colors = colorscheme.gruvbox()
+    -- local colors = colorscheme.catppuccin()
     -- local colors = colorscheme.gruvbox_flat()
     -- local colors = colorscheme.tokyonight()
     -- local colors = colorscheme.solarized()

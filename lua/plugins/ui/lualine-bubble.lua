@@ -1,7 +1,13 @@
 -- Bubbles config for lualine
 -- Author: lokesh-krishna
 -- MIT license, see LICENSE for more details.
+local status_ok, lualine = pcall(require, "lualine")
+if not status_ok then
+  return
+end
+
 local theme = require('plugins.themes.local-theme').colorscheme()
+
 -- stylua: ignore
 local colors = {
     blue = theme.blue,
@@ -33,7 +39,7 @@ local bubbles_theme = {
     }
 }
 
-require('lualine').setup {
+lualine.setup{
     options = {
         theme = bubbles_theme,
         component_separators = '|',

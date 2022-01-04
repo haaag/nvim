@@ -1,11 +1,13 @@
 -- Function for nvim files.
 ---------------------------
 local cmd = vim.cmd
-cmd [[packadd telescope.nvim]]
-cmd [[packadd plenary.nvim]]
-
 local HOME = tostring(os.getenv("HOME"))
-local telescope = require("telescope.builtin")
+
+local status_ok, telescope = pcall(require, "telescope.builtin")
+if not status_ok then
+    return
+end
+
 local theme = require("telescope.themes")
 local actions = require('telescope.actions')
 

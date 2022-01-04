@@ -66,7 +66,7 @@ M.gruvbox = function()
         yellow = "#fabd2f",
         blue = "#83a598",
         purple = "#8f3f71",
-		magenta = "d3869b",
+		magenta = "#d3869b",
         orange = "#fe8019",
         cyan = "#8ec07c",
         white = "#ebdbb2",
@@ -116,6 +116,7 @@ end
 M.tokyonight = function()
     local color = {
         background = "#24283b",
+        other_background = "#1F2335",
         foreground = "#a9b1d6",
         black = "#1a1b26",
         black2 = "#1a1b26",
@@ -215,4 +216,49 @@ M.gruvbox_flat = function()
     }
     return color
 end
+
+M.catppuccin = function()
+    local color = {
+        background = "#1E1E28",
+        foreground = "#D7DAE0",
+        black = "#6E6C7C",
+        black2 = "#6E6C7C",
+        red = "#E28C8C",
+        green = "#B3E1A3",
+        yellow = "#EADDA0",
+        blue = "#A4B9EF",
+        purple = "#F0AFE1",
+        magenta = "#C6AAE8",
+        orange = "#C6AAE8",
+        cyan = "#A4B9EF",
+        white = "#D7DAE0",
+        lightgrey = "#a89984",
+        darkgrey = "#928374",
+        lualine = "catppuccin"
+    }
+    return color
+end
+
+M.oceanic = function ()
+    local color = {
+        background = "#1B2B34",
+        foreground = "#C0C5CE",
+        black = "#343D46",
+        black2 = "#343D46",
+        red = "#ec5f67",
+        green = "#99c794",
+        yellow = "#fac863",
+        blue = "#6699cc",
+        purple = "#c594c5",
+        magenta = "#c594c5",
+        orange = "#f99157",
+        cyan = "#62b3b2",
+        white = "#ffffff",
+        lightgrey = "#65737E",
+        darkgrey = "#343D46",
+        lualine = "OceanicNext"
+    }
+    return color
+end
+
 return M

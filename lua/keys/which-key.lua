@@ -1,6 +1,10 @@
-vim.cmd [[packadd which-key.nvim]]
-require('plugins.tools.telescope')
-require("which-key").setup {
+-- WhichKey
+local status_ok, wk = pcall(require, "which-key")
+if not status_ok then
+  return
+end
+
+wk.setup {
     plugins = {
         marks = true, -- shows a list of your marks on ' and `
         registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -18,7 +22,7 @@ require("which-key").setup {
             g = true -- bindings for prefixed with g
         }
     },
-    operators = {gc = "Comments"},
+    -- operators = {gc = "Comments"},
     icons = {
         breadcrumb = "»", -- symbol used in the command line area that shows your active key combo
         separator = "➜", -- symbol used between a key and it's label
@@ -45,26 +49,29 @@ require("which-key").setup {
 }
 
 -- local telescope_findfiles = ":lua require('telescope.builtin').find_files({previewer=false,layout_strategy='vertical',layout_config={width=0.5}})<CR>"
-local wk = require("which-key")
+-- local wk = require("which-key")
 
 wk.register({
     ['<F2>'] = {':Vista!!<CR>', 'tagbar'},
     ['<F3>'] = {':NvimTreeToggle<CR>', 'nvimtree'},
-    ['<F9>'] = {':echo "Running Pandoc"<CR>:silent !convert2pdf.py -f "%:p" --open &<CR>', 'pandoc'},
-    ['<S-Q>'] = {':NnnPicker<CR>', 'float explorer'},
+    ['<F9>'] = {
+        ':echo "Running Pandoc"<CR>:silent !convert2pdf.py -f "%:p" --open &<CR>',
+        'pandoc'
+    },
     ['<C-F>'] = {':Telescope find_files<CR>', 'find files'},
     ['<F4>'] = {"<cmd>lua _lazygit_toggle()<CR>", "lazygit"},
     ['bg'] = {':BufferLinePick<CR>', 'choose buffer'},
     ['sf'] = {':Explore .<CR>', 'netrw'},
-    ['<C-\\>'] = {':ToggleTerm<CR>', 'terminal'}
+    ['<C-\\>'] = {':ToggleTerm<CR>', 'terminal'},
+    ['<S-Q>'] = {':RnvimrToggle<CR>', 'float explorer'}
 })
 
 wk.register({
     ['='] = {'<cmd>lua vim.lsp.buf.formatting()<CR>', 'formatting'},
-    ['/'] = {'<cmd>lua require("Comment").toggle()<CR>', 'comment'},
+    -- ['/'] = {'<cmd>lua require("Comment").toggle()<CR>', 'comment'},
     ['o'] = {':only<CR>', 'only buffer'},
-    ['O']  = {':MaximizerToggle<CR>', 'MaximizerToggle'},
-    ['?'] = {':NvimTreeFindFile<CR>', 'treefind'},
+    ['O'] = {':MaximizerToggle<CR>', 'MaximizerToggle'},
+    ['?'] = {':NvimTreeFindFile<CR>', 'treefind'}
 }, {prefix = "<leader>"})
 
 -- debug
@@ -150,7 +157,7 @@ wk.register({
         f = {':Neoformat<CR>', 'formatting'},
         k = {'<cmd>lua vim.lsp.buf.hover()<CR>', 'hover'},
         r = {':lua vim.lsp.buf.rename()<CR>', 'Rename'},
-        t = {':TodoTelescope<CR>', 'TodoTelescope'},
+        t = {':TodoTelescope<CR>', 'TodoTelescope'}
     }
 }, {prefix = "<leader>"})
 
@@ -159,10 +166,10 @@ wk.register({
     f = {
         name = "+telescope",
         -- b = {':Telescope file_browser previewer=false winblend=10<CR>', 'files browser'},
-        b = {
-            "<Cmd>lua require('telescope.builtin').file_browser({previewer=false, layout_strategy='vertical',layout_config={width=0.5}})<CR>",
-            'files browser'
-        },
+        -- b = {
+        --     "<Cmd>lua require('telescope.builtin').file_browser({previewer=false, layout_strategy='vertical',layout_config={width=0.5}})<CR>",
+        --     'files browser'
+        -- },
         c = {"<Cmd>Telescope zoxide list<CR>", "zoxide"},
         d = {
             '<Cmd>lua require("plugins.tools.telescope-functions").search_dotfiles()<CR>',
@@ -222,10 +229,3 @@ wk.register({
         p = {':HopPattern<CR>', 'jump pattern'}
     }
 }, {prefix = "<leader>"})
-
--- visual mode
--- local visual_keymap = {
---     -- ['/'] = {'<Plug>kommentary_visual_default', 'kommentary', noremap = false}
--- }
---
--- wk.register(visual_keymap, {mode = "v", prefix = "<leader>"})

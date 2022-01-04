@@ -27,6 +27,7 @@ syntax match   jsPrivateIdentifier +#+ contained nextgroup=jsIdentifierProp,jsFu
 syntax match   jsDot +\.+ contained skipwhite skipempty nextgroup=jsPrivateIdentifier,jsIdentifierProp,jsFunctionCall
 syntax match   jsSpread +\.\.\.+ contained skipwhite skipempty nextgroup=@jsExpression
 syntax match   jsParensError +[)}\]]+
+syntax match   jsCommentDoc +@\<\w\+\>+
 
 " Code blocks
 syntax region  jsBlock matchgroup=jsBraces start=+{+ end=+}+ contains=@jsTop extend fold
@@ -140,11 +141,11 @@ syntax region  jsTemplateExpression matchgroup=jsTemplateBrace start=+\%([^\\]\%
 
 " Built-in values
 " REFERENCE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
-syntax keyword jsBuiltinValues undefined null NaN true GET PUT POST invokeurl false today Infinity globalThis global contained
-syntax keyword jsBuiltinValues zoho crm info window document module exports require console arguments contained
+syntax keyword jsBuiltinValues undefined null NaN true GET PUT POST invokeurl false today Infinity globalThis global contained not into
+syntax keyword jsBuiltinValues zoho crm info standalone window document module exports require console arguments contained hide input disable success insert
 
 " Built-in objects
-syntax keyword jsBuiltinObjects Object Function crm Boolean Symbol Error EvalError InternalError RangeError ReferenceError SyntaxError TypeError URIError contained
+syntax keyword jsBuiltinObjects Object Function Boolean Symbol Error EvalError InternalError RangeError ReferenceError SyntaxError TypeError URIError contained
 syntax keyword jsBuiltinObjects Number BigInt Math Date String RegExp contained
 syntax keyword jsBuiltinObjects Array Int8Array Uint8Array Uint8ClampedArray Int16Array Uint16Array Int32Array Uint32Array Float32Array Float64Array BigInt64Array BigUint64Array contained
 syntax keyword jsBuiltinObjects Map Set WeakMap WeakSet contained
@@ -152,7 +153,7 @@ syntax keyword jsBuiltinObjects ArrayBuffer SharedArrayBuffer Atomics DataView J
 syntax keyword jsBuiltinObjects Promise Generator GeneratorFunction AsyncFunction Reflect Proxy Intl WebAssembly contained
 
 " Built-in functions
-syntax keyword jsBuiltinFunctions eval crm invokeurl uneval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape require contained
+syntax keyword jsBuiltinFunctions eval invokeurl uneval isFinite isNaN parseFloat parseInt decodeURI decodeURIComponent encodeURI encodeURIComponent escape unescape require contained
 
 " Numbers
 " REFERENCE: http://www.ecma-international.org/ecma-262/10.0/index.html#prod-NumericLiteral
@@ -289,6 +290,9 @@ syntax cluster jsGlobals contains=jsBuiltinValues,jsThis,jsSuper,jsBuiltinObject
 silent! source <sfile>:h/extras/flow.vim
 " Highlight jsodc
 silent! source <sfile>:h/extras/jsdoc.vim
+
+" added
+highlight default link jsCommentDoc SpecialComment
 
 " Basics
 highlight default link jsDebugger Error

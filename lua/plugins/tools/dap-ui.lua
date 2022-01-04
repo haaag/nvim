@@ -12,7 +12,7 @@ M.setup = function()
     repl = "r",
   },
   sidebar = {
-    open_on_start = true,
+    -- open_on_start = true,
     -- You can change the order of elements in the sidebar
     elements = {
       -- Provide as ID strings or tables with "id" and "size" keys
@@ -27,7 +27,7 @@ M.setup = function()
     position = "right", -- Can be "left" or "right"
   },
   tray = {
-    open_on_start = true,
+    -- open_on_start = true,
     elements = { "repl",
       { id = "watches", size = 0.25 },
     },

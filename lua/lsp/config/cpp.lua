@@ -1,7 +1,11 @@
-local lsp = require 'lspconfig'
+-- cpp lsp
+local status_ok, lsp = pcall(require, "lspconfig")
+if not status_ok then
+    return
+end
 
 local custom_attach = function(client)
-    print("Clang LSP started");
+    print("Attached to " .. client.name);
 end
 
 lsp.clangd.setup{

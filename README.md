@@ -14,8 +14,7 @@
 ### LSP
 * [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) -- A collection of common configurations for Neovim's built-in language server client.
 
-### Code Utilities
-* ~~[preservim/tagbar](https://github.com/preservim/tagbar) -- A class outline viewer for Vim.~~
+### Utilities
 * [liuchengxu/vista.vim](https://github.com/liuchengxu/vista.vim) -- View and search LSP symbols, tags in Vim/NeoVim.
 * [sbdchd/neoformat](https://github.com/sbdchd/neoformat) -- For formatting code.
 * [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim) -- Comments
@@ -24,6 +23,8 @@
 * [matze/vim-move](https://github.com/matze/vim-move) -- moves lines/selections
 * [kosayoda/nvim-lightbulb](https://github.com/kosayoda/nvim-lightbulb) -- lightbulb for code action
 * weilbith/nvim-code-action-menu
+* [farmergreg/vim-lastplace](https://github.com/farmergreg/vim-lastplace) -- automatically visit the last cursor location
+* ~~[preservim/tagbar](https://github.com/preservim/tagbar) -- A class outline viewer for Vim.~~
 * ~~[ms-jpq/coq_nvim](https://github.com/ms-jpq/coq_nvim) -- Completion: Fast as FUCK and loads of features.~~
 * ~~[b3nj5m1n/kommentary](https://github.com/b3nj5m1n/kommentary) -- Comment text in and out.~~
 

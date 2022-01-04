@@ -66,7 +66,7 @@ return require("packer").startup(function()
     -- }}}
 
     -- nvim-lint
-    use {'mfussenegger/nvim-lint', config = [[require('lsp.code.nvim-lint')]]}
+    -- use {'mfussenegger/nvim-lint', config = [[require('lsp.code.nvim-lint')]]}
 
     -- project
     use {
@@ -170,7 +170,9 @@ return require("packer").startup(function()
     -- onenord
     -- use {
     --     'rmehri01/onenord.nvim',
-    --     config = [[require('plugins.themes.onenord')]]
+    --     config = function ()
+    --         require('onenord').setup()
+    --     end
     -- }
 
     -- gruvbox original
@@ -312,7 +314,7 @@ return require("packer").startup(function()
     use {
         "akinsho/toggleterm.nvim",
         config = [[require('plugins.tools.terminal')]],
-        cmd = {"ToggleTerm", "_lazygit_toggle"}
+        --cmd = {"ToggleTerm", "_lazygit_toggle"}
     }
 
     -- nvim-markdown-preview

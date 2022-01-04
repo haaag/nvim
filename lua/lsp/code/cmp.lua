@@ -1,7 +1,7 @@
 -- nvim-cmp config
 ------------------
-local cmp_status_ok, cmp = pcall(require, "cmp")
-if not cmp_status_ok then
+local status_ok, cmp = pcall(require, "cmp")
+if not status_ok then
   return
 end
 
@@ -11,7 +11,7 @@ vim.opt.completeopt = {"menu", "menuone", "noselect"}
 vim.opt.shortmess:append "c"
 
 local cmd = vim.cmd
-cmd [[ packadd lspkind-nvim ]]
+-- cmd [[ packadd lspkind-nvim ]]
 
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
