@@ -49,8 +49,8 @@ M.load_options = function()
         sidescrolloff = 8, -- same as above, except for left and right, if nowrap is set
         foldmethod = "expr", -- foldmethod,
         -- foldmethod = "syntax",
-        foldexpr = "nvim_treesitter#foldexpr()",
-        -- foldtext = "v:lua.foldText()",
+        -- foldexpr = "nvim_treesitter#foldexpr()",
+        foldtext = "v:lua.foldText()",
         timeoutlen = 300,
         smartcase = true
         -- listchars = { tab = '»»', trail = '·' }

@@ -1,7 +1,7 @@
 local impatient = require('impatient')
 impatient.enable_profile()
 
-vim.lsp.set_log_level("debug")
+-- vim.lsp.set_log_level("debug")
 --
 -- Do not source the default filetype.vim
 vim.g.did_load_filetypes = 1

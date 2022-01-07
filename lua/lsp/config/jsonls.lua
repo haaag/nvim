@@ -6,6 +6,7 @@ if not status_ok then
 end
 
 local custom_attach = function(client)
+    client.resolved_capabilities.document_formatting = false,
     print("Attached to " .. client.name);
 end
 

@@ -16,20 +16,23 @@
 
 ### Utilities
 * [liuchengxu/vista.vim](https://github.com/liuchengxu/vista.vim) -- View and search LSP symbols, tags in Vim/NeoVim.
-* [sbdchd/neoformat](https://github.com/sbdchd/neoformat) -- For formatting code.
 * [numToStr/Comment.nvim](https://github.com/numToStr/Comment.nvim) -- Comments
 * [machakann/vim-sandwich](https://github.com/machakann/vim-sandwich) -- Plugin to manipulate character pairs quickly.
 * [andymass/vim-matchup](https://github.com/andymass/vim-matchup)   -- It extends vim's % key.
 * [matze/vim-move](https://github.com/matze/vim-move) -- moves lines/selections
-* [kosayoda/nvim-lightbulb](https://github.com/kosayoda/nvim-lightbulb) -- lightbulb for code action
-* weilbith/nvim-code-action-menu
-* [farmergreg/vim-lastplace](https://github.com/farmergreg/vim-lastplace) -- automatically visit the last cursor location
-* ~~[preservim/tagbar](https://github.com/preservim/tagbar) -- A class outline viewer for Vim.~~
-* ~~[ms-jpq/coq_nvim](https://github.com/ms-jpq/coq_nvim) -- Completion: Fast as FUCK and loads of features.~~
-* ~~[b3nj5m1n/kommentary](https://github.com/b3nj5m1n/kommentary) -- Comment text in and out.~~
 
 ### Completion
 * [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp) -- A completion engine plugin
+* [hrsh7th/cmp-nvim-lsp](hrsh7th/cmp-nvim-lsp)
+* [hrsh7th/cmp-nvim-lua](hrsh7th/cmp-nvim-lua)
+* [hrsh7th/cmp-vsnip](hrsh7th/cmp-vsnip)
+* [hrsh7th/cmp-buffer](hrsh7th/cmp-buffer)
+* [hrsh7th/cmp-path](hrsh7th/cmp-path)
+* [f3fora/cmp-spell](f3fora/cmp-spell)
+* [rafamadriz/friendly-snippets](rafamadriz/friendly-snippets)
+* [hrsh7th/vim-vsnip](hrsh7th/vim-vsnip)
+* [lukas-reineke/cmp-under-comparator](lukas-reineke/cmp-under-comparator)
+* [lukas-reineke/cmp-rg](lukas-reineke/cmp-rg)
 
 ### Syntax
 * [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) -- Treesitter configurations and abstraction layer for Neovim.
@@ -45,7 +48,6 @@
 
 ### Tabs
 * [akinsho/nvim-bufferline.lua](https://github.com/akinsho/bufferline.nvim) -- A snazzy buffer line.
-* ~~[hoob3rt/lualine.nvim](https://github.com/hoob3rt/lualine.nvim) -- A blazing fast and easy to configure neovim statusline.~~
 * [shadmansaleh/lualine.nvim](https://github.com/shadmansaleh/lualine.nvim) -- A blazing fast and easy to configure neovim statusline.
 
 ### UI
@@ -60,9 +62,9 @@
 * [kyazdani42/nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua) -- File Explorer For Neovim Written In Lua.
 * [tjdevries/cyclist.vim](tjdevries/cyclist.vim) -- cycle + listchars = cyclist.vim.
 * [szw/vim-maximizer](https://github.com/szw/vim-maximizer) -- Maximizes and restores the current window in Vim.
-* [folke/lsp-colors](https://github.com/folke/lsp-colors.nvim) -- lsp colors
 * [lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) -- Adds indentation guides to all lines (including empty lines).
-* ~~[folke/todo-comments.nvim](https://github.com/folke/todo-comments.nvim) -- Highlight and search for todo comments like TODO.~~
+* [folke/lsp-colors](https://github.com/folke/lsp-colors.nvim) -- lsp colors
+* [folke/todo-comments.nvim](https://github.com/folke/todo-comments.nvim) -- Highlight and search for todo comments like TODO.
 
 ### Themes
 * [ellisonleao/gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim) -- A port of gruvbox community theme to lua with treesitter support!

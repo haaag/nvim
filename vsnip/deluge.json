@@ -1,43 +1,43 @@
 {
   "ifnull": {
     "prefix": "ifnull",
-    "body": "${1:varible} = ifnull(${2:variable}.get('${3:field}'), '${4:}');",
+    "body": "${1:varible} = ifnull(${2:variable}.get(${3:<field>}), ${4:<default>});",
     "description": "If null"
   },
   "ifn": {
     "prefix": "inull",
-    "body": "ifnull(${1:variable}.get('${2:field}'), '${3:}');",
+    "body": "ifnull(${1:<variable>}.get(${2:<field>}), ${3:<default>});",
     "description": "If null"
   },
   "ifsameline": {
     "prefix": "ifsl",
-    "body": "${1:varible} = if(${2:expression} ${3:logical_operator} ${4:expression}, true, false);",
+    "body": "${1:<varible>} = if(${2:<expression>} ${3:<logical_operator>} ${4:<expression>}, true, false);",
     "description": "If condition sameline"
   },
   "invoke": {
     "prefix": "invoke",
     "body": [
-        "${1:variable_name} = invokeurl",
+        "${1:<variable_name>} = invokeurl",
         "[",
-        "   url: ${2:url_name}",
+        "   url: ${2:<url_name>}",
         "   type: ${3:GET}",
         "   detailed: true",
-        "   connection: '${4:connection_name}'",
+        "   connection: ${4:<connection_name>}",
         "];",
         "${5:}"
     ]
   },
   "crmCreateRecord": {
     "prefix": "crmcr",
-    "body": "${1:variable} = zoho.crm.createRecord(${2:module_name}, ${3:record_id}, ${4:update_map});"
+    "body": "${1:<variable>} = zoho.crm.createRecord(${2:<module_name>}, ${3:<record_id>}, ${4:<update_map>});"
   },
   "crmGetRecord": {
     "prefix": "crmgr",
-    "body": "${1:variable} = zoho.crm.getRecordById(${2:module_name}, ${3:record_id});"
+    "body": "${1:<variable>} = zoho.crm.getRecordById(${2:<module_name>}, ${3:<record_id>});"
   },
   "crmUpdateRecord": {
     "prefix": "crmur",
-    "body": "${1:variable} = zoho.crm.updateRecord(${2:module_name}, ${3:record_id}, ${4:update_map});"
+    "body": "${1:<variable>} = zoho.crm.updateRecord(${2:<module_name>}, ${3:<record_id>}, ${4:<update_map>});"
   },
   "crmWorkFlowOptions": {
     "prefix": "crmwfo",
@@ -46,8 +46,8 @@
   "crmSearchRecord": {
     "prefix": "crmsr",
     "body": [
-        "${1:variable_name} = '${2:field_api_name}:equals:' + ${3:what} + ')';",
-        "${4:result_name} = zoho.crm.searchRecords(${5:module_name}, ${1:variable_name})"
+        "${1:<variable_name>} = '${2:<field_api_name>}:equals:' + ${3:<what>} + ')';",
+        "${4:<result_name>} = zoho.crm.searchRecords(${5:<module_name>}, ${1:<variable_name>});"
     ],
     "description": "Using searchRecords"
   },
@@ -62,14 +62,14 @@
   "jobHeader": {
     "prefix": "zonheader",
     "body": [
-        "/*-----------------------------------------------------------------------------------------------------------",
+        "/*------------------------------------------------------------------------------------------------------",
         "* Author:    Zonecta",
         "* Email:     soporte@zonecta.com",
-        "* Module:    '${1:module_name}'",
-        "* Apps:      '${2:app_name}'",
-        "* Function:  ${3:function_name}",
-        "* Objetivo:  ${4:objetivo}",
-        "/------------------------------------------------------------------------------------------------------------*/",
+        "* Module:    '${1:<module_name>}'",
+        "* Apps:      '${2:<app_name>}'",
+        "* Function:  ${3:<function_name>}()",
+        "* Objetivo:  '${4:<objetivo>}'",
+        "/-----------------------------------------------------------------------------------------------------*/",
         "//",
         "${5:}"
     ]
@@ -79,14 +79,44 @@
     "body" : [
         "else",
         "{",
+        "   ${1}",
         "}"
     ]
   },
   "ifstatement": {
     "prefix": "ifsnip",
     "body" : [
-        "if(${1:})",
+        "if(${1})",
         "{",
+        "   ${2}",
+        "}"
+    ]
+  },
+  "elseif": {
+    "prefix": "elseif",
+    "body" : [
+        "else if(${1})",
+        "{",
+        "   ${2}",
+        "}"
+    ]
+  },
+  "invokeresponse": {
+    "prefix": "invores",
+    "body": [
+        "${1:<variable_name>} = invokeurl",
+        "[",
+        "   url: ${2:<url_name>}",
+        "   type: ${3:GET}",
+        "   detailed: true",
+        "   connection: ${4:<connection_name>}",
+        "];",
+        "//",
+        "response_code = ${1:<variable_name>}.get(${5:<code>});",
+        "ok_response = if(response_code == ${6:<code>}, true, false);",
+        "if(ok_response)",
+        "{",
+        "   ${7:}",
         "}"
     ]
   }
