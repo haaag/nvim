@@ -1,4 +1,4 @@
-local theme = require('plugins.themes.local-theme').colorscheme()
+local theme = require('plugins.themes.theme-colors').colors()
 local status_ok, todo_comments = pcall(require, "todo-comments")
 if not status_ok then
     return

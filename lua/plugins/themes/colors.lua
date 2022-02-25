@@ -173,7 +173,6 @@ M.dracula = function()
     return color
 end
 
-
 M.gruvbox_soft = function()
     local color = {
         background = "#32302f",
@@ -193,7 +192,6 @@ M.gruvbox_soft = function()
     }
     return color
 end
-
 
 M.gruvbox_flat = function()
     local color = {
@@ -257,6 +255,28 @@ M.oceanic = function ()
         lightgrey = "#65737E",
         darkgrey = "#343D46",
         lualine = "OceanicNext"
+    }
+    return color
+end
+
+M.rose = function ()
+    local color = {
+        background = "#232136",
+        foreground = "#C0C5CE",
+        black = "#343D46",
+        black2 = "#343D46",
+        red = "#ec5f67",
+        green = "#99c794",
+        yellow = "#fac863",
+        blue = "#6699cc",
+        purple = "#c594c5",
+        magenta = "#c594c5",
+        orange = "#f99157",
+        cyan = "#62b3b2",
+        white = "#ffffff",
+        lightgrey = "#65737E",
+        darkgrey = "#343D46",
+        lualine = "rose-pine"
     }
     return color
 end

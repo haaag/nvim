@@ -1,4 +1,4 @@
--- css lsp
+-- sql lsp config
 local defaults = require("lsp.config.lsp-defaults")
 local status_ok, lsp = pcall(require, "lspconfig")
 if not status_ok then
@@ -8,10 +8,7 @@ end
 local custom_attach = defaults.custom_attach
 local capabilities = defaults.capabilities()
 
--- css
-vim.cmd([[ autocmd FileType css setlocal shiftwidth=2 tabstop=2 ]])
-
-lsp.cssls.setup({
-	capabilities = capabilities,
+lsp.sqls.setup({
+    capabilities = capabilities,
 	on_attach = custom_attach,
 })

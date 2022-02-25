@@ -1,6 +1,5 @@
 local g = vim.g
 
-
 -- Enables bold text.
 g.gruvbox_bold = true
 
@@ -36,6 +35,6 @@ g.gruvbox_italicize_strings = false
 g.gruvbox_invert_selection = true
 
 -- Load colorscehem
-vim.cmd [[ set background=dark ]]
+vim.cmd([[ set background=dark ]])
 -- vim.cmd [[ set background=light ]]
-vim.cmd [[ colorscheme gruvbox ]]
+vim.cmd([[ colorscheme gruvbox ]])

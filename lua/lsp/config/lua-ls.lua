@@ -1,15 +1,21 @@
 -- https://github.com/sumneko/lua-language-server/wiki/Build-and-Run-(Standalone)
 USER = vim.fn.expand('$USER')
 
+local status_ok, lsp = pcall(require, "lspconfig")
+if not status_ok then
+    return
+end
+
+local defaults = require("lsp.config.lsp-defaults")
 local sumneko_root_path = "/home/" .. USER .. "/.config/nvim/ls/lua-language-server"
 local sumneko_binary = "/home/" .. USER .. "/.config/nvim/ls/lua-language-server/bin/Linux/lua-language-server"
 
-local custom_attach = function(client)
-    print("Lua LSP started.");
-end
+local custom_attach = defaults.custom_attach
+local capabilities = defaults.capabilities()
 
-require'lspconfig'.sumneko_lua.setup {
-    capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+lsp.sumneko_lua.setup {
+    -- capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
+    capabilities = capabilities,
     cmd = {sumneko_binary, "-E", sumneko_root_path .. "/main.lua"},
     on_attach=custom_attach,
     settings = {

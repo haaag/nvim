@@ -52,26 +52,26 @@ wk.setup {
 -- local wk = require("which-key")
 
 wk.register({
-    ['<F2>'] = {':Vista!!<CR>', 'tagbar'},
-    ['<F3>'] = {':NvimTreeToggle<CR>', 'nvimtree'},
+    ['<F2>'] = {'<cmd>Vista!!<CR>', 'tagbar'},
+    ['<F3>'] = {'<cmd>NvimTreeToggle<CR>', 'nvimtree'},
     ['<F9>'] = {
-        ':echo "Running Pandoc"<CR>:silent !convert2pdf.py -f "%:p" --open &<CR>',
+        '<cmd>echo "Running Pandoc"<CR>:silent !convert2pdf.py -f "%:p" --open &<CR>',
         'pandoc'
     },
-    ['<C-F>'] = {':Telescope find_files<CR>', 'find files'},
+    ['<C-F>'] = {'<cmd>Telescope find_files<CR>', 'find files'},
     ['<F4>'] = {"<cmd>lua _lazygit_toggle()<CR>", "lazygit"},
-    ['bg'] = {':BufferLinePick<CR>', 'choose buffer'},
-    ['sf'] = {':Explore .<CR>', 'netrw'},
-    ['<C-\\>'] = {':ToggleTerm<CR>', 'terminal'},
-    ['<S-Q>'] = {':RnvimrToggle<CR>', 'float explorer'}
+    ['bg'] = {'<cmd>BufferLinePick<CR>', 'choose buffer'},
+    ['sf'] = {'<cmd>Explore .<CR>', 'netrw'},
+    ['<C-\\>'] = {'<cmd>ToggleTerm<CR>', 'terminal'},
+    ['<S-Q>'] = {'<cmd>RnvimrToggle<CR>', 'float explorer'}
 })
 
 wk.register({
-    ['='] = {'<cmd>lua vim.lsp.buf.formatting()<CR>', 'formatting'},
+    ['='] = {'<cmd>lua vim.lsp.buf.formatting(nil, 2000)<CR>', 'formatting'},
     -- ['/'] = {'<cmd>lua require("Comment").toggle()<CR>', 'comment'},
-    ['o'] = {':only<CR>', 'only buffer'},
-    ['O'] = {':MaximizerToggle<CR>', 'MaximizerToggle'},
-    ['?'] = {':NvimTreeFindFile<CR>', 'treefind'}
+    ['o'] = {'<cmd>only<CR>', 'only buffer'},
+    ['O'] = {'<cmd>MaximizerToggle<CR>', 'MaximizerToggle'},
+    ['?'] = {'<cmd>NvimTreeFindFile<CR>', 'treefind'}
 }, {prefix = "<leader>"})
 
 -- debug
@@ -98,13 +98,13 @@ wk.register({
     q = {
         name = '+quickfix',
         q = {
-            ':lua require("funcs.quicklist").create_from_buffer()<CR>',
+            '<cmd>lua require("funcs.quicklist").create_from_buffer()<CR>',
             'from buffer'
         },
-        G = {':clast<CR>', 'last'},
-        g = {':cfirst<CR>', 'first'},
-        c = {':cclose<CR>', 'close'},
-        o = {':copen<CR>', 'open'}
+        G = {'<cmd>clast<CR>', 'last'},
+        g = {'<cmd>cfirst<CR>', 'first'},
+        c = {'<cmd>cclose<CR>', 'close'},
+        o = {'<cmd>copen<CR>', 'open'}
     }
 }, {prefix = "<leader>"})
 
@@ -112,16 +112,16 @@ wk.register({
 wk.register({
     b = {
         name = '+buffer',
-        c = {':ColorizerToggle<CR>', 'ColorizerToggle'},
-        d = {':BufDel<CR>', 'close'},
-        g = {':BufferLinePick<CR>', 'choose buffer'},
+        c = {'<cmd>ColorizerToggle<CR>', 'ColorizerToggle'},
+        d = {'<cmd>BufDel<CR>', 'close'},
+        g = {'<cmd>BufferLinePick<CR>', 'choose buffer'},
         l = {
-            ':lua require("telescope.builtin").buffers(require("telescope.themes").get_dropdown({hidden = true, winblend = 10, previewer = false}))<CR>',
+            '<cmd>lua require("telescope.builtin").buffers(require("telescope.themes").get_dropdown({hidden = true, winblend = 10, previewer = false}))<CR>',
             'buffer list'
         },
-        o = {':only<CR>', 'only buffer'},
-        O = {':MaximizerToggle<CR>', 'MaximizerToggle'},
-        y = {":%y<CR>", "Make yank all the buffer"}
+        o = {'<cmd>only<CR>', 'only buffer'},
+        O = {'<cmd>MaximizerToggle<CR>', 'MaximizerToggle'},
+        y = {"<cmd>%y<CR>", "Make yank all the buffer"}
     }
 }, {prefix = "<leader>"})
 
@@ -129,11 +129,11 @@ wk.register({
 wk.register({
     S = {
         name = '+wiki',
-        p = {':e ~/.config/nvim/lua/plugins/init.lua<CR>', 'plugins'},
-        z = {':e ~/.config/zsh/.zshrc<CR>', 'zshrc'},
-        Z = {':e ~/apps/vimwiki/zoho/Zoho.md<CR>', 'zohowiki'},
-        b = {':e ~/apps/vimwiki/cookbook/cookbook.md<CR>', 'cookbook'},
-        v = {':e ~/apps/vimwiki/index.md<CR>', 'VimWiki'}
+        p = {'<cmd>e ~/.config/nvim/lua/plugins/init.lua<CR>', 'plugins'},
+        z = {'<cmd>e ~/.config/zsh/.zshrc<CR>', 'zshrc'},
+        Z = {'<cmd>e ~/apps/vimwiki/zoho/Zoho.md<CR>', 'zohowiki'},
+        b = {'<cmd>e ~/apps/vimwiki/cookbook/cookbook.md<CR>', 'cookbook'},
+        v = {'<cmd>e ~/apps/vimwiki/index.md<CR>', 'VimWiki'}
     }
 }, {prefix = "<leader>"})
 
@@ -141,8 +141,8 @@ wk.register({
 wk.register({
     p = {
         name = '+commands',
-        s = {':PackerSync<CR>', 'PackerSync'},
-        c = {':PackerCompile<CR>', 'PackerCompile'}
+        s = {'<cmd>PackerSync<CR>', 'PackerSync'},
+        c = {'<cmd>PackerCompile<CR>', 'PackerCompile'}
     }
 }, {prefix = "<leader>"})
 
@@ -151,13 +151,14 @@ wk.register({
     l = {
         name = '+lsp',
         -- a = {'<cmd>lua vim.lsp.buf.code_action()<CR>', 'code action'},
-        a = {':CodeActionMenu<CR>', 'code action'},
-        c = {':cclose<CR>', 'close quickfix'},
-        d = {'<cmd>lua vim.lsp.buf.declaration()<CR>', 'Declaration'},
-        f = {':lua vim.lsp.buf.formatting_sync()<CR>', 'formatting'},
+        a = {'<cmd>CodeActionMenu<CR>', 'code action'},
+        -- c = {'<cmd>lua lua vim.lsp.buf.code_action()<CR>', 'references'},
+        c = {'<cmd>Telescope lsp_references<CR>', 'references'},
+        d = {'<cmd>lua vim.lsp.buf.declaration()<CR>', 'declaration'},
+        f = {'<cmd>lua vim.lsp.buf.formatting_sync()<CR>', 'formatting'},
         k = {'<cmd>lua vim.lsp.buf.hover()<CR>', 'hover'},
-        r = {':lua vim.lsp.buf.rename()<CR>', 'Rename'},
-        t = {':TodoTelescope<CR>', 'TodoTelescope'}
+        r = {'<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename'},
+        t = {'<cmd>TodoTelescope<CR>', 'TodoTelescope'}
     }
 }, {prefix = "<leader>"})
 
@@ -176,18 +177,18 @@ wk.register({
             'dotfiles'
         },
         g = {
-            ':lua require("telescope.builtin").grep_string({ search = vim.fn.input("  RG ❯ ")})<CR>',
+            '<cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.input("  RG ❯ ")})<CR>',
             'search in files'
         },
         G = {
-            ':lua require("plugins.tools.telescope-functions").projects_files()<CR>',
+            '<cmd>lua require("plugins.tools.telescope-functions").projects_files()<CR>',
             'git projects'
         },
         h = {'<Cmd> Telescope help_tags<CR>', 'help tags'},
         l = {'<Cmd>Telescope current_buffer_fuzzy_find<CR>', 'search in buffer'},
 
         w = {
-            ':lua require("telescope.builtin").grep_string { search = vim.fn.expand("<cword>") }<CR>',
+            '<cmd>lua require("telescope.builtin").grep_string { search = vim.fn.expand("<cword>") }<CR>',
             'grep current word'
         },
         u = {
@@ -195,7 +196,7 @@ wk.register({
             'nvim.bk files'
         },
 
-        o = {':Telescope oldfiles theme=get_ivy<cr>', 'recent opened'},
+        o = {'<cmd>Telescope oldfiles theme=get_ivy<cr>', 'recent opened'},
         v = {
             '<Cmd>lua require("plugins.tools.telescope-functions").dotfiles_nvim_new()<CR>',
             'nvim_config'
@@ -216,7 +217,7 @@ wk.register({
         g = {'<Cmd>Telescope git_commits<CR>', 'commits'},
         p = {'<cmd>lua require("gitsigns").preview_hunk()<CR>', 'preview hunk'},
         s = {'<Cmd>Telescope git_status<CR>', 'status'},
-        t = {':Gitsigns toggle_current_line_blame<CR>', 'toggle blame'}
+        t = {'<cmd>Gitsigns toggle_current_line_blame<CR>', 'toggle blame'}
     }
 }, {prefix = "<leader>"})
 
@@ -224,8 +225,8 @@ wk.register({
 wk.register({
     j = {
         name = '+jump',
-        w = {':HopWord<CR>', 'jump word'},
-        l = {':HopLine<CR>', 'jump line'},
-        p = {':HopPattern<CR>', 'jump pattern'}
+        w = {'<cmd>HopWord<CR>', 'jump word'},
+        l = {'<cmd>HopLine<CR>', 'jump line'},
+        p = {'<cmd>HopPattern<CR>', 'jump pattern'}
     }
 }, {prefix = "<leader>"})

@@ -6,7 +6,7 @@ if not status_ok then
   return
 end
 
-local theme = require('plugins.themes.local-theme').colorscheme()
+local theme = require('plugins.themes.theme-colors').colors()
 
 -- stylua: ignore
 local colors = {
@@ -41,7 +41,8 @@ local bubbles_theme = {
 
 lualine.setup{
     options = {
-        theme = bubbles_theme,
+        -- theme = bubbles_theme,
+        theme = theme.lualine,
         component_separators = '|',
         section_separators = {left = '', right = ''},
         disabled_filetypes = {'NvimTree', 'toggleterm', 'tagbar', 'vista', 'vista_kind'}

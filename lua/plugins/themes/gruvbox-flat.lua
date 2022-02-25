@@ -1,5 +1,5 @@
 local g = vim.g
-g.gruvbox_flat_style = "hard"
+g.gruvbox_flat_style = "dark"
 g.gruvbox_sidebars = { "qf", "vista_kind", "terminal", "packer", "tagbar"}
 g.gruvbox_italic_comments = true
 g.gruvbox_italic_keywords = true

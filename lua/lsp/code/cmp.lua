@@ -6,7 +6,7 @@ if not status_ok then
 end
 
 local lspkind = require('lspkind')
-local theme = require('plugins.themes.local-theme').colorscheme()
+local theme = require('plugins.themes.theme-colors').colors()
 vim.opt.completeopt = {"menu", "menuone", "noselect"}
 vim.opt.shortmess:append "c"
 

@@ -1,5 +1,22 @@
 -- packer
 ---------
+local fn = vim.fn
+
+-- Automatically install packer
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+	PACKER_BOOTSTRAP = fn.system({
+		"git",
+		"clone",
+		"--depth",
+		"1",
+		"https://github.com/wbthomason/packer.nvim",
+		install_path,
+	})
+	print("Installing packer...")
+	vim.cmd([[packadd packer.nvim]])
+end
+
 local present, _ = pcall(require, "packer_init")
 local packer
 
@@ -53,10 +70,10 @@ return require("packer").startup(function()
 	})
 
 	-- text objects
-	use({
-		"nvim-treesitter/nvim-treesitter-textobjects",
-		after = "nvim-treesitter",
-	})
+	-- use({
+	-- 	"nvim-treesitter/nvim-treesitter-textobjects",
+	-- 	after = "nvim-treesitter",
+	-- })
 
 	-- auto tags
 	use({ "windwp/nvim-ts-autotag", after = "nvim-cmp" })
@@ -115,13 +132,32 @@ return require("packer").startup(function()
 	-- themes {{{
 
 	-- onedark
-	use({
+	--[[ use({
 		"navarasu/onedark.nvim",
 		config = function()
 			vim.g.one_nvim_transparent_bg = true
-			require("onedark").setup()
+			require("onedark").setup({
+				ending_tildes = true,
+				style = "dark",
+			})
+			require("onedark").load()
 		end,
+	}) ]]
+
+	-- tokyonight
+	use({
+		"folke/tokyonight.nvim",
+		config = [[require('plugins.themes')]],
 	})
+
+	-- rose pine
+	--[[ use {
+        "rose-pine/neovim",
+        config = function ()
+            -- require('rose-pine').set('moon')
+            vim.cmd('colorscheme rose-pine')
+        end
+    } ]]
 
 	-- statusline
 	use({
@@ -269,7 +305,6 @@ return require("packer").startup(function()
 	use({
 		"akinsho/toggleterm.nvim",
 		config = [[require('plugins.tools.terminal')]],
-		--cmd = {"ToggleTerm", "_lazygit_toggle"}
 	})
 
 	-- nvim-markdown-preview
@@ -309,7 +344,7 @@ return require("packer").startup(function()
 	use({ "antoinemadec/FixCursorHold.nvim" })
 
 	-- impatient
-	use({ "lewis6991/impatient.nvim" })
+	use({ "lewis6991/impatient.nvim", config = [[require('plugins.tools.impatient')]] })
 
 	-- better filetype.vim
 	use({ "nathom/filetype.nvim" })
@@ -323,16 +358,16 @@ return require("packer").startup(function()
 	})
 
 	-- alpha-nvim
-	use({
-		"goolord/alpha-nvim",
-		requires = { "kyazdani42/nvim-web-devicons" },
-		config = function()
-			require("alpha").setup(require("alpha.themes.startify").opts)
-		end,
-	})
+	-- use({
+	-- 	"goolord/alpha-nvim",
+	-- 	requires = { "kyazdani42/nvim-web-devicons" },
+	-- 	config = function()
+	-- 		require("alpha").setup(require("alpha.themes.startify").opts)
+	-- 	end,
+	-- })
 
 	-- syntax for kitty.conf
-	use({ "fladson/vim-kitty" })
+	use({ "fladson/vim-kitty", ft = { "kitty" } })
 
 	-- pretty-fold
 	use({
@@ -342,6 +377,9 @@ return require("packer").startup(function()
 			require("pretty-fold.preview").setup_keybinding()
 		end,
 	})
+
+    -- list chars
+	use({ "tjdevries/cyclist.vim", event = "VimEnter" })
 end)
 
 -- Removed: {{{
@@ -370,27 +408,13 @@ end)
 --     end,
 --     cmd = {'NnnExplorer', 'NnnPicker'}
 -- }
--- cycle + listchars
--- use {'tjdevries/cyclist.vim', event = "VimEnter"}
-
+--
 -- themes: {{{
 -- gruvbox original
 -- use {
 --     "ellisonleao/gruvbox.nvim",
 --     requires = {"rktjmp/lush.nvim"},
 --     config = [[require('plugins.themes.gruvbox-nvim')]]
--- }
-
--- tokyonight
--- use {
---     'folke/tokyonight.nvim',
---     config = [[require('plugins.themes.tokyonight')]]
--- }
-
--- gruvbox-flat
--- use {
---    "eddyekofo94/gruvbox-flat.nvim",
---    config = [[require('plugins.themes.gruvbox-flat')]]
 -- }
 
 -- catppuccin
@@ -433,13 +457,5 @@ end)
 --         require('onenord').setup()
 --     end
 -- }
-
--- gruvbox original
--- use {
---     "ellisonleao/gruvbox.nvim",
---     requires = {"rktjmp/lush.nvim"},
---     config = [[require('plugins.themes.gruvbox-nvim')]]
--- }
--- }}}
 
 -- }}}

@@ -14,4 +14,5 @@ lua/general/old_settings.lua.bk
 lua/keys/old_mappings.lua
 lua/keys/plugins-mappings.lua
 tmp
+
 removed
