@@ -141,7 +141,7 @@ syntax region  jsTemplateExpression matchgroup=jsTemplateBrace start=+\%([^\\]\%
 
 " Built-in values
 " REFERENCE: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects
-syntax keyword jsBuiltinValues undefined null NaN true GET PUT POST invokeurl false today Infinity globalThis global contained not into
+syntax keyword jsBuiltinValues undefined null NaN true GET PUT POST invokeurl false today Infinity globalThis global contained not in into
 syntax keyword jsBuiltinValues zoho crm info standalone window document module exports require console arguments contained hide input disable success insert thisapp
 
 " Built-in objects
