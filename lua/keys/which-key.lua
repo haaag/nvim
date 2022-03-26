@@ -63,7 +63,7 @@ wk.register({
     ['bg'] = {'<cmd>BufferLinePick<CR>', 'choose buffer'},
     ['sf'] = {'<cmd>Explore .<CR>', 'netrw'},
     ['<C-\\>'] = {'<cmd>ToggleTerm<CR>', 'terminal'},
-    ['<S-Q>'] = {'<cmd>RnvimrToggle<CR>', 'float explorer'}
+    --['<S-Q>'] = {'<cmd>RnvimrToggle<CR>', 'float explorer'}
 })
 
 wk.register({
@@ -151,7 +151,7 @@ wk.register({
     l = {
         name = '+lsp',
         -- a = {'<cmd>lua vim.lsp.buf.code_action()<CR>', 'code action'},
-        a = {'<cmd>CodeActionMenu<CR>', 'code action'},
+        a = {'<cmd>lua vim.lsp.buf.code_action()<CR>', 'code action'},
         -- c = {'<cmd>lua lua vim.lsp.buf.code_action()<CR>', 'references'},
         c = {'<cmd>Telescope lsp_references<CR>', 'references'},
         d = {'<cmd>lua vim.lsp.buf.declaration()<CR>', 'declaration'},
