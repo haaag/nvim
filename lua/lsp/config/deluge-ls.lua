@@ -11,12 +11,18 @@ local configs = require("lspconfig.configs")
 
 -- Syntax highlight for Deluge files
 vim.cmd([[ autocmd BufNewFile,BufRead /*.dg setf deluge ]])
+-- vim.api.nvim_create_autocmd("FileType", {
+-- 	pattern = "dg",
+-- 	callback = function()
+-- 		vim.cmd([[ set filetype=deluge ]])
+-- 	end,
+-- })
 
 -- Check if it's already defined for when reloading this file.
 if not configs.deluge then
 	configs.deluge = {
 		default_config = {
-            -- cmd = { "/home/hh/apps/github/deluge/Deluge-Language-Parser/deluge-server" },
+			-- cmd = { "/home/hh/apps/github/deluge/Deluge-Language-Parser/deluge-server" },
 			cmd = { "/home/hh/apps/dev/deluge-language-parser/deluge-server" },
 			filetypes = { "deluge" },
 			root_dir = lsp.util.root_pattern(".git", "deluge", "projects"),
