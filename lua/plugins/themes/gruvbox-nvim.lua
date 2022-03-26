@@ -29,7 +29,7 @@ g.gruvbox_contrast_dark = "medium"
 g.gruvbox_italicize_comments = true
 
 -- Enables italic for strings.
-g.gruvbox_italicize_strings = false
+g.gruvbox_italicize_strings = true
 
 -- gruvbox_invert_selection
 g.gruvbox_invert_selection = true
@@ -37,4 +37,5 @@ g.gruvbox_invert_selection = true
 -- Load colorscehem
 vim.o.background = "dark"
 -- vim.o.background = "light"
-vim.cmd [[ colorscheme gruvbox ]]
+
+vim.cmd([[ colorscheme gruvbox ]])
