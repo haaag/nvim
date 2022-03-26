@@ -40,8 +40,6 @@ return require("packer").startup(function()
 	use({
 		"neovim/nvim-lspconfig",
 		config = [[require('lsp.config.lspconfig')]],
-		event = "BufRead",
-		-- opt = false
 	})
 
 	-- better python indentation
@@ -51,7 +49,6 @@ return require("packer").startup(function()
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		config = [[require('lsp.code.treesitter')]],
-		event = "BufRead",
 		run = ":TSUpdate",
 	})
 
@@ -97,7 +94,6 @@ return require("packer").startup(function()
 				patterns = { ".env", ".git", "deluge", "app", "projects" },
 			})
 		end,
-		event = "BufRead",
 	})
 
 	-- vista tagbar
@@ -127,7 +123,7 @@ return require("packer").startup(function()
 	})
 
 	-- code action
-	use({ "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" })
+	-- use({ "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" })
 
 	-- themes {{{
 
@@ -145,19 +141,17 @@ return require("packer").startup(function()
 	}) ]]
 
 	-- tokyonight
-	use({
-		"folke/tokyonight.nvim",
-		config = [[require('plugins.themes')]],
-	})
+	-- use({
+	-- 	"folke/tokyonight.nvim",
+	-- 	config = [[require('plugins.themes')]],
+	-- })
 
-	-- rose pine
-	--[[ use {
-        "rose-pine/neovim",
-        config = function ()
-            -- require('rose-pine').set('moon')
-            vim.cmd('colorscheme rose-pine')
-        end
-    } ]]
+	-- gruvbox original
+	use({
+		"ellisonleao/gruvbox.nvim",
+		requires = { "rktjmp/lush.nvim" },
+		config = [[require('plugins.themes.gruvbox-nvim')]],
+	})
 
 	-- statusline
 	use({
@@ -229,7 +223,6 @@ return require("packer").startup(function()
 	use({
 		"akinsho/nvim-bufferline.lua",
 		config = [[require('plugins.ui.bufferline')]],
-		event = "BufRead",
 	})
 
 	-- maximizer
@@ -255,15 +248,6 @@ return require("packer").startup(function()
 		event = "BufRead",
 	})
 
-	-- ranger
-	use({
-		"kevinhwang91/rnvimr",
-		config = function()
-			vim.g.rnvimr_enable_bw = 1
-		end,
-		cmd = "RnvimrToggle",
-	})
-
 	-- smooth scroll
 	use({
 		"karb94/neoscroll.nvim",
@@ -285,14 +269,12 @@ return require("packer").startup(function()
 		"folke/todo-comments.nvim",
 		requires = "nvim-lua/plenary.nvim",
 		config = [[require('lsp.code.todo-comments')]],
-		event = "BufRead",
 	})
 
 	-- indent highlight
 	use({
 		"lukas-reineke/indent-blankline.nvim",
 		config = [[require('lsp.code.indent-blankline')]],
-		opt = false,
 	})
 
 	-- syntax highlight for sxhkd
@@ -322,6 +304,23 @@ return require("packer").startup(function()
 		ft = { "vimwiki", "markdown", "md" },
 	})
 
+	-- vim-markdown
+	-- use({
+	-- 	"godlygeek/tabular",
+	-- 	requires = "preservim/vim-markdown",
+	-- 	config = function()
+	-- 		local g = vim.g
+	-- 		g.vim_markdown_no_default_key_mappings = 1
+	-- 		g.vim_markdown_folding_disabled = 1
+	-- 		-- g.vim_markdown_override_foldtext = 0
+	-- 	end,
+	-- })
+
+    -- markdown
+	-- use({
+	-- 	"SidOfc/mkdx",
+	-- })
+
 	-- jump-hop
 	use({
 		"phaazon/hop.nvim",
@@ -345,6 +344,7 @@ return require("packer").startup(function()
 
 	-- impatient
 	use({ "lewis6991/impatient.nvim", config = [[require('plugins.tools.impatient')]] })
+	-- use({ "lewis6991/impatient.nvim", opt = false})
 
 	-- better filetype.vim
 	use({ "nathom/filetype.nvim" })
@@ -378,8 +378,13 @@ return require("packer").startup(function()
 		end,
 	})
 
-    -- list chars
+	-- list chars
 	use({ "tjdevries/cyclist.vim", event = "VimEnter" })
+
+	-- grammar
+	use({
+		"brymer-meneses/grammar-guard.nvim",
+	})
 end)
 
 -- Removed: {{{
@@ -457,5 +462,14 @@ end)
 --         require('onenord').setup()
 --     end
 -- }
+--
+-- rose pine
+--[[ use {
+    "rose-pine/neovim",
+    config = function ()
+        -- require('rose-pine').set('moon')
+        vim.cmd('colorscheme rose-pine')
+    end
+} ]]
 
 -- }}}
