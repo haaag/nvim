@@ -15,11 +15,12 @@ local capabilities = defaults.capabilities()
 
 -- javascript
 vim.cmd([[ autocmd FileType javascript setlocal shiftwidth=2 tabstop=2 ]])
+vim.cmd([[ autocmd BufWritePre *.tsx,*.ts,*.jsx,*.js EslintFixAll ]])
 
---[[ lsp.eslint.setup{
+lsp.eslint.setup{
     capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
     on_attach=custom_attach
-} ]]
+}
 
 lsp.tsserver.setup({
 	-- capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities()),
