@@ -45,7 +45,7 @@ return require("packer").startup(function()
 	-- better python indentation
 	use({ "Vimjas/vim-python-pep8-indent", ft = { "py", "python" } })
 
-	-- treesitter {{{
+	-- treesitter
 	use({
 		"nvim-treesitter/nvim-treesitter",
 		config = [[require('lsp.code.treesitter')]],
@@ -66,18 +66,11 @@ return require("packer").startup(function()
 		after = "nvim-treesitter",
 	})
 
-	-- text objects
-	-- use({
-	-- 	"nvim-treesitter/nvim-treesitter-textobjects",
-	-- 	after = "nvim-treesitter",
-	-- })
-
 	-- auto tags
 	use({ "windwp/nvim-ts-autotag", after = "nvim-cmp" })
 
 	-- treesitter-refactor
 	use({ "nvim-treesitter/nvim-treesitter-refactor", after = "nvim-treesitter" })
-	-- }}}
 
 	-- null-ls
 	use({
@@ -122,11 +115,6 @@ return require("packer").startup(function()
 		opt = false,
 	})
 
-	-- code action
-	-- use({ "weilbith/nvim-code-action-menu", cmd = "CodeActionMenu" })
-
-	-- themes {{{
-
 	-- onedark
 	--[[ use({
 		"navarasu/onedark.nvim",
@@ -141,16 +129,9 @@ return require("packer").startup(function()
 	}) ]]
 
 	-- tokyonight
-	-- use({
-	-- 	"folke/tokyonight.nvim",
-	-- 	config = [[require('plugins.themes')]],
-	-- })
-
-	-- gruvbox original
 	use({
-		"ellisonleao/gruvbox.nvim",
-		requires = { "rktjmp/lush.nvim" },
-		config = [[require('plugins.themes.gruvbox-nvim')]],
+		"folke/tokyonight.nvim",
+		config = [[require('plugins.themes')]],
 	})
 
 	-- statusline
@@ -224,6 +205,13 @@ return require("packer").startup(function()
 		"akinsho/nvim-bufferline.lua",
 		config = [[require('plugins.ui.bufferline')]],
 	})
+
+	-- statusline - tabline
+	-- use({
+	-- 	"tamton-aquib/staline.nvim",
+	-- 	-- config = "require('plugins.ui.staline')"
+	-- 	config = "require('plugins.ui.staline-simple')",
+	-- })
 
 	-- maximizer
 	use({
@@ -304,23 +292,6 @@ return require("packer").startup(function()
 		ft = { "vimwiki", "markdown", "md" },
 	})
 
-	-- vim-markdown
-	-- use({
-	-- 	"godlygeek/tabular",
-	-- 	requires = "preservim/vim-markdown",
-	-- 	config = function()
-	-- 		local g = vim.g
-	-- 		g.vim_markdown_no_default_key_mappings = 1
-	-- 		g.vim_markdown_folding_disabled = 1
-	-- 		-- g.vim_markdown_override_foldtext = 0
-	-- 	end,
-	-- })
-
-    -- markdown
-	-- use({
-	-- 	"SidOfc/mkdx",
-	-- })
-
 	-- jump-hop
 	use({
 		"phaazon/hop.nvim",
@@ -357,15 +328,6 @@ return require("packer").startup(function()
 		cmd = { "TroubleToggle", "Trouble", "TroubleClose" },
 	})
 
-	-- alpha-nvim
-	-- use({
-	-- 	"goolord/alpha-nvim",
-	-- 	requires = { "kyazdani42/nvim-web-devicons" },
-	-- 	config = function()
-	-- 		require("alpha").setup(require("alpha.themes.startify").opts)
-	-- 	end,
-	-- })
-
 	-- syntax for kitty.conf
 	use({ "fladson/vim-kitty", ft = { "kitty" } })
 
@@ -386,90 +348,3 @@ return require("packer").startup(function()
 		"brymer-meneses/grammar-guard.nvim",
 	})
 end)
-
--- Removed: {{{
-
--- debugg
--- use {
---     "mfussenegger/nvim-dap",
---     config = function() require("plugins.tools.dap").setup() end
--- }
--- dap-ui
--- use {
---     'rcarriga/nvim-dap-ui',
---     config = function() require('plugins.tools.dap-ui').setup() end
--- }
--- twilight
--- use {
---     "folke/twilight.nvim",
---     config = function() require("twilight").setup {} end,
---     cmd = {"Twilight"}
--- }
--- nnn file manager
--- use {
---     "luukvbaal/nnn.nvim",
---     config = function()
---         require("nnn").setup({explorer = {width = 30}})
---     end,
---     cmd = {'NnnExplorer', 'NnnPicker'}
--- }
---
--- themes: {{{
--- gruvbox original
--- use {
---     "ellisonleao/gruvbox.nvim",
---     requires = {"rktjmp/lush.nvim"},
---     config = [[require('plugins.themes.gruvbox-nvim')]]
--- }
-
--- catppuccin
--- use {
---     "catppuccin/nvim",
---     as = "catppuccin",
---     config = [[require('plugins.themes.catppuccin')]]
--- }
-
--- oceanic next
--- use {
---     'mhartington/oceanic-next',
---     config = function ()
---         vim.g.oceanic_next_terminal_bold = 1
---         vim.g.oceanic_next_terminal_italic = 1
---         vim.cmd [[ colorscheme OceanicNext ]]
---     end
--- }
-
--- kanagawa
--- use {
---     "rebelot/kanagawa.nvim",
---     config = function ()
---         vim.cmd("colorscheme kanagawa")
---     end
--- }
-
--- vim-drak
--- use {
---     'Th3Whit3Wolf/one-nvim',
---     config = function ()
---         vim.cmd [[ colorscheme one-nvim ]]
---     end
--- }
-
--- onenord
--- use {
---     'rmehri01/onenord.nvim',
---     config = function ()
---         require('onenord').setup()
---     end
--- }
---
--- rose pine
---[[ use {
-    "rose-pine/neovim",
-    config = function ()
-        -- require('rose-pine').set('moon')
-        vim.cmd('colorscheme rose-pine')
-    end
-} ]]
-
--- }}}
