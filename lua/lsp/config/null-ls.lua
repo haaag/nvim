@@ -16,10 +16,10 @@ null_ls.setup({
 		formatting.prettier,
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.stylua,
-        formatting.shfmt,
-        formatting.shellharden,
-        diagnostics.flake8,
-        diagnostics.mypy,
-        diagnostics.shellcheck
+		formatting.shfmt,
+		formatting.shellharden,
+		diagnostics.flake8.with({ extra_args = { "--ignore=E501"}}),
+		diagnostics.mypy,
+		diagnostics.shellcheck,
 	},
 })
