@@ -23,16 +23,17 @@
 
 ### Completion
 * [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp) -- A completion engine plugin
-* [hrsh7th/cmp-nvim-lsp](hrsh7th/cmp-nvim-lsp)
-* [hrsh7th/cmp-nvim-lua](hrsh7th/cmp-nvim-lua)
-* [hrsh7th/cmp-vsnip](hrsh7th/cmp-vsnip)
-* [hrsh7th/cmp-buffer](hrsh7th/cmp-buffer)
-* [hrsh7th/cmp-path](hrsh7th/cmp-path)
-* [f3fora/cmp-spell](f3fora/cmp-spell)
-* [rafamadriz/friendly-snippets](rafamadriz/friendly-snippets)
-* [hrsh7th/vim-vsnip](hrsh7th/vim-vsnip)
-* [lukas-reineke/cmp-under-comparator](lukas-reineke/cmp-under-comparator)
-* [lukas-reineke/cmp-rg](lukas-reineke/cmp-rg)
+* [hrsh7th/cmp-nvim-lsp](https://github.com/hrsh7th/cmp-nvim-lsp) -- source for neovim's built-in language server client.
+* [hrsh7th/cmp-nvim-lua](https://github.com/hrsh7th/cmp-nvim-lua) -- source for neovim Lua API.
+* [hrsh7th/cmp-vsnip](https://github.com/hrsh7th/cmp-vsnip) -- source for [vim-vsnip](https://github.com/hrsh7th/vim-vsnip)
+* [hrsh7th/cmp-buffer](https://github.com/hrsh7th/cmp-buffer) -- source for buffer words.
+* [hrsh7th/cmp-path](https://github.com/hrsh7th/cmp-path) -- source for filesystem paths.
+* [f3fora/cmp-spell](https://github.com/f3fora/cmp-spell) --  source for nvim-cmp based on vim's spellsuggest.
+* [hrsh7th/cmp-nvim-lsp-signature-help](https://github.com/hrsh7th/cmp-nvim-lsp-signature-help) -- source displaying function signatures with the current parameter emphasized.
+* [rafamadriz/friendly-snippets](https://github.com/rafamadriz/friendly-snippets)
+* [hrsh7th/vim-vsnip](https://github.com/hrsh7th/vim-vsnip) -- VSCode(LSP)'s snippet feature in vim.
+* [lukas-reineke/cmp-under-comparator](https://github.com/lukas-reineke/cmp-under-comparator) -- A tiny function for nvim-cmp to better sort completion items that start with one or more underlines.
+* [lukas-reineke/cmp-rg](https://github.com/lukas-reineke/cmp-rg) -- ripgrep source for nvim-cmp
 
 ### Syntax
 * [nvim-treesitter/nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter) -- Treesitter configurations and abstraction layer for Neovim.
