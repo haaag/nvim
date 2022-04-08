@@ -1,5 +1,5 @@
 
-                                                                 ██
+
                                                                 ░░
                               ███████   █████   ██████  ██    ██ ██ ██████████
                              ░░██░░░██ ██░░░██ ██░░░░██░██   ░██░██░░██░░██░░██
@@ -73,6 +73,3 @@
 
 ### Git
 * [lewis6991/gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) -- Super fast git decorations.
-
-### Profiling
-* [dstein64/vim-startuptime](https://github.com/dstein64/vim-startuptime) -- Startup event timing information.
