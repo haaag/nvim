@@ -49,7 +49,8 @@
 
 ### Tabs
 * [akinsho/nvim-bufferline.lua](https://github.com/akinsho/bufferline.nvim) -- A snazzy buffer line.
-* [shadmansaleh/lualine.nvim](https://github.com/shadmansaleh/lualine.nvim) -- A blazing fast and easy to configure neovim statusline.
+* ~~~[shadmansaleh/lualine.nvim](https://github.com/shadmansaleh/lualine.nvim) -- A blazing fast and easy to configure neovim statusline.~~~
+* [tamton-aquib/staline.nvim](https://github.com/tamton-aquib/staline.nvim)
 
 ### UI
 * [ojroques/nvim-bufdel](https://github.com/ojroques/nvim-bufdel) -- Improve the deletion of buffers.
