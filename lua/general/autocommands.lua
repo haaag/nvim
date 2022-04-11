@@ -72,6 +72,9 @@ M.load_autocmd = function()
     -- markdown
     -- cmd([[ autocmd BufNewFile,BufRead *.markdown set filetype=markdown ]])
 
+    -- alpha
+    cmd([[ au ColorScheme * hi Normal ctermbg=none guibg=none ]])
+
 
 	-- dwmblocks
 	-- cmd [[ autocmd BufWritePost ~/apps/suckless/dwmblocks/config.h !cd ~/apps/suckless/dwmblocks/; sudo make install && { killall -q dwmblocks;setsid dwmblocks & } ]]
