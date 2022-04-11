@@ -105,14 +105,14 @@ return require("packer").startup(function()
 	-- vim-matchup - It extends vim's % key
 	use({ "andymass/vim-matchup", event = "CursorMoved" })
 
-	-- vim-move
+    -- vim-move
 	use({
 		"matze/vim-move",
 		config = function()
 			local g = vim.g
 			g.move_key_modifier = "S-M"
+            g.move_key_modifier_visualmode = "S-M"
 		end,
-		opt = false,
 	})
 
 	-- onedark
@@ -129,17 +129,30 @@ return require("packer").startup(function()
 	}) ]]
 
 	-- tokyonight
-	use({
-		"folke/tokyonight.nvim",
+	-- use({
+	-- 	"folke/tokyonight.nvim",
+	-- 	config = [[require('plugins.themes')]],
+	-- })
+
+    -- gruvbox
+    use {
+        "ellisonleao/gruvbox.nvim",
 		config = [[require('plugins.themes')]],
-	})
+    }
 
 	-- statusline
+	-- use({
+	-- 	"nvim-lualine/lualine.nvim",
+	-- 	requires = { "kyazdani42/nvim-web-devicons" },
+	-- 	config = [[require('plugins.ui.lualine-bubble')]],
+	-- 	after = "nvim-lspconfig",
+	-- })
+
+	-- statusline - tabline
 	use({
-		"nvim-lualine/lualine.nvim",
-		requires = { "kyazdani42/nvim-web-devicons" },
-		config = [[require('plugins.ui.lualine-bubble')]],
-		after = "nvim-lspconfig",
+		"tamton-aquib/staline.nvim",
+		-- config = "require('plugins.ui.staline')"
+		config = "require('plugins.ui.staline-simple')",
 	})
 
 	-- code completion
@@ -154,6 +167,7 @@ return require("packer").startup(function()
 			{ "hrsh7th/cmp-path" },
 			{ "f3fora/cmp-spell" },
 			{ "rafamadriz/friendly-snippets" },
+            { "hrsh7th/cmp-nvim-lsp-signature-help"},
 			{
 				"hrsh7th/vim-vsnip",
 				config = function()
@@ -205,13 +219,6 @@ return require("packer").startup(function()
 		"akinsho/nvim-bufferline.lua",
 		config = [[require('plugins.ui.bufferline')]],
 	})
-
-	-- statusline - tabline
-	-- use({
-	-- 	"tamton-aquib/staline.nvim",
-	-- 	-- config = "require('plugins.ui.staline')"
-	-- 	config = "require('plugins.ui.staline-simple')",
-	-- })
 
 	-- maximizer
 	use({
@@ -340,11 +347,16 @@ return require("packer").startup(function()
 		end,
 	})
 
+    -- sessions
+    use({
+        'tpope/vim-obsession'
+    })
+
 	-- list chars
-	use({ "tjdevries/cyclist.vim", event = "VimEnter" })
+	-- use({ "tjdevries/cyclist.vim", event = "VimEnter" })
 
 	-- grammar
-	use({
-		"brymer-meneses/grammar-guard.nvim",
-	})
+	-- use({
+	-- 	"brymer-meneses/grammar-guard.nvim",
+	-- })
 end)
