@@ -85,8 +85,10 @@ M.load_keys = function()
     map("n", "Y", "y$", silent)
 
     -- BufferLine
-    map('n', '<C-S-k>', ':BufferLineCycleNext<CR>', options)
-    map('n', '<C-S-j>', ':BufferLineCyclePrev<CR>', options)
+    -- map('n', '<C-S-k>', ':BufferLineCycleNext<CR>', options)
+    -- map('n', '<C-S-j>', ':BufferLineCyclePrev<CR>', options)
+    map('n', '[q', ':BufferLineCycleNext<CR>', options)
+    map('n', ']q', ':BufferLineCyclePrev<CR>', options)
 
     -- Lsp Mappings:
     map('n', 'gd', ':lua vim.lsp.buf.definition()<CR>', options)
