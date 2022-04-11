@@ -59,7 +59,8 @@ cmp.setup({
         { name = 'vsnip' },
         { name = 'rg', keyword_length = 5 },
         { name = 'path' },
-        { name = 'spell' }
+        { name = 'spell' },
+        { name = 'nvim_lsp_signature_help' }
     },
     formatting = {format = lspkind.cmp_format({
         with_text = true,
