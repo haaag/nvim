@@ -17,7 +17,7 @@ g.gruvbox_undercurl = true
 
 -- Changes dark mode contrast. Overrides g:gruvbox_contrast option.
 -- Possible values are soft, medium and hard.
-g.gruvbox_contrast_dark = "medium"
+g.gruvbox_contrast_dark = "dark"
 
 -- Changes number column background color. Possible values are any of gruvbox palette.
 -- g.gruvbox_number_column = '#3C3836'
@@ -32,7 +32,7 @@ g.gruvbox_italicize_comments = true
 g.gruvbox_italicize_strings = true
 
 -- gruvbox_invert_selection
-g.gruvbox_invert_selection = true
+-- g.gruvbox_invert_selection = true
 
 -- Load colorscehem
 vim.o.background = "dark"
