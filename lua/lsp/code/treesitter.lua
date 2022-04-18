@@ -20,6 +20,8 @@ treesitter_configs.setup({
 		"php",
 		"toml",
 		"latex",
+        "fish",
+        "http"
 	},
 	highlight = {
 		enable = true, -- false will disable the whole extension
