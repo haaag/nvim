@@ -4,22 +4,15 @@ M.load_autocmd = function()
 	local cmd = vim.cmd
 	local misc = vim.api.nvim_create_augroup("Misc", { clear = true })
 
-	-- automatically run :PackerCompile whenever plugins.lua is updated
-	-- cmd [[ autocmd BufWritePost plugins.lua source <afile> | PackerCompile ]]
-
 	-- Update binds when sxhkdrc is updated.
-	-- cmd [[ autocmd BufWritePost *sxhkdrc !pkill -USR1 sxhkd ]]
 	vim.api.nvim_create_autocmd("BufWritePost", { pattern = "*sxhkdrc", command = "!pkill -USR1 sxhkd" })
 
 	-- Syntax highlight on rasi files
-	cmd([[ autocmd BufNewFile,BufRead /*.rasi setf css ]])
-	-- vim.api.nvim_create_autocmd("Filetype,BufNewFile,BufRead", {
-	-- 	group = misc,
-	--     pattern = "rasi",
-	--     callback = function ()
-	--         vim.cmd[[ set filetype=css ]]
-	--     end
-	-- })
+	vim.api.nvim_create_autocmd("Filetype,BufNewFile,BufRead", {
+		group = misc,
+		pattern = "rasi",
+		command = "set filetype=css",
+	})
 
 	-- Run xrdb whenever Xdefaults or Xresources are updated.
 	vim.api.nvim_create_autocmd("BufWritePost", {
@@ -28,10 +21,14 @@ M.load_autocmd = function()
 	})
 
 	-- Automatically deletes all trailing whitespace on save.
-	cmd([[ autocmd BufWritePre * %s/\s\+$//e ]])
+	vim.api.nvim_create_autocmd("BufWritePre", {
+		pattern = "*",
+		callback = function()
+			cmd([[ %s/\s\+$//e ]])
+		end,
+	})
 
 	-- Highlight on Yank
-	-- cmd([[ autocmd TextYankPost * silent! lua require('vim.highlight').on_yank({higroup = 'IncSearch', timeout = 300}) ]])
 	vim.api.nvim_create_autocmd("TextYankPost", {
 		group = misc,
 		pattern = "*",
@@ -40,21 +37,34 @@ M.load_autocmd = function()
 		end,
 	})
 
-	-- cmd [[ filetype plugin on ]]
+	--
 	cmd([[ set title titlestring=%(%{expand(\"%:~:.:h\")}%)/%t ]])
 
 	-- Disables automatic commenting on newline:
-	cmd([[ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o ]])
+	vim.api.nvim_create_autocmd("FileType", {
+		pattern = "*",
+		command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
+	})
 
 	-- Omnicomplete
-	cmd([[ inoremap <expr> <c-j> (\"\\<C-n>\")' ]])
-	cmd([[ inoremap <expr> <c-k> (\"\\<C-p>\")' ]])
+	-- cmd([[ inoremap <expr> <c-j> (\"\\<C-n>\")' ]])
+	-- cmd([[ inoremap <expr> <c-k> (\"\\<C-p>\")' ]])
 
 	-- Source luafile
-	cmd([[ autocmd Filetype lua nnoremap <buffer> <F5> :w<CR>:luafile %<CR> ]])
+	vim.api.nvim_create_autocmd("FileType", {
+		group = misc,
+		pattern = "lua",
+		command = "nnoremap <buffer> <F5> :w<CR>:luafile %<CR>",
+	})
 
 	-- neomutt compose
 	cmd([[ autocmd BufNewFile,BufRead /tmp/neomutt* set filetype=markdown ]])
+	-- vim.api.nvim_create_autocmd("BufNewFile,BufRead", {
+	--     pattern = "*neomutt*",
+	--     callback = function ()
+	--         vim.cmd([[ set filetype=markdown ]])
+	--     end
+	-- })
 	-- vim.api.nvim_create_autocmd("FileType", {
 	-- 	group = misc,
 	-- 	pattern = "neomutt*",
@@ -69,15 +79,11 @@ M.load_autocmd = function()
 	-- 	end,
 	-- })
 
-    -- markdown
-    -- cmd([[ autocmd BufNewFile,BufRead *.markdown set filetype=markdown ]])
+	-- markdown
+	-- cmd([[ autocmd BufNewFile,BufRead *.markdown set filetype=markdown ]])
 
-    -- alpha
-    cmd([[ au ColorScheme * hi Normal ctermbg=none guibg=none ]])
-
-
-	-- dwmblocks
-	-- cmd [[ autocmd BufWritePost ~/apps/suckless/dwmblocks/config.h !cd ~/apps/suckless/dwmblocks/; sudo make install && { killall -q dwmblocks;setsid dwmblocks & } ]]
+	-- alpha
+	cmd([[ au ColorScheme * hi Normal ctermbg=none guibg=none ]])
 end
 
 return M
