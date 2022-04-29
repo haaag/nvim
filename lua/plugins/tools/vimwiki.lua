@@ -3,11 +3,11 @@
 local HOME = tostring(os.getenv("HOME"))
 local g = vim.g
 
-g.vimwiki_ext2syntax = {
-  ['.md'] = 'markdown',
-  ['.markdown'] = 'markdown',
-  ['.mdown'] = 'markdown',
-}
+-- g.vimwiki_ext2syntax = {
+--   ['.md'] = 'markdown',
+--   ['.markdown'] = 'markdown',
+--   ['.mdown'] = 'markdown',
+-- }
 
 g.vimwiki_list = {
     path = HOME .. "/apps/vimwiki/",

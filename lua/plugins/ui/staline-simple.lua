@@ -87,5 +87,5 @@ staline.setup({
 -- cmd([[hi StalineBranch guifg=#C4A7E7]])
 -- cmd([[hi StalineBranch guifg=#C4A7E7]])
 cmd("hi StalineBranch guifg=" .. theme.cyan)
-cmd("hi StalineName guifg=" .. theme.cyan)
--- cmd([[hi StalineName guifg=#EBBCBA]])
+-- cmd("hi StalineName guifg=" .. theme.orange)
+cmd([[hi StalineName guifg=#EBBCBA]])
