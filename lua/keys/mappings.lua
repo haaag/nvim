@@ -18,10 +18,6 @@ M.load_keys = function()
 	map("n", "<C-k>", "<C-w>k", silent)
 	map("n", "<C-l>", "<C-w>l", silent)
 
-	-- Indent with Tab and Shift-Tab
-	-- map('v', '<Tab>', '>', {})
-	-- map('v', '<S-Tab>', '<', {})
-
 	-- Move selected line / block of text in visual mode
 	map("x", "K", ":move '<-2<CR>gv-gv'", options)
 	map("x", "J", ":move '>+1<CR>gv-gv'", options)
@@ -58,9 +54,6 @@ M.load_keys = function()
 	map("c", "<C-k>", "<up>", options)
 	map("c", "<C-l>", "<right>", options)
 
-	--
-	-- map('n', '<F5>', ':MaximizerToggle<CR>', options)
-
 	-- Set spell
 	map("n", "<F8>", ":set spell!<CR>", options)
 
@@ -85,19 +78,19 @@ M.load_keys = function()
 	map("n", "Y", "y$", silent)
 
 	-- BufferLine
-	-- map('n', '<C-S-k>', ':BufferLineCycleNext<CR>', options)
-	-- map('n', '<C-S-j>', ':BufferLineCyclePrev<CR>', options)
-	map("n", "[q", ":BufferLineCyclePrev<CR>", options)
-	map("n", "]q", ":BufferLineCycleNext<CR>", options)
 	map("n", "<M-p>", ":BufferLineCyclePrev<CR>", options)
 	map("n", "<M-n>", ":BufferLineCycleNext<CR>", options)
+	-- map('n', '<C-S-k>', ':BufferLineCycleNext<CR>', options)
+	-- map('n', '<C-S-j>', ':BufferLineCyclePrev<CR>', options)
+	-- map("n", "[q", ":BufferLineCyclePrev<CR>", options)
+	-- map("n", "]q", ":BufferLineCycleNext<CR>", options)
 
 	-- Lsp Mappings:
 	map("n", "gd", ":lua vim.lsp.buf.definition()<CR>", options)
 	map("n", "gr", ":lua vim.lsp.buf.references()<CR>", options)
+	map("n", "[s", "<cmd>lua vim.diagnostic.open_float()<CR>", options)
 	-- map('n', '[e', '<cmd>lua vim.diagnostic.goto_next()<CR>', options)
 	-- map('n', ']e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', options)
-	map("n", "[s", "<cmd>lua vim.diagnostic.open_float()<CR>", options)
 
 	-- git
 	map("n", "[c", '<cmd>lua require("gitsigns.actions").prev_hunk()<CR>', options)
@@ -113,9 +106,6 @@ M.load_keys = function()
 	-- Move lines
 	map("v", "K", ":move '<-2<CR>gv-gv", {})
 	map("v", "J", ":move '>+1<CR>gv-gv", {})
-
-	-- copy whole file content
-	-- map("n", "<C-a>", ":%y+<CR>", options)
 end
 
 M.lsp_keys = function(bufnr)

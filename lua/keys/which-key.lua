@@ -31,7 +31,7 @@ wk.setup({
 		group = "+", -- symbol prepended to a group
 	},
 	window = {
-		border = "none", -- none, single, double, shadow
+		border = "rounded", -- none, single, double, shadow
 		position = "bottom", -- bottom, top
 		margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
 		padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
@@ -57,7 +57,8 @@ wk.setup({
 wk.register({
 	["<F2>"] = { "<cmd>Vista!!<CR>", "tagbar" },
 	-- ['<F3>'] = {'<cmd>NvimTreeToggle<CR>', 'nvimtree'},
-	["<F3>"] = { "<cmd>Defx -columns=indent:mark:icon:icons:filename:git:size<CR>", "file explorer" },
+	-- ["<F3>"] = { "<cmd>Defx -columns=indent:mark:icon:icons:filename:git:size<CR>", "file explorer" },
+	["<F3>"] = { "<cmd>Neotree position=current<CR>", "file explorer" },
 	["<F4>"] = { "<cmd>lua _lazygit_toggle()<CR>", "lazygit" },
 	["<F9>"] = {
 		'<cmd>echo "Running Pandoc"<CR>:silent !convert2pdf.py -f "%:p" --open &<CR>',
@@ -73,11 +74,11 @@ wk.register({
 	["="] = { "<cmd>lua vim.lsp.buf.formatting(nil, 2000)<CR>", "formatting" },
 	["o"] = { "<cmd>only<CR>", "only buffer" },
 	["O"] = { "<cmd>MaximizerToggle<CR>", "MaximizerToggle" },
-	["?"] = {
-		"<cmd>Defx `escape(expand('%:p:h'), ' :')` -search=`expand('%:p')` -columns=icons:indent:filename:type<CR>",
-		"file explorer",
-	},
-	-- ['?'] = {'<cmd>NvimTreeFindFile<CR>', 'treefind'}
+	-- ["?"] = {
+	-- 	"<cmd>Defx `escape(expand('%:p:h'), ' :')` -search=`expand('%:p')` -columns=icons:indent:filename:type<CR>",
+	-- 	"file explorer",
+	-- },
+	["?"] = { "<cmd>Neotree current %:p:h:h %:p<CR>", "explore current" },
 }, { prefix = "<leader>" })
 
 -- debug
@@ -140,7 +141,7 @@ wk.register({
 		z = { "<cmd>e ~/.config/zsh/.zshrc<CR>", "zshrc" },
 		Z = { "<cmd>e ~/apps/vimwiki/zoho/Zoho.md<CR>", "zohowiki" },
 		b = { "<cmd>e ~/apps/vimwiki/cookbook/cookbook.md<CR>", "cookbook" },
-		v = { "<cmd>VimwikiIndex<CR>", "VimWiki" },
+		v = { "<cmd>e ~/apps/vimwiki/index.md<CR>", "VimWiki" },
 	},
 }, { prefix = "<leader>" })
 
