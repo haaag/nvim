@@ -61,7 +61,8 @@
 * [davidgranstrom/nvim-markdown-preview](https://github.com/davidgranstrom/nvim-markdown-preview) -- Markdown preview in the browser.
 * [vimwiki/vimwiki](https://github.com/vimwiki/vimwiki) -- Personal wiki for Vim.
 * [karb94/neoscroll.nvim](https://github.com/karb94/neoscroll.nvim) -- Smooth scrolling.
-* [kyazdani42/nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua) -- File Explorer For Neovim Written In Lua.
+* ~~~[kyazdani42/nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua) -- File Explorer For Neovim Written In Lua.~~~
+* [nvim-neo-tree/neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) -- Neo-tree is a Neovim plugin to browse the file system and other tree like structures
 * [tjdevries/cyclist.vim](tjdevries/cyclist.vim) -- cycle + listchars = cyclist.vim.
 * [szw/vim-maximizer](https://github.com/szw/vim-maximizer) -- Maximizes and restores the current window in Vim.
 * [lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) -- Adds indentation guides to all lines (including empty lines).
