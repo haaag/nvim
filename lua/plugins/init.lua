@@ -28,7 +28,7 @@ end
 
 local use = packer.use
 
-return require("packer").startup(function()
+return packer.startup(function()
 	config = {
 		-- Move to lua dir so impatient.nvim can cache it
 		compile_path = vim.fn.stdpath("config") .. "/lua/packer_compiled.lua",
@@ -103,15 +103,19 @@ return require("packer").startup(function()
 	use({ "machakann/vim-sandwich", event = "VimEnter" })
 
 	-- vim-matchup - It extends vim's % key
-	use({ "andymass/vim-matchup", event = "CursorMoved" })
+	use(
+        { "andymass/vim-matchup",
+        event = "CursorMoved",
+        -- config = [[require('plugins.tools.vim-matchup')]]
+    })
 
-    -- vim-move
+	-- vim-move
 	use({
 		"matze/vim-move",
 		config = function()
 			local g = vim.g
 			g.move_key_modifier = "S-M"
-            g.move_key_modifier_visualmode = "S-M"
+			g.move_key_modifier_visualmode = "S-M"
 		end,
 	})
 
@@ -134,11 +138,31 @@ return require("packer").startup(function()
 	-- 	config = [[require('plugins.themes')]],
 	-- })
 
-    -- gruvbox
-    use {
-        "ellisonleao/gruvbox.nvim",
-		config = [[require('plugins.themes')]],
-    }
+	-- gruvbox
+	use({
+		"ellisonleao/gruvbox.nvim",
+		config = [[require('plugins.themes.gruvbox-nvim')]],
+	})
+
+    -- gruvbox-baby
+    -- use({
+    --     "luisiacc/gruvbox-baby",
+    --     config = [[require('plugins.themes.gruvbox-baby')]]
+    -- })
+
+    -- gruvbox8
+    -- use({
+    --     "lifepillar/vim-gruvbox8",
+    --     config = [[require('plugins.themes.gruvbox8')]]
+    -- })
+
+    -- kanagawa
+    -- use({
+    --     "rebelot/kanagawa.nvim",
+    --     config = function ()
+    --         vim.cmd("colorscheme kanagawa")
+    --     end
+    -- })
 
 	-- statusline
 	-- use({
@@ -167,7 +191,7 @@ return require("packer").startup(function()
 			{ "hrsh7th/cmp-path" },
 			{ "f3fora/cmp-spell" },
 			{ "rafamadriz/friendly-snippets" },
-            { "hrsh7th/cmp-nvim-lsp-signature-help"},
+			{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 			{
 				"hrsh7th/vim-vsnip",
 				config = function()
@@ -236,10 +260,11 @@ return require("packer").startup(function()
 	use({
 		"lewis6991/gitsigns.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
-		config = function()
-			vim.cmd([[ packadd plenary.nvim ]])
-			require("gitsigns").setup()
-		end,
+        config = [[require('plugins.tools.gitsings')]],
+		-- config = function()
+		-- 	vim.cmd([[ packadd plenary.nvim ]])
+		-- 	require("gitsigns").setup()
+		-- end,
 		event = "BufRead",
 	})
 
@@ -297,25 +322,58 @@ return require("packer").startup(function()
 		"vimwiki/vimwiki",
 		config = [[require('plugins.tools.vimwiki')]],
 		ft = { "vimwiki", "markdown", "md" },
+		-- opt = true,
+		-- cmd = { "VimwikiIndex" },
 	})
 
 	-- jump-hop
+	-- use({
+	-- 	"phaazon/hop.nvim",
+	-- 	as = "hop",
+	-- 	config = function()
+	-- 		require("hop").setup({})
+	-- 	end,
+	-- 	cmd = { "HopWord", "HopLine", "HopPattern" },
+	-- })
+
+	-- lightspeed
 	use({
-		"phaazon/hop.nvim",
-		as = "hop",
-		config = function()
-			require("hop").setup({})
-		end,
-		cmd = { "HopWord", "HopLine", "HopPattern" },
+		"ggandor/lightspeed.nvim",
 	})
 
 	-- nvim-tree
+	-- use({
+	-- 	"kyazdani42/nvim-tree.lua",
+	-- 	config = [[require('plugins.tools.nvimtree')]],
+	-- 	opt = true,
+	-- 	cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
+	-- })
+
+	-- dirbuff - file explorer
+	-- use({
+	--     "elihunter173/dirbuf.nvim"
+	-- })
+
+	-- neo-tree
 	use({
-		"kyazdani42/nvim-tree.lua",
-		config = [[require('plugins.tools.nvimtree')]],
-		opt = true,
-		cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
+		"nvim-neo-tree/neo-tree.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"kyazdani42/nvim-web-devicons",
+			"MunifTanjim/nui.nvim",
+		},
+		config = [[require('plugins.tools.neo-tree')]],
 	})
+
+	-- defx - file explorer
+	-- use({
+	-- 	"Shougo/defx.nvim",
+	-- 	requires = {
+	-- 		"kristijanhusak/defx-icons",
+	-- 		"kristijanhusak/defx-git",
+	-- 	},
+	-- 	run = ":UpdateRemotePlugins",
+	-- })
 
 	-- CursorHold bug: https://github.com/neovim/neovim/issues/12587
 	use({ "antoinemadec/FixCursorHold.nvim" })
@@ -347,10 +405,17 @@ return require("packer").startup(function()
 		end,
 	})
 
-    -- sessions
-    use({
-        'tpope/vim-obsession'
-    })
+	-- sessions
+	use({
+		"tpope/vim-obsession",
+	})
+
+	-- rest.nvim
+	use({
+		"NTBBloodbath/rest.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+		config = [[require('plugins.tools.rest')]],
+	})
 
 	-- list chars
 	-- use({ "tjdevries/cyclist.vim", event = "VimEnter" })
