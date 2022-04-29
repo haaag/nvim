@@ -66,22 +66,33 @@ end
 M.disable_builtin_plugs = function()
 	-- disable built-in plugins:
 	local disable_plugs = {
-		"loaded_gzip",
-		"loaded_tar",
-		"loaded_tarPlugin",
-		"loaded_zipPlugin",
-		"loaded_2html_plugin",
-		"loaded_matchit",
-		"loaded_matchparen",
-		"loaded_spec",
-		"loaded_netrw",
-		"loaded_netrwPlugin",
+		"gzip",
+		"zip",
+		"zipPlugin",
+		"tar",
+		"tarPlugin",
+		"getscript",
+		"getscriptPlugin",
+		"vimball",
+		"vimballPlugin",
+		"2html_plugin",
+		"matchit",
+		"matchparen",
+		"logiPat",
+		"rrhelper",
+		"spec",
+		"netrw",
+		"netrwPlugin",
+		"netrwSettings",
 	}
 
 	for _, i in pairs(disable_plugs) do
 		vim.g["loaded_" .. i] = 1
 	end
 end
+
+vim.g.loaded_netrwPlugin = 1
+vim.g.loaded_netrw = 1
 
 -- netrw
 -- local g = vim.g
