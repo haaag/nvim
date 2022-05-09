@@ -24,6 +24,8 @@ g.indent_blankline_filetype_exclude = {
 	"tagbar",
 	"vimwiki",
 	"alpha",
+    "Outline",
+    "lsp-installer",
 }
 g.indent_blankline_buftype_exclude = {
 	"help",
