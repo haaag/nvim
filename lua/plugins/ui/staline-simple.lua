@@ -3,7 +3,9 @@ if not status_ok then
 	return
 end
 
+-- local stabline = require("stabline")
 local theme = require("plugins.themes.theme-colors").colors()
+local hi = vim.api.nvim_set_hl
 
 local percentage = function()
 	local current_line = vim.fn.line(".")
@@ -23,12 +25,6 @@ local percentage = function()
 	local index = math.ceil(line_ratio * #chars)
 	return chars[index]
 end
-
-local time = function()
-	return os.date("%a │ %H:%M %x")
-end
-
-local cmd = vim.cmd
 
 staline.setup({
 	sections = {
@@ -75,6 +71,7 @@ staline.setup({
 		i = theme.cyan,
 		c = theme.yellow,
 		v = theme.red,
+		V = theme.red,
 	},
 	special_table = {
 		NvimTree = { "File Explorer", " " },
@@ -84,8 +81,7 @@ staline.setup({
 	lsp_symbols = { Error = " ", Info = " ", Warn = " ", Hint = " " },
 })
 
--- cmd([[hi StalineBranch guifg=#C4A7E7]])
--- cmd([[hi StalineBranch guifg=#C4A7E7]])
-cmd("hi StalineBranch guifg=" .. theme.cyan)
--- cmd("hi StalineName guifg=" .. theme.orange)
-cmd([[hi StalineName guifg=#EBBCBA]])
+-- highlight
+hi(0, "StalineBranch", { fg = theme.blue })
+-- vim.cmd('hi StalineBranch guifg=' .. theme.blue .. ' guibg=' .. theme.red)
+hi(0, "StalineName", { fg = theme.cyan })
