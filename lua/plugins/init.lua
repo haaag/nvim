@@ -52,6 +52,11 @@ return packer.startup(function()
 		run = ":TSUpdate",
 	})
 
+	use({
+		"nvim-treesitter/nvim-treesitter-context",
+		requires = { "nvim-treesitter/nvim-treesitter" },
+	})
+
 	-- ts-context-commentstring
 	use({
 		"JoosepAlviste/nvim-ts-context-commentstring",
@@ -71,6 +76,13 @@ return packer.startup(function()
 
 	-- treesitter-refactor
 	use({ "nvim-treesitter/nvim-treesitter-refactor", after = "nvim-treesitter" })
+
+    -- treesitter-textobjects
+    use({
+        "nvim-treesitter/nvim-treesitter-textobjects",
+		tequires = { "nvim-treesitter/nvim-treesitter" },
+        after = "nvim-treesitter"
+    })
 
 	-- null-ls
 	use({
@@ -95,14 +107,16 @@ return packer.startup(function()
 		config = function()
 			local g = vim.g
 			g.vista_sidebar_width = 48
+            -- g.vista_default_executive = 'nvim_lsp'
+            -- g.vista_echo_cursor_strategy = 'floating_win'
 		end,
 		cmd = "Vista",
 	})
 
-	use({
-		"simrat39/symbols-outline.nvim",
-		config = [[require('plugins.tools.symbols-outline')]],
-	})
+	-- use({
+	-- 	"simrat39/symbols-outline.nvim",
+	-- 	config = [[require('plugins.tools.symbols-outline')]],
+	-- })
 
 	-- Plugin to manipulate character pairs quickly
 	use({ "machakann/vim-sandwich", event = "VimEnter" })
@@ -144,16 +158,16 @@ return packer.startup(function()
 	-- })
 
 	-- gruvbox
-	-- use({
-	-- 	"ellisonleao/gruvbox.nvim",
-	-- 	config = [[require('plugins.themes.gruvbox-nvim')]],
-	-- })
+	use({
+		"ellisonleao/gruvbox.nvim",
+		config = [[require('plugins.themes.gruvbox-nvim')]],
+	})
 
 	-- gruvbox-community
-	use({
-		"gruvbox-community/gruvbox",
-		config = [[require('plugins.themes.gruvbox-community')]],
-	})
+	-- use({
+	-- 	"gruvbox-community/gruvbox",
+	-- 	config = [[require('plugins.themes.gruvbox-community')]],
+	-- })
 
 	-- gruvbox-baby
 	-- use({
@@ -219,8 +233,8 @@ return packer.startup(function()
 			{ "lukas-reineke/cmp-under-comparator" },
 			{ "lukas-reineke/cmp-rg" },
 		},
-		config = [[require('lsp.code.cmp-new')]],
-		-- config = [[require('lsp.code.cmp')]],
+		-- config = [[require('lsp.code.cmp-new')]],
+		config = [[require('lsp.code.cmp')]],
 	})
 
 	-- completion icons
@@ -365,12 +379,12 @@ return packer.startup(function()
 	use({ "nathom/filetype.nvim" })
 
 	-- trouble
-	use({
-		"folke/trouble.nvim",
-		requires = "kyazdani42/nvim-web-devicons",
-		config = [[require('lsp.code.trouble')]],
-		cmd = { "TroubleToggle", "Trouble", "TroubleClose" },
-	})
+	-- use({
+	-- 	"folke/trouble.nvim",
+	-- 	requires = "kyazdani42/nvim-web-devicons",
+	-- 	config = [[require('lsp.code.trouble')]],
+	-- 	cmd = { "TroubleToggle", "Trouble", "TroubleClose" },
+	-- })
 
 	-- syntax for kitty.conf
 	use({ "fladson/vim-kitty", ft = { "kitty" } })
@@ -401,4 +415,14 @@ return packer.startup(function()
 	use({
 		"tjdevries/cyclist.vim",
 	})
+
+    use({
+        "SmiteshP/nvim-gps",
+        requires = "nvim-treesitter/nvim-treesitter"
+    })
+
+	-- ui
+	-- use({
+	--     "stevearc/dressing.nvim"
+	-- })
 end)
