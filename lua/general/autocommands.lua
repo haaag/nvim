@@ -1,27 +1,48 @@
 local M = {}
 
 M.load_autocmd = function()
+	local api = vim.api
 	local cmd = vim.cmd
 	local misc = vim.api.nvim_create_augroup("Misc", { clear = true })
 
 	-- Update binds when sxhkdrc is updated.
-	vim.api.nvim_create_autocmd("BufWritePost", { pattern = "*sxhkdrc", command = "!pkill -USR1 sxhkd" })
+	api.nvim_create_autocmd("BufWritePost", { pattern = "*sxhkdrc", command = "!pkill -USR1 sxhkd" })
 
 	-- Syntax highlight on rasi files
-	vim.api.nvim_create_autocmd("Filetype,BufNewFile,BufRead", {
+	api.nvim_create_autocmd("Filetype,BufNewFile,BufRead", {
 		group = misc,
 		pattern = "rasi",
 		command = "set filetype=css",
 	})
 
 	-- Run xrdb whenever Xdefaults or Xresources are updated.
-	vim.api.nvim_create_autocmd("BufWritePost", {
+	api.nvim_create_autocmd("BufWritePost", {
 		pattern = { "xdefaults", "Xresources" },
 		command = "!xrdb %",
 	})
 
+	-- windows to close with "q"
+	api.nvim_create_autocmd("FileType", {
+		pattern = { "help", "startuptime", "qf", "lspinfo" },
+		command = [[nnoremap <buffer><silent> q :close<CR>]],
+	})
+
+	-- man pager
+	api.nvim_create_autocmd("FileType", { pattern = "man", command = [[nnoremap <buffer><silent> q :quit<CR>]] })
+
+	-- show cursor line only in active window
+	local cursorGrp = api.nvim_create_augroup("CursorLine", { clear = true })
+	api.nvim_create_autocmd(
+		{ "InsertLeave", "WinEnter" },
+		{ pattern = "*", command = "set cursorline", group = cursorGrp }
+	)
+	api.nvim_create_autocmd(
+		{ "InsertEnter", "WinLeave" },
+		{ pattern = "*", command = "set nocursorline", group = cursorGrp }
+	)
+
 	-- Automatically deletes all trailing whitespace on save.
-	vim.api.nvim_create_autocmd("BufWritePre", {
+	api.nvim_create_autocmd("BufWritePre", {
 		pattern = "*",
 		callback = function()
 			cmd([[ %s/\s\+$//e ]])
@@ -29,29 +50,30 @@ M.load_autocmd = function()
 	})
 
 	-- Highlight on Yank
-	vim.api.nvim_create_autocmd("TextYankPost", {
+	api.nvim_create_autocmd("TextYankPost", {
 		group = misc,
-		pattern = "*",
 		callback = function()
 			vim.highlight.on_yank({ on_visual = true })
 		end,
 	})
 
+	-- go to last loc when opening a buffer
+	api.nvim_create_autocmd(
+		"BufReadPost",
+		{ command = [[if line("'\"") > 1 && line("'\"") <= line("$") | execute "normal! g`\"" | endif]] }
+	)
+
 	--
-	cmd([[ set title titlestring=%(%{expand(\"%:~:.:h\")}%)/%t ]])
+	-- cmd([[ set title titlestring=%(%{expand(\"%:~:.:h\")}%)/%t ]])
 
 	-- Disables automatic commenting on newline:
-	vim.api.nvim_create_autocmd("FileType", {
+	api.nvim_create_autocmd("FileType", {
 		pattern = "*",
 		command = "setlocal formatoptions-=c formatoptions-=r formatoptions-=o",
 	})
 
-	-- Omnicomplete
-	-- cmd([[ inoremap <expr> <c-j> (\"\\<C-n>\")' ]])
-	-- cmd([[ inoremap <expr> <c-k> (\"\\<C-p>\")' ]])
-
 	-- Source luafile
-	vim.api.nvim_create_autocmd("FileType", {
+	api.nvim_create_autocmd("FileType", {
 		group = misc,
 		pattern = "lua",
 		command = "nnoremap <buffer> <F5> :w<CR>:luafile %<CR>",
@@ -59,12 +81,15 @@ M.load_autocmd = function()
 
 	-- neomutt compose
 	cmd([[ autocmd BufNewFile,BufRead /tmp/neomutt* set filetype=markdown ]])
+
+    -- TODO: Update neomutt au to nvim_create_autocmd
 	-- vim.api.nvim_create_autocmd("BufNewFile,BufRead", {
 	--     pattern = "*neomutt*",
 	--     callback = function ()
 	--         vim.cmd([[ set filetype=markdown ]])
 	--     end
 	-- })
+    --
 	-- vim.api.nvim_create_autocmd("FileType", {
 	-- 	group = misc,
 	-- 	pattern = "neomutt*",
@@ -84,6 +109,13 @@ M.load_autocmd = function()
 
 	-- alpha
 	cmd([[ au ColorScheme * hi Normal ctermbg=none guibg=none ]])
+
+    -- winbar
+	vim.api.nvim_create_autocmd({ "CursorMoved", "BufWinEnter", "BufFilePost", "InsertEnter", "BufWritePost" }, {
+		callback = function()
+			require("plugins.ui.winbar_new").get_winbar()
+		end,
+	})
 end
 
 return M
