@@ -67,7 +67,7 @@
         "* Email:     soporte@zonecta.com",
         "* Module:    '${1:<module_name>}'",
         "* Apps:      '${2:<app_name>}'",
-        "* Function:  ${3:<function_name>}()",
+        "* Function:  $TM_FILENAME_BASE()",
         "* Objetivo:  '${4:<objetivo>}'",
         "/-----------------------------------------------------------------------------------------------------*/",
         "//",
