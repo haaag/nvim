@@ -31,7 +31,7 @@ M.load_autocmd = function()
 	api.nvim_create_autocmd("FileType", { pattern = "man", command = [[nnoremap <buffer><silent> q :quit<CR>]] })
 
 	-- show cursor line only in active window
-	local cursorGrp = api.nvim_create_augroup("CursorLine", { clear = true })
+	--[[ local cursorGrp = api.nvim_create_augroup("CursorLine", { clear = true })
 	api.nvim_create_autocmd(
 		{ "InsertLeave", "WinEnter" },
 		{ pattern = "*", command = "set cursorline", group = cursorGrp }
@@ -40,6 +40,7 @@ M.load_autocmd = function()
 		{ "InsertEnter", "WinLeave" },
 		{ pattern = "*", command = "set nocursorline", group = cursorGrp }
 	)
+    ]]
 
 	-- Automatically deletes all trailing whitespace on save.
 	api.nvim_create_autocmd("BufWritePre", {

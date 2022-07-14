@@ -18,7 +18,7 @@ M.load_options = function()
 		termguicolors = true, -- xx
 		conceallevel = 2, -- So that I can see `` in markdown files
 		laststatus = 3, -- Always display the status line
-		showtabline = 2, -- Always show tabs
+		showtabline = 0, -- Always show tabs
 		showmode = false, -- We don't need to see things like -- INSERT -- anymore
 		undofile = true, -- Allow undo mode after closing file
 		undodir = HOME .. "/.config/nvim/undodir", -- Set UndoDir
@@ -50,16 +50,27 @@ M.load_options = function()
 		wrap = true, -- Wrap Lines
 		scrolloff = 8, -- Minimal number of lines to keep above and below the cursor
 		sidescrolloff = 8, -- same as above, except for left and right, if nowrap is set
+		-- foldlevel = 100,
 		-- foldmethod = "expr", -- foldmethod,
-		-- foldmethod = "syntax",
 		-- foldexpr = "nvim_treesitter#foldexpr()",
+		-- foldmethod = "syntax",
 		-- foldtext = "v:lua.foldText()",
 		timeoutlen = 300,
 		smartcase = true,
 		-- listchars = { tab = '»»', trail = '·' }
+		-- fillchars:append({
+		-- 	horiz = "━",
+		-- 	horizup = "┻",
+		-- 	horizdown = "┳",
+		-- 	vert = "┃",
+		-- 	vertleft = "┨",
+		-- 	vertright = "┣",
+		-- 	verthoriz = "╋",
+		-- }),
 	}
-	for k, v in pairs(default_options) do
-		set[k] = v
+
+	for option, value in pairs(default_options) do
+		set[option] = value
 	end
 end
 
@@ -93,13 +104,5 @@ end
 
 vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_netrw = 1
-
--- netrw
--- local g = vim.g
--- g.netrw_banner = false
--- g.netrw_winsize = 25
--- g.netrw_liststyle = 3
--- g.netrw_keepdir = 0
--- g.netrw_altfile = 1
 
 return M
