@@ -17,7 +17,7 @@ g.gruvbox_undercurl = true
 
 -- Changes dark mode contrast. Overrides g:gruvbox_contrast option.
 -- Possible values are soft, medium and hard.
-g.gruvbox_contrast_dark = "soft"
+g.gruvbox_contrast_dark = "dark"
 
 -- Changes number column background color. Possible values are any of gruvbox palette.
 -- g.gruvbox_number_column = '#3C3836'
@@ -29,12 +29,19 @@ g.gruvbox_contrast_dark = "soft"
 g.gruvbox_italicize_comments = true
 
 -- Enables italic for strings.
-g.gruvbox_italicize_strings = false
+g.gruvbox_italicize_strings = true
 
 -- gruvbox_invert_selection
-g.gruvbox_invert_selection = true
+-- g.gruvbox_invert_selection = true
 
 -- Load colorscehem
-vim.cmd([[ set background=dark ]])
--- vim.cmd [[ set background=light ]]
+vim.o.background = "dark"
+-- vim.o.background = "light"
+
 vim.cmd([[ colorscheme gruvbox ]])
+vim.cmd("highlight ColorColumn ctermbg=0 guibg=grey")
+vim.cmd("hi SignColumn guibg=none")
+-- vim.cmd("highlight! link SignColumn LineNr")
+vim.cmd("highlight Normal guibg=none")
+vim.cmd("hi CursorLineNR guibg=None")
+vim.cmd("hi TelescopeBorder guifg=#5eacd")

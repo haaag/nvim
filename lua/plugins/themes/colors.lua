@@ -72,7 +72,7 @@ M.gruvbox = function()
         white = "#ebdbb2",
         lightgrey = "#928374",
         darkgrey = "#a89984",
-		lualine = "gruvbox"
+		lualine = "gruvbox8"
     }
     return color
 end
@@ -278,6 +278,27 @@ M.rose = function ()
         lightgrey = "#65737E",
         darkgrey = "#343D46",
         lualine = "rose-pine"
+    }
+    return color
+end
+
+M.kanagawa = function ()
+    local color = {
+        background = "#1F1F28",
+        foreground = "#DCD7BA",
+        black = "#090618",
+        black2 = "#090618",
+        red = "#C34043",
+        green = "#76946A",
+        yellow = "#E6C384",
+        blue = "#7E9CD8",
+        purple = "#957FB8",
+        magenta = "#938AA9",
+        orange = "#f99157",
+        cyan = "#7FB4CA",
+        white = "#C8C093",
+        lightgrey = "#727169",
+        darkgrey = "#727169",
     }
     return color
 end

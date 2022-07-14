@@ -1,3 +1,8 @@
+local present, gruvbox = pcall(require, "gruvbox")
+if not present then
+	return
+end
+
 local g = vim.g
 
 -- Enables bold text.
@@ -39,3 +44,9 @@ vim.o.background = "dark"
 -- vim.o.background = "light"
 
 vim.cmd([[ colorscheme gruvbox ]])
+vim.cmd("highlight ColorColumn ctermbg=0 guibg=grey")
+vim.cmd("hi SignColumn guibg=none")
+-- vim.cmd("highlight! link SignColumn LineNr")
+-- vim.cmd("highlight Normal guibg=none")
+vim.cmd("hi CursorLineNR guibg=None")
+vim.cmd("hi TelescopeBorder guifg=#5eacd")
