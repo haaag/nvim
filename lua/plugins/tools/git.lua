@@ -8,6 +8,8 @@ end
 -- gitsings
 local status_ok, gitsigns = pcall(require, "gitsigns")
 if status_ok then
+	local actions = require("gitsigns.actions")
+    -- local mappings =
 	wk.register({
 		g = {
 			name = "+git",
@@ -23,9 +25,24 @@ if status_ok then
 	}, { prefix = "<leader>" })
 
 	wk.register({
-		["[c"] = { "<cmd>lua require('gitsigns.actions').prev_hunk()<CR>", "prev hunk" },
-		["]c"] = { "<cmd>lua require('gitsigns.actions').next_hunk()<CR>", "next hunk" },
-		["]a"] = { "<cmd>lua require('gitsigns').preview_hunk()<CR>", "preview hunk" },
+		["[c"] = {
+			function()
+				actions.prev_hunk()
+			end,
+			"prev hunk",
+		},
+		["]c"] = {
+			function()
+				actions.next_hunk()
+			end,
+			"next hunk",
+		},
+		["]a"] = {
+			function()
+				gitsigns.preview_hunk()
+			end,
+			"preview hunk",
+		},
 	})
 else
 	return
@@ -57,8 +74,18 @@ local present_diff, diffview = pcall(require, "diffview")
 if present_diff then
 	wk.register({
 		g = {
-			o = { "<cmd>DiffviewOpen<CR>", "diffview open" },
-			O = { "<cmd>DiffviewClose<CR>", "diffview close" },
+			o = {
+				function()
+					diffview.open()
+				end,
+				"diffview open",
+			},
+			O = {
+				function()
+					diffview.close()
+				end,
+				"diffview close",
+			},
 		},
 	}, { prefix = "<leader>" })
 end

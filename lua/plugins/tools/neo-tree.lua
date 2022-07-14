@@ -3,6 +3,13 @@ if not status_ok then
 	return
 end
 
+local wk_present, wk = pcall(require, "which-key")
+if not wk_present then
+	return
+end
+
+local icons = require("plugins.ui.styles").icons()
+
 neotree.setup({
 	close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
 	popup_border_style = "rounded",
@@ -14,8 +21,8 @@ neotree.setup({
 			padding = 1, -- extra padding on left hand side
 			-- indent guides
 			with_markers = true,
-			indent_marker = "│",
-			last_indent_marker = "└",
+			indent_marker = icons.misc.indent_marker,
+			last_indent_marker = icons.misc.last_indent_marker,
 			highlight = "NeoTreeIndentMarker",
 			-- expander config, needed for nesting files
 			with_expanders = nil, -- if nil and file nesting is enabled, will enable expanders
@@ -24,10 +31,10 @@ neotree.setup({
 			expander_highlight = "NeoTreeExpander",
 		},
 		icon = {
-			folder_closed = "",
+			folder_closed = "",
 			-- folder_open = "",
-			folder_open = "",
-			folder_empty = "",
+			folder_open = "",
+			folder_empty = "",
 			default = "*",
 		},
 		modified = {
@@ -41,10 +48,10 @@ neotree.setup({
 		git_status = {
 			symbols = {
 				-- Change type
-				added = "✚", -- or "✚", but this is redundant info if you use git_status_colors on the name
-				modified = "M", -- or "", but this is redundant info if you use git_status_colors on the name
-				deleted = "✖", -- this can only be used in the git_status source
-				renamed = "➜", -- this can only be used in the git_status source
+				added = "✚",
+				modified = icons.git.modified,
+				deleted = "✖",
+				renamed = "➜",
 				-- Status type
 				untracked = "✭",
 				ignored = "☒",
@@ -97,9 +104,9 @@ neotree.setup({
 				".DS_Store",
 				"thumbs.db",
 				"node_modules",
-                "venv",
-                ".venv",
-                ".env"
+				"venv",
+				".venv",
+				".env",
 			},
 			hide_by_pattern = { -- uses glob style patterns
 				--"*.meta"
@@ -154,3 +161,9 @@ neotree.setup({
 		},
 	},
 })
+
+-- mappings
+wk.register({
+	["<F3>"] = { "<cmd>NeoTreeFloatToggle<CR>", "file explorer" },
+	["?"] = { "<cmd>Neotree current %:p:h:h %:p<CR>", "explore current" },
+}, { prefix = "<leader>" })

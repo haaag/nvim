@@ -33,8 +33,9 @@ end
 
 M.dotfiles_nvim_new = function()
 	require("telescope.builtin").find_files(require("telescope.themes").get_ivy({
+		-- require("telescope.builtin").find_files(require("telescope.themes").get_dropdown({
 		previewer = false,
-		winblend = 20,
+		-- winblend = 20,
 		prompt_title = "< nvim config >",
 		cwd = "~/.config/nvim/",
 	}))
@@ -97,6 +98,15 @@ M.projects_files = function()
 		winblend = 10,
 		prompt_title = "< work files >",
 		cwd = HOME .. "/code/git/",
+	}))
+end
+
+M.nvim_cache_file = function()
+	require("telescope.builtin").find_files(require("telescope.themes").get_dropdown({
+		previewer = false,
+		winblend = 10,
+		prompt_title = "< cache files >",
+		cwd = HOME .. "/.local/share/nvim/site/pack/packer",
 	}))
 end
 

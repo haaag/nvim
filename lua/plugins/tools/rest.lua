@@ -1,10 +1,10 @@
-local status_ok, rest_nvim = pcall(require, "rest-nvim")
-if not status_ok then
+local present_rest, rest_nvim = pcall(require, "rest-nvim")
+if not present_rest then
 	return
 end
 
-local wk_ok, wk = pcall(require, "which-key")
-if not wk_ok then
+local present_wk, wk = pcall(require, "which-key")
+if not present_wk then
 	return
 end
 
@@ -36,7 +36,7 @@ vim.api.nvim_create_autocmd("FileType", {
 	callback = function()
 		wk.register({
 			r = {
-				name = "+rest.nvim",
+				name = "+rest",
 				n = { rest_nvim.run, "RestNvim" },
 				p = { rest_nvim.last, "RestNvimLast" },
 				c = {
@@ -49,6 +49,7 @@ vim.api.nvim_create_autocmd("FileType", {
                     "<cmd>edit ~/.config/nvim/lua/plugins/tools/rest.lua<CR>", "edit rest.file"
                 }
 			},
-		}, { prefix = "<localleader>" })
+		}, { prefix = "<leader>" })
+		-- }, { prefix = "<localleader>" })
 	end,
 })

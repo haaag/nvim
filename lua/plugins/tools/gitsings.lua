@@ -1,16 +1,30 @@
-status_ok, gitsigns = pcall(require, "gitsigns")
+local status_ok, gitsigns = pcall(require, "gitsigns")
 if not status_ok then
+	print("Error: gitsings")
 	return
 end
-local hl = vim.api.nvim_set_hl
+
+local wk_status_ok, wk = pcall(require, "which-key")
+if not wk_status_ok then
+	return
+end
+
+local colors = require("plugins.themes.theme-colors").colors()
+-- local icons = require("plugins.ui.styles").icons()
+local hi = vim.api.nvim_set_hl
 
 gitsigns.setup({
 	signs = {
-		add = { hl = "GitSignsAdd", text = "▏", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-		change = { hl = "GitSignsChange", text = "▏", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+		add = { hl = "GitSignsAdd", text = "+", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+		change = { hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
 		delete = { hl = "GitSignsDelete", text = "_", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
 		topdelete = { hl = "GitSignsDelete", text = "‾", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
 		changedelete = { hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+		-- add = { hl = "GitSignsAdd", text = icons.git.add_thick, numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+		-- change = { hl = "GitSignsChange", text = icons.git.add_thick, numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+		-- add = { hl = "GitSignsAdd", text = "▏", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+		-- change = { hl = "GitSignsChange", text = "▏", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+		-- change = { hl = "GitSignsChange", text = "▏", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
 	},
 	signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
 	numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
@@ -45,8 +59,60 @@ gitsigns.setup({
 		enable = false,
 	},
 })
--- vim.api.nvim_set_hl(0, 'GitsignsCurrentLineBlame', { fg = 'white', bg = 'black' })
--- hl(0, "GitSignsAdd", {bg = 'none'})
-vim.cmd("highlight GitSignsAdd guibg=none")
-vim.cmd("highlight GitSignsChange guibg=none")
-vim.cmd("highlight GitSignsDelete guibg=none")
+
+-- highlights
+hi(0, "GitSignsAdd", { bg = "none", fg = colors.green })
+hi(0, "GitSignsChange", { bg = "none", fg = colors.blue })
+hi(0, "GitSignsDelete", { bg = "none", fg = colors.red })
+
+-- mappings
+--[[ wk.register({
+	g = {
+		name = "+git",
+		p = {
+			function()
+				gitsigns.prev_hunk()
+			end,
+			"previous hunk",
+		},
+		n = {
+			function()
+				gitsigns.next_hunk()
+			end,
+			"next hunk",
+		},
+		s = {
+			name = "+stage",
+			s = { gitsigns.stage_hunk, "stage hunk" },
+			u = { gitsigns.undo_stage_hunk, "undo stage hunk" },
+			r = {
+				function()
+					gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+				end,
+				"reset hunk",
+			},
+		},
+		P = {
+			gitsigns.preview_hunk,
+			"preview hunk",
+		},
+		t = {
+			gitsigns.toggle_current_line_blame,
+			"toggle blame",
+		},
+		c = { "<cmd>Telescope git_bcommits<CR>", "bcommits" },
+		b = { "<cmd>Telescope git_branches<CR>", "branches" },
+		g = { "<cmd>Telescope git_commits<CR>", "commits" },
+		i = { ":<C-U>Gitsigns select_hunk<CR>", "select hunk" },
+	},
+}, { prefix = "<leader>" }) ]]
+
+-- map("n", "[c", '<cmd>lua require("gitsigns.actions").prev_hunk()<CR>', options)
+-- map("n", "]c", '<cmd>lua require("gitsigns.actions").next_hunk()<CR>', options)
+-- map("n", "]a", '<cmd>lua require("gitsigns").preview_hunk()<CR>', options)
+--
+-- wk.register({
+-- 	["[c"] = { "<cmd>lua require('gitsigns.actions').prev_hunk()<CR>", "prev hunk" },
+-- 	["]c"] = { "<cmd>lua require('gitsigns.actions').next_hunk()<CR>", "next hunk" },
+-- 	["]a"] = { "<cmd>lua require('gitsigns').preview_hunk()<CR>", "preview hunk" },
+-- })
