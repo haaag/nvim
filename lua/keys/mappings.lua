@@ -78,24 +78,24 @@ M.load_keys = function()
 	map("n", "Y", "y$", silent)
 
 	-- BufferLine
-	map("n", "<M-p>", ":BufferLineCyclePrev<CR>", options)
-	map("n", "<M-n>", ":BufferLineCycleNext<CR>", options)
+	-- map("n", "<M-p>", ":BufferLineCyclePrev<CR>", options)
+	-- map("n", "<M-n>", ":BufferLineCycleNext<CR>", options)
 	-- map('n', '<C-S-k>', ':BufferLineCycleNext<CR>', options)
 	-- map('n', '<C-S-j>', ':BufferLineCyclePrev<CR>', options)
 	-- map("n", "[q", ":BufferLineCyclePrev<CR>", options)
 	-- map("n", "]q", ":BufferLineCycleNext<CR>", options)
 
 	-- Lsp Mappings:
-	map("n", "gd", ":lua vim.lsp.buf.definition()<CR>", options)
-	map("n", "gr", ":lua vim.lsp.buf.references()<CR>", options)
-	map("n", "[s", "<cmd>lua vim.diagnostic.open_float()<CR>", options)
+	-- map("n", "gd", ":lua vim.lsp.buf.definition()<CR>", options)
+	-- map("n", "gr", ":lua vim.lsp.buf.references()<CR>", options)
+	-- map("n", "[s", "<cmd>lua vim.diagnostic.open_float()<CR>", options)
 	-- map('n', '[e', '<cmd>lua vim.diagnostic.goto_next()<CR>', options)
 	-- map('n', ']e', '<cmd>lua vim.diagnostic.goto_prev()<CR>', options)
 
 	-- git
-	map("n", "[c", '<cmd>lua require("gitsigns.actions").prev_hunk()<CR>', options)
-	map("n", "]c", '<cmd>lua require("gitsigns.actions").next_hunk()<CR>', options)
-	map("n", "]a", '<cmd>lua require("gitsigns").preview_hunk()<CR>', options)
+	-- map("n", "[c", '<cmd>lua require("gitsigns.actions").prev_hunk()<CR>', options)
+	-- map("n", "]c", '<cmd>lua require("gitsigns.actions").next_hunk()<CR>', options)
+	-- map("n", "]a", '<cmd>lua require("gitsigns").preview_hunk()<CR>', options)
 
 	-- Simpler increment/decrement integers
 	-- map("n", "+", "<C-a>", silent)
@@ -112,11 +112,6 @@ M.lsp_keys = function(bufnr)
 	local buff_map = vim.api.nvim_buf_set_keymap
 	local opts = { noremap = true, silent = true }
 
-	-- diagnostic
-	buff_map(bufnr, "n", "[d", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
-	buff_map(bufnr, "n", "]d", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
-	buff_map(bufnr, "n", "[s", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-
 	--
 	buff_map(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
 	buff_map(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
@@ -128,15 +123,13 @@ M.lsp_keys = function(bufnr)
 		"n",
 		"<space>wa",
 		"<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>",
-		{ noremap = true, silent = true, desc = "test" }
+		{ noremap = true, silent = true, desc = "add_workspace_folder" }
 	)
 	buff_map(bufnr, "n", "<space>wr", "<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>", opts)
 	buff_map(bufnr, "n", "<space>wl", "<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>", opts)
 	buff_map(bufnr, "n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-	buff_map(bufnr, "n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-	buff_map(bufnr, "n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
 	buff_map(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-	buff_map(bufnr, "n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+	buff_map(bufnr, "n", "<space>f", "<cmd>lua vim.lsp.buf.format()<CR>", opts)
 end
 
 return M
