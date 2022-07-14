@@ -1,5 +1,5 @@
 -- beautiful nvim-treesitter simple config.
-local theme = require("plugins.themes.theme-colors").colors()
+local colors = require("plugins.themes.theme-colors").colors()
 
 local status_ok, treesitter_configs = pcall(require, "nvim-treesitter.configs")
 if not status_ok then
@@ -20,8 +20,8 @@ treesitter_configs.setup({
 		"php",
 		"toml",
 		"latex",
-        "fish",
-        "http"
+		"fish",
+		"http",
 	},
 	highlight = {
 		enable = true, -- false will disable the whole extension
@@ -33,12 +33,12 @@ treesitter_configs.setup({
 	rainbow = {
 		enable = true,
 		extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
-		colors = { theme.red, theme.yellow, theme.blue, theme.purple, theme.cyan },
+		colors = { colors.red, colors.yellow, colors.blue, colors.purple, colors.cyan },
 		max_file_lines = nil, -- Do not enable for files with more than n lines, int
 		-- termcolors = {} -- table of colour name strings
 	},
 	incremental_selection = {
-		enable = true,
+		enable = false,
 		keymaps = {
 			init_selection = "gnn",
 			node_incremental = "grn",
@@ -55,14 +55,32 @@ treesitter_configs.setup({
 				["if"] = "@function.inner",
 				["ac"] = "@class.outer",
 				["ic"] = "@class.inner",
-
-				-- Or you can define your own textobjects like this
-				["iF"] = {
-					python = "(function_definition) @function",
-					cpp = "(function_definition) @function",
-					c = "(function_definition) @function",
-					java = "(method_declaration) @function",
-				},
+				["al"] = "@loop.outer",
+				["il"] = "@loop.inner",
+				["ad"] = "@conditional.outer",
+				["id"] = "@conditional.inner",
+				["aa"] = "@parameter.outer",
+				["ia"] = "@parameter.inner",
+			},
+		},
+		move = {
+			enable = true,
+			set_jumps = true,
+			goto_next_start = {
+				["]m"] = "@function.outer",
+				["]]"] = "@class.outer",
+			},
+			goto_next_end = {
+				["]M"] = "@function.outer",
+				["]["] = "@class.outer",
+			},
+			goto_previous_start = {
+				["[m"] = "@function.outer",
+				["[["] = "@class.outer",
+			},
+			goto_previous_end = {
+				["[M"] = "@function.outer",
+				["[]"] = "@class.outer",
 			},
 		},
 		lsp_interop = {
@@ -74,7 +92,7 @@ treesitter_configs.setup({
 		},
 	},
 	autotag = { enable = true },
-	context_commentstring = { enable = false },
+	-- context_commentstring = { enable = false },
 	matchup = {
 		enable = true, -- mandatory, false will disable the whole extension
 		disable = { "c", "ruby" }, -- optional, list of language that will be disabled
