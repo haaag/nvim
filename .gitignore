@@ -1,10 +1,6 @@
 
 ls/lua-language-server/
-plugin
 spell
-syntax/deluge.vim.bk1
-syntax/deluge.vim.last
-syntax/deluge.vim.orig
 undodir
 lua/plugins/init.lua.bk
 lua/utils/personal-functions.lua
@@ -16,3 +12,13 @@ lua/keys/plugins-mappings.lua
 tmp
 
 removed
+
+syntax/deluge.vim.bk1
+syntax/deluge.vim.last
+syntax/deluge.vim.orig
+plugin
+lua/test.lua
+coq-user-snippets
+lua/lsp/config/emmet.lua
+lua/plugins/themes/gruvbox-baby.lua
+lua/plugins/themes/gruvbox8.lua
