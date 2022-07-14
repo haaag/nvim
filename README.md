@@ -47,9 +47,8 @@
 ### Finder
 * [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) -- Highly extendable fuzzy finder over lists.
 
-### Tabs
+### Tabs & Statusline
 * [akinsho/nvim-bufferline.lua](https://github.com/akinsho/bufferline.nvim) -- A snazzy buffer line.
-* ~~~[shadmansaleh/lualine.nvim](https://github.com/shadmansaleh/lualine.nvim) -- A blazing fast and easy to configure neovim statusline.~~~
 * [tamton-aquib/staline.nvim](https://github.com/tamton-aquib/staline.nvim)
 
 ### UI
@@ -61,15 +60,15 @@
 * [davidgranstrom/nvim-markdown-preview](https://github.com/davidgranstrom/nvim-markdown-preview) -- Markdown preview in the browser.
 * [vimwiki/vimwiki](https://github.com/vimwiki/vimwiki) -- Personal wiki for Vim.
 * [karb94/neoscroll.nvim](https://github.com/karb94/neoscroll.nvim) -- Smooth scrolling.
-* ~~~[kyazdani42/nvim-tree.lua](https://github.com/kyazdani42/nvim-tree.lua) -- File Explorer For Neovim Written In Lua.~~~
 * [nvim-neo-tree/neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) -- Neo-tree is a Neovim plugin to browse the file system and other tree like structures
-* [tjdevries/cyclist.vim](tjdevries/cyclist.vim) -- cycle + listchars = cyclist.vim.
+* [tjdevries/cyclist.vim](https://github.com/tjdevries/cyclist.vim) -- cycle + listchars = cyclist.vim.
 * [szw/vim-maximizer](https://github.com/szw/vim-maximizer) -- Maximizes and restores the current window in Vim.
 * [lukas-reineke/indent-blankline.nvim](https://github.com/lukas-reineke/indent-blankline.nvim) -- Adds indentation guides to all lines (including empty lines).
 * [folke/lsp-colors](https://github.com/folke/lsp-colors.nvim) -- lsp colors
 * [folke/todo-comments.nvim](https://github.com/folke/todo-comments.nvim) -- Highlight and search for todo comments like TODO.
 
 ### Themes
+* [rebelot/kanagawa.nvim](https://github.com/rebelot/kanagawa.nvim) -- NeoVim dark colorscheme inspired by the colors of the famous painting by Katsushika Hokusai.
 * [ellisonleao/gruvbox.nvim](https://github.com/ellisonleao/gruvbox.nvim) -- A port of gruvbox community theme to lua with treesitter support!
 * [eddyekofo94/gruvbox-flat.nvim](https://github.com/eddyekofo94/gruvbox-flat.nvim) -- Dark beautiful Neovim theme.
 * [folke/tokyonight.nvim](https://github.com/folke/tokyonight.nvim) -- A dark and light Neovim theme.
