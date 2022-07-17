@@ -37,6 +37,26 @@ return packer.startup(function()
 	-- Packer can manage itself as an optional plugin
 	use({ "wbthomason/packer.nvim" })
 	-- }}}
+	-- performance: {{{
+
+	-- CursorHold bug: https://github.com/neovim/neovim/issues/12587
+	use({
+		"antoinemadec/FixCursorHold.nvim",
+		event = { "BufRead", "BufNewFile" },
+		config = function()
+			vim.g.cursorhold_updatetime = 100
+		end,
+	})
+
+	-- impatient
+	use({ "lewis6991/impatient.nvim", config = [[require('plugins.tools.impatient')]] })
+
+	-- startuptime
+	use({ "dstein64/vim-startuptime" })
+
+	-- better filetype.vim
+	use({ "nathom/filetype.nvim" })
+	-- }}}
 	-- lsp: {{{
 
 	-- lspconfig
@@ -127,9 +147,9 @@ return packer.startup(function()
 		config = function()
 			require("fidget").setup({
 				-- text = { spinner = "moon" }, -- grow_vertical, bouncing_bar, pipe
-                text = {spinner = 'dots_scrolling'},
-                window = { blend = 0 },
-            })
+				text = { spinner = "dots_scrolling" },
+				window = { blend = 0 },
+			})
 		end,
 	})
 
@@ -377,6 +397,14 @@ return packer.startup(function()
 	-- 	cmd = { "TroubleToggle", "Trouble", "TroubleClose" },
 	-- })
 
+    -- hlargs.nvim
+	use({
+		"m-demare/hlargs.nvim",
+		config = function()
+			require("hlargs").setup()
+		end,
+	})
+
 	-- }}}
 	-- git {{{
 
@@ -473,26 +501,6 @@ return packer.startup(function()
 		config = [[require('plugins.ui.neoscroll')]],
 		event = "WinScrolled",
 	})
-	-- }}}
-	-- performance: {{{
-
-	-- CursorHold bug: https://github.com/neovim/neovim/issues/12587
-	use({
-		"antoinemadec/FixCursorHold.nvim",
-		event = { "BufRead", "BufNewFile" },
-		config = function()
-			vim.g.cursorhold_updatetime = 100
-		end,
-	})
-
-	-- impatient
-	use({ "lewis6991/impatient.nvim", config = [[require('plugins.tools.impatient')]] })
-
-	-- startuptime
-	use({ "dstein64/vim-startuptime" })
-
-	-- better filetype.vim
-	use({ "nathom/filetype.nvim" })
 	-- }}}
 	-- debugging {{{
 
