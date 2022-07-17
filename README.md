@@ -43,6 +43,7 @@
 * [windwp/nvim-autopairs](https://github.com/windwp/nvim-autopairs) - A minimalist autopairs for Neovim written by Lua.
 * [nvim-treesitter/nvim-treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects) -- Create your own textobjects using tree-sitter queries!
 * [Vimjas/vim-python-pep8-indent](https://github.com/Vimjas/vim-python-pep8-indent) -- Modifies Vim’s indentation behavior to comply with PEP8
+* [hlargs.nvim](https://github.com/m-demare/hlargs.nvim) -- Highlight arguments' definitions and usages, asynchronously, using Treesitter
 
 ### Finder
 * [nvim-telescope/telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) -- Highly extendable fuzzy finder over lists.
