@@ -60,10 +60,12 @@ M.capabilities = function()
 		return capabilities
 	end
 
-	local present_cmp, cmp = pcall(require, "cmp_nvim_lsp")
+	local present_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 	if present_cmp then
         local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities = cmp.update_capabilities(capabilities)
+		capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+        capabilities.textDocument.completion.completionItem.snippetSupport = true
+        capabilities.textDocument.colorProvider = { dynamicRegistration = false }
 		return capabilities
 	end
 end
