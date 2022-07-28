@@ -112,11 +112,11 @@ M.load_autocmd = function()
 	cmd([[ au ColorScheme * hi Normal ctermbg=none guibg=none ]])
 
     -- winbar
-	vim.api.nvim_create_autocmd({ "CursorMoved", "BufWinEnter", "BufFilePost", "InsertEnter", "BufWritePost" }, {
+	--[[ vim.api.nvim_create_autocmd({ "CursorMoved", "BufWinEnter", "BufFilePost", "InsertEnter", "BufWritePost" }, {
 		callback = function()
 			require("plugins.ui.winbar_new").get_winbar()
 		end,
-	})
+	}) ]]
 end
 
 return M

@@ -129,10 +129,7 @@ return packer.startup(function()
 		config = function()
 			local g = vim.g
 			g.vista_sidebar_width = 48
-			-- g.vista_default_executive = "nvim_lsp"
-			-- g.vista_echo_cursor_strategy = "floating_win"
 		end,
-		-- cmd = "Vista",
 	})
 
 	-- lsp fidget
@@ -397,7 +394,7 @@ return packer.startup(function()
 	-- 	cmd = { "TroubleToggle", "Trouble", "TroubleClose" },
 	-- })
 
-    -- hlargs.nvim
+	-- hlargs.nvim
 	use({
 		"m-demare/hlargs.nvim",
 		config = function()
@@ -476,17 +473,6 @@ return packer.startup(function()
 	use({
 		"tjdevries/cyclist.vim",
 	})
-
-	use({
-		"SmiteshP/nvim-gps",
-		requires = "nvim-treesitter/nvim-treesitter",
-		config = [[require('plugins.ui.gps')]],
-	})
-
-	-- ui
-	-- use({
-	--     "stevearc/dressing.nvim"
-	-- })
 
 	-- statusline - tabline
 	use({
