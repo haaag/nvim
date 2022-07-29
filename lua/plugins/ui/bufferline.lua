@@ -1,6 +1,4 @@
 vim.o.termguicolors = true
--- local theme = require("plugins.themes.theme-colors").colors()
-local theme = require("kanagawa.colors").setup()
 
 local status_ok, bufferline = pcall(require, "bufferline")
 if not status_ok then
@@ -16,11 +14,18 @@ bufferline.setup({
 	options = {
 		numbers = "ordinal", -- | "ordinal" | "buffer_id" | "both"
 		close_command = "bdelete! %d",
-		offsets = { { filetype = "neo-tree", text = "", padding = 1 } },
+		offsets = {
+			{
+				filetype = "neo-tree",
+				text = "File Explorer",
+				padding = 1,
+			},
+		},
+		close_icon = "",
 		-- buffer_close_icon = "",
-		close_icon = "",
+		-- close_icon = "",
 		-- modified_icon = "",
-		indicator_icon = "▎",
+		-- indicator_icon = "▎",
 		-- indicator_icon = "▏",
 		left_trunc_marker = "",
 		right_trunc_marker = "",
@@ -32,20 +37,15 @@ bufferline.setup({
 		view = "multiwindow",
 		show_buffer_close_icons = false,
 		show_close_icon = false,
-		-- separator_style = "thin", -- "slant" | "thick" | "thin"
-		separator_style = { "", "" },
+		separator_style = { "", "" }, -- "thin" | "slant" | "thick" | "thin"
 		always_show_bufferline = true,
-		name_formatter = function(buf) -- buf contains a "name", "path" and "bufnr"
-			-- remove extension from markdown files for example
-			if buf.name:match("%.md") then
-				return vim.fn.fnamemodify(buf.name, ":t:r")
-			end
-		end,
+		-- name_formatter = function(buf) -- buf contains a "name", "path" and "bufnr"
+		-- 	-- remove extension from markdown files for example
+		-- 	if buf.name:match("%.md") then
+		-- 		return vim.fn.fnamemodify(buf.name, ":t:r")
+		-- 	end
+		-- end,
 	},
-	-- highlights = {
-	-- 	fill = { guifg = theme.darkgrey, guibg = theme.other_background },
-	-- 	indicator_selected = { guifg = theme.blue },
-	-- },
 })
 
 -- mappings

@@ -10,21 +10,15 @@ if not wk_status_ok then
 end
 
 local colors = require("plugins.themes.theme-colors").colors()
--- local icons = require("plugins.ui.styles").icons()
 local hi = vim.api.nvim_set_hl
 
 gitsigns.setup({
 	signs = {
-		add = { hl = "GitSignsAdd", text = "+", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-		change = { hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
+		add = { hl = "GitSignsAdd", text = "│", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+		change = { hl = "GitSignsChange", text = "│", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
 		delete = { hl = "GitSignsDelete", text = "_", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
 		topdelete = { hl = "GitSignsDelete", text = "‾", numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
 		changedelete = { hl = "GitSignsChange", text = "~", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-		-- add = { hl = "GitSignsAdd", text = icons.git.add_thick, numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-		-- change = { hl = "GitSignsChange", text = icons.git.add_thick, numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-		-- add = { hl = "GitSignsAdd", text = "▏", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-		-- change = { hl = "GitSignsChange", text = "▏", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-		-- change = { hl = "GitSignsChange", text = "▏", numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
 	},
 	signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
 	numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
@@ -61,9 +55,9 @@ gitsigns.setup({
 })
 
 -- highlights
-hi(0, "GitSignsAdd", { bg = "none", fg = colors.green })
-hi(0, "GitSignsChange", { bg = "none", fg = colors.blue })
-hi(0, "GitSignsDelete", { bg = "none", fg = colors.red })
+-- hi(0, "GitSignsAdd", { bg = "none", fg = colors.green })
+-- hi(0, "GitSignsChange", { bg = "none", fg = colors.blue })
+-- hi(0, "GitSignsDelete", { bg = "none", fg = colors.red })
 
 -- mappings
 --[[ wk.register({

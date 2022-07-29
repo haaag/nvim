@@ -2,6 +2,7 @@ local M = {}
 
 M.custom_attach = function(client, bufnr)
 	local api = vim.api
+
 	require("keys.mappings").lsp_keys(bufnr)
 
 	api.nvim_create_autocmd("CursorHold", {
@@ -62,10 +63,10 @@ M.capabilities = function()
 
 	local present_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 	if present_cmp then
-        local capabilities = vim.lsp.protocol.make_client_capabilities()
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
-        capabilities.textDocument.completion.completionItem.snippetSupport = true
-        capabilities.textDocument.colorProvider = { dynamicRegistration = false }
+		capabilities.textDocument.completion.completionItem.snippetSupport = true
+		capabilities.textDocument.colorProvider = { dynamicRegistration = false }
 		return capabilities
 	end
 end

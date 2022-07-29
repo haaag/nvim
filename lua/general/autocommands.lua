@@ -31,7 +31,7 @@ M.load_autocmd = function()
 	api.nvim_create_autocmd("FileType", { pattern = "man", command = [[nnoremap <buffer><silent> q :quit<CR>]] })
 
 	-- show cursor line only in active window
-	--[[ local cursorGrp = api.nvim_create_augroup("CursorLine", { clear = true })
+	local cursorGrp = api.nvim_create_augroup("CursorLine", { clear = true })
 	api.nvim_create_autocmd(
 		{ "InsertLeave", "WinEnter" },
 		{ pattern = "*", command = "set cursorline", group = cursorGrp }
@@ -40,7 +40,6 @@ M.load_autocmd = function()
 		{ "InsertEnter", "WinLeave" },
 		{ pattern = "*", command = "set nocursorline", group = cursorGrp }
 	)
-    ]]
 
 	-- Automatically deletes all trailing whitespace on save.
 	api.nvim_create_autocmd("BufWritePre", {
@@ -81,42 +80,14 @@ M.load_autocmd = function()
 	})
 
 	-- neomutt compose
+	-- TODO: Update neomutt au to nvim_create_autocmd
 	cmd([[ autocmd BufNewFile,BufRead /tmp/neomutt* set filetype=markdown ]])
-
-    -- TODO: Update neomutt au to nvim_create_autocmd
-	-- vim.api.nvim_create_autocmd("BufNewFile,BufRead", {
-	--     pattern = "*neomutt*",
-	--     callback = function ()
-	--         vim.cmd([[ set filetype=markdown ]])
-	--     end
-	-- })
-    --
-	-- vim.api.nvim_create_autocmd("FileType", {
-	-- 	group = misc,
-	-- 	pattern = "neomutt*",
-	-- 	callback = function()
-	-- 		local data = {
-	-- 			file = vim.fn.expand("<afile>"),
-	-- 		}
-	-- 		-- vim.cmd([[ set filetype=vimwiki ]])
-	-- 		vim.schedule(function()
-	-- 			print(vim.inspect(data))
-	-- 		end)
-	-- 	end,
-	-- })
 
 	-- markdown
 	-- cmd([[ autocmd BufNewFile,BufRead *.markdown set filetype=markdown ]])
 
 	-- alpha
 	cmd([[ au ColorScheme * hi Normal ctermbg=none guibg=none ]])
-
-    -- winbar
-	--[[ vim.api.nvim_create_autocmd({ "CursorMoved", "BufWinEnter", "BufFilePost", "InsertEnter", "BufWritePost" }, {
-		callback = function()
-			require("plugins.ui.winbar_new").get_winbar()
-		end,
-	}) ]]
 end
 
 return M
