@@ -60,11 +60,11 @@
     "body": "${1:variable_name} = zoho.inventory.updateRecord(${2:module_name}, org_id, ${3:record_id}, '${4:connection}')"
   },
   "jobHeader": {
-    "prefix": "zonheader",
+    "prefix": "jobheader",
     "body": [
         "/*------------------------------------------------------------------------------------------------------",
-        "* Author:    Zonecta",
-        "* Email:     soporte@zonecta.com",
+        "* Author:    XX",
+        "* Email:     XX@XX.com",
         "* Module:    '${1:<module_name>}'",
         "* Apps:      '${2:<app_name>}'",
         "* Function:  $TM_FILENAME_BASE()",
