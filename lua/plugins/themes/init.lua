@@ -1,4 +1,0 @@
--- require("plugins.themes.gruvbox-nvim")
--- require("plugins.themes.gruvbox-material")
--- require("plugins.themes.tokyonight")
--- require('plugins.themes.gruvbox-flat')
