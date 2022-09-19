@@ -1,0 +1,9 @@
+snippet variable
+alias var
+    {{ ${0:var} }}
+
+snippet blockcontent
+alias {% block %}
+    {% block ${1:content} %}
+        ${0:content}
+    {% endblock %}

@@ -1,0 +1,61 @@
+snippet toplevel
+alias tl
+  TOP_LEVEL = Path(__file__).resolve().parent
+
+snippet eprint
+  print(${0:msg}, file=stderr)
+
+snippet dataclass
+alias dc
+  @dataclass(frozen=True)
+  class ${1:Classname}:
+      ${2:prop}: ${0:type}
+
+snippet enum
+  class ${1:Classname}(Enum):
+      ${2:member} = ${0:auto()}
+
+snippet suppress
+  with suppress(${1:Exception}):
+      ${2:pass}
+
+snippet time_fmt_1
+alias tfmt1
+  "%Y-%m-%d %H:%M"
+
+snippet time_fmt_2
+alias tfmt2
+  "%Y-%m-%d %H:%M:%S"
+
+snippet time_fmt_3
+alias tfmt3
+  "%Y-%m-%d %H:%M:%S %Z"
+
+snippet main
+  from argparse import ArgumentParser, Namespace
+  from asyncio import run
+  from pathlib import Path
+  from sys import exit
+
+  TOP_LEVEL = Path(__file__).resolve().parent
+
+
+  def _parse_args() -> Namespace:
+      parser = ArgumentParser()
+      ${0}
+      return parser.parse_args()
+
+
+  async def main() -> int:
+      args = _parse_args()
+
+      return 0
+
+
+  if __name__ == "__main__":
+      try:
+          code = run(main())
+      except KeyboardInterrupt:
+          exit(130)
+      else:
+          exit(code)

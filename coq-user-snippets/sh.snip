@@ -1,0 +1,69 @@
+snippet prelude
+  #!/usr/bin/env bash
+
+  set -eu
+  set -o pipefail
+  shopt -s globstar nullglob
+
+
+  cd "\$(dirname "\$0")" || exit 1
+
+
+  ${0:exec}
+
+snippet cd
+  cd "\$(dirname "\$0")" || exit 1
+
+snippet globopt_f
+  shopt -s globstar failglob
+
+snippet globopt_n
+  shopt -s globstar nullglob
+
+snippet require
+  # test if installed
+  hash "${0:BIN_1}" "${0:BIN_2}" "${0:BIN_3}"
+
+snippet println
+alias pl
+  printf '%s\\n' "${0:...}"
+
+snippet stderr
+alias err
+  >&2
+
+snippet stdout
+alias out
+  2>&1
+
+snippet readarray_1
+alias ra1
+  readarray -t -d \$'\\n' ${0:ARRAY} < <(${1:CMD})
+
+snippet readarray_2
+alias ra2
+  readarray -t -d \$'\\n' ${0:ARRAY} <<< "\$${1:VAR}"
+
+snippet array
+  ${0:ARRAY}=(
+    ${1:VAR}
+  )
+
+snippet for_array
+alias fa
+  for "\$${1:var}" in "\${${0:ARRAY}[@]}"
+  do
+    ${2:...}
+  done
+
+snippet heredoc_1
+alias hd_1
+  cat <<- 'EOF'
+    ${0:...}
+  EOF
+
+snippet heredoc_2
+alias hd_2
+  cat <<- EOF
+    ${0:...}
+  EOF
