@@ -1,0 +1,5 @@
+require("me.general.options").load_options()
+require("me.general.options").disable_builtin_plugs()
+require("me.general.options").other_options()
+require("me.general.keymaps")
+require("me.general.autocmd").load_autocmd()
