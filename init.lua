@@ -1,21 +1,21 @@
--- vim.lsp.set_log_level("debug")
---
--- require('impatient')
-require("plugins.tools.impatient")
-
--- Do not source the default filetype.vim
-vim.g.did_load_filetypes = 1
-
-local modules = {
-	"general",
-	"keys",
-	"lsp",
-	"plugins",
-	"plugins.tools",
-}
-
-for i = 1, #modules, 1 do
-	pcall(require, modules[i])
+local present_imp, impatient = pcall(require, "impatient")
+if present_imp then
+  impatient.enable_profile()
 end
 
--- vim.lsp.set_log_level("debug")
+for _, source in ipairs({
+  "me.general",
+  "me.plugins",
+  "me.lsp",
+}) do
+
+  local status_ok, fault = pcall(require, source)
+  if not status_ok then
+    vim.api.nvim_err_writeln("Failed to load " .. source .. "\n\n" .. fault)
+  end
+end
+
+-- vim.cmd([[ au ColorScheme * hi Normal ctermbg=NONE guibg=NONE ]])
+-- vim.cmd([[ au ColorScheme * highlight! link FloatBorder Normal ]])
+-- vim.cmd([[ au ColorScheme * hi TelescopeBorder ctermbg=NONE guibg=NONE ]])
+-- vim.cmd('hi! link MiniIndentscopeSymbol Whitespace')
