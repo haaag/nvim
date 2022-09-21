@@ -1,0 +1,7 @@
+require("me.lsp.lspconfig")
+require("me.lsp.servers.sumneko_lua")
+require("me.lsp.servers.pylsp")
+require("me.lsp.servers.emmet")
+require("me.lsp.servers.tailwind")
+require("me.lsp.servers.tsserver").setup()
+-- require("me.lsp.servers.pyright")
