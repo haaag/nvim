@@ -24,9 +24,7 @@ treesitter_configs.setup({
     disable = { "c", "rust", "ocamllex" },
     additional_vim_regex_highlighting = false, -- list of language that will be disabled
   },
-  indent = {
-    enable = false,
-  },
+  indent = { enable = true, disable = { "python", "css" } },
   rainbow = {
     enable = true,
     extended_mode = true, -- Also highlight non-bracket delimiters like html tags, boolean or table: lang -> boolean
@@ -43,7 +41,7 @@ treesitter_configs.setup({
     -- termcolors = {} -- table of colour name strings
   },
   incremental_selection = {
-    enable = false,
+    enable = true,
     keymaps = {
       init_selection = "gnn",
       node_incremental = "grn",
@@ -52,57 +50,56 @@ treesitter_configs.setup({
     },
   },
   autotag = { enable = true },
-  -- textobjects = {
-  -- 	select = {
-  -- 		enable = true,
-  -- 		keymaps = {
-  -- 			-- You can use the capture groups defined in textobjects.scm
-  -- 			["af"] = "@function.outer",
-  -- 			["if"] = "@function.inner",
-  -- 			["ac"] = "@class.outer",
-  -- 			["ic"] = "@class.inner",
-  -- 			["al"] = "@loop.outer",
-  -- 			["il"] = "@loop.inner",
-  -- 			["ad"] = "@conditional.outer",
-  -- 			["id"] = "@conditional.inner",
-  -- 			["aa"] = "@parameter.outer",
-  -- 			["ia"] = "@parameter.inner",
-  -- 		},
-  -- 	},
-  -- 	move = {
-  -- 		enable = true,
-  -- 		set_jumps = true,
-  -- 		goto_next_start = {
-  -- 			["]m"] = "@function.outer",
-  -- 			["]]"] = "@class.outer",
-  -- 		},
-  -- 		goto_next_end = {
-  -- 			["]M"] = "@function.outer",
-  -- 			["]["] = "@class.outer",
-  -- 		},
-  -- 		goto_previous_start = {
-  -- 			["[m"] = "@function.outer",
-  -- 			["[["] = "@class.outer",
-  -- 		},
-  -- 		goto_previous_end = {
-  -- 			["[M"] = "@function.outer",
-  -- 			["[]"] = "@class.outer",
-  -- 		},
-  -- 	},
-  -- 	lsp_interop = {
-  -- 		enable = true,
-  -- 		peek_definition_code = {
-  -- 			["df"] = "@function.outer",
-  -- 			["dF"] = "@class.outer",
-  -- 		},
-  -- 	},
-  -- },
+  textobjects = {
+    select = {
+      enable = true,
+      keymaps = {
+        -- You can use the capture groups defined in textobjects.scm
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+        ["al"] = "@loop.outer",
+        ["il"] = "@loop.inner",
+        ["ad"] = "@conditional.outer",
+        ["id"] = "@conditional.inner",
+        ["aa"] = "@parameter.outer",
+        ["ia"] = "@parameter.inner",
+      },
+    },
+    move = {
+      enable = true,
+      set_jumps = true,
+      goto_next_start = {
+        ["]m"] = "@function.outer",
+        ["]]"] = "@class.outer",
+      },
+      goto_next_end = {
+        ["]M"] = "@function.outer",
+        ["]["] = "@class.outer",
+      },
+      goto_previous_start = {
+        ["[m"] = "@function.outer",
+        ["[["] = "@class.outer",
+      },
+      goto_previous_end = {
+        ["[M"] = "@function.outer",
+        ["[]"] = "@class.outer",
+      },
+    },
+    lsp_interop = {
+      enable = true,
+      peek_definition_code = {
+        ["df"] = "@function.outer",
+        ["dF"] = "@class.outer",
+      },
+    },
+  },
+  matchup = {
+    enable = true, -- mandatory, false will disable the whole extension
+    disable = { "c", "ruby" }, -- optional, list of language that will be disabled
+  },
   -- context_commentstring = { enable = true },
-  -- matchup = {
-  -- 	enable = true, -- mandatory, false will disable the whole extension
-  -- 	disable = { "c", "ruby" }, -- optional, list of language that will be disabled
-  -- 	-- [options]
-  -- },
   --[[ refactor = {
 			highlight_definitions = { enable = true },
 			highlight_current_scope = { enable = false },
