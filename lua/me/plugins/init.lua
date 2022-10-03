@@ -21,23 +21,11 @@ return require("packer").startup(function(use)
     end,
   })
 
-  -- must to load first
+  -- impatient
   use({ "lewis6991/impatient.nvim" })
 
-  -- kanagawa
-  use({
-    "rebelot/kanagawa.nvim",
-    config = function()
-      require("kanagawa").setup({
-        -- dimInactive = true,
-        transparent = true,
-        globalStatus = true,
-      })
-
-      vim.cmd("colorscheme kanagawa")
-    end,
-    disable = false,
-  })
+  -- better filetype.vim
+  use({ "nathom/filetype.nvim" })
 
   -- mason lspconfig
   use({
@@ -66,29 +54,20 @@ return require("packer").startup(function(use)
       end,
     },
     -- Parenthesis highlighting
-    {
+    --[[ {
       "p00f/nvim-ts-rainbow",
       after = "nvim-treesitter",
-    },
+    }, ]]
     -- Autoclose tags
     {
       "windwp/nvim-ts-autotag",
       after = "nvim-treesitter",
     },
-    -- Context based commenting
-    --[[ {
-      "JoosepAlviste/nvim-ts-context-commentstring",
+    {
+      "nvim-treesitter/nvim-treesitter-textobjects",
       after = "nvim-treesitter",
-    }, ]]
+    },
   })
-
-  -- treesitter-refactor
-  -- use({ "nvim-treesitter/nvim-treesitter-refactor" })
-
-  -- use({
-  --     "nvim-treesitter/nvim-treesitter-textobjects",
-  --     requires = { "nvim-treesitter/nvim-treesitter" },
-  -- })
 
   -- comment
   use({
@@ -123,36 +102,6 @@ return require("packer").startup(function(use)
   })
 
   -- completion
-  --[[ use({
-		{
-			"hrsh7th/nvim-cmp",
-			event = "InsertEnter",
-			config = function()
-				require("me.configs.cmp")
-			end,
-			requires = {
-				{
-					"hrsh7th/vim-vsnip",
-					config = function()
-						vim.g.vsnip_snippet_dir = "$HOME/.config/nvim/vsnip"
-					end,
-				},
-			},
-		},
-		{ "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
-		{ "hrsh7th/cmp-nvim-lua", after = "nvim-cmp" },
-		{ "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
-		{ "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-		{ "hrsh7th/cmp-path", after = "nvim-cmp" },
-		{ "f3fora/cmp-spell", after = "nvim-cmp" },
-		{ "rafamadriz/friendly-snippets", after = "nvim-cmp" },
-		{ "hrsh7th/cmp-nvim-lsp-signature-help", after = "nvim-cmp" },
-		{ "andersevenrud/cmp-tmux", after = "nvim-cmp" },
-		{ "lukas-reineke/cmp-under-comparator", after = "nvim-cmp" },
-		{ "lukas-reineke/cmp-rg", after = "nvim-cmp" },
-	}) ]]
-
-  -- completion
   use({
     "ms-jpq/coq_nvim",
     branch = "coq",
@@ -175,7 +124,7 @@ return require("packer").startup(function(use)
       require("fidget").setup({
         -- grow_vertical, bouncing_bar, pipe, dots_scrolling
         text = { spinner = "dots_scrolling" },
-        -- window = { winblend = 100 },
+        window = { winblend = 100 },
       })
     end,
   })
@@ -193,12 +142,38 @@ return require("packer").startup(function(use)
 
   -- themes:
   -- tokyonight
+  use({
+    "folke/tokyonight.nvim",
+    config = function()
+      require("tokyonight").setup({
+        style = "storm",
+        transparent = false,
+        terminal_colors = true,
+        styles = {
+          comments = { italic = true },
+          keywords = { italic = true },
+          functions = { italic = true },
+        },
+        sidebars = { "qf", "vista", "terminal", "packer", "tagbar" },
+        dim_inactive = false,
+      })
+      vim.cmd([[ colorscheme tokyonight ]])
+    end,
+  })
+
+  -- kanagawa
   --[[ use({
-		"folke/tokyonight.nvim",
-		config = function()
-			require("me.ui.tokyonight-theme")
-		end,
-	}) ]]
+    "rebelot/kanagawa.nvim",
+    config = function()
+      require("kanagawa").setup({
+        -- dimInactive = true,
+        transparent = true,
+        globalStatus = true,
+      })
+      vim.cmd("colorscheme kanagawa")
+    end,
+    disable = false,
+  }) ]]
 
   -- startuptime
   use({
@@ -206,7 +181,7 @@ return require("packer").startup(function(use)
     cmd = "StartupTime",
   })
 
-  -- neo-tree
+  -- neo-tree . fileexplorer
   use({
     "nvim-neo-tree/neo-tree.nvim",
     requires = {
@@ -251,10 +226,10 @@ return require("packer").startup(function(use)
   })
 
   -- nonicons
-  use({
-    "yamatsum/nvim-nonicons",
-    requires = { "kyazdani42/nvim-web-devicons" },
-  })
+  -- use({
+  --   "yamatsum/nvim-nonicons",
+  --   requires = { "kyazdani42/nvim-web-devicons" },
+  -- })
 
   -- colorizer
   use({
@@ -271,9 +246,9 @@ return require("packer").startup(function(use)
   })
 
   -- lightspeed
-  use({
+  --[[ use({
     "ggandor/lightspeed.nvim",
-  })
+  }) ]]
 
   -- better buffer del
   use({
@@ -281,7 +256,8 @@ return require("packer").startup(function(use)
     cmd = "BufDel",
   })
 
-  use({
+  -- buffer list
+  --[[ use({
     "matbme/JABS.nvim",
     config = function()
       require("jabs").setup({
@@ -289,7 +265,7 @@ return require("packer").startup(function(use)
         width = 80,
       })
     end,
-  })
+  }) ]]
 
   -- syntax highlight
   use({
@@ -354,12 +330,6 @@ return require("packer").startup(function(use)
     end,
   })
 
-  -- Live server
-  use({
-    "manzeloth/live-server",
-    cmd = "LiveServer",
-  })
-
   -- null-ls
   use({
     "jose-elias-alvarez/null-ls.nvim",
@@ -387,11 +357,11 @@ return require("packer").startup(function(use)
   }) ]]
 
   -- lsp signature
-  --[[ use({
+  use({
     "ray-x/lsp_signature.nvim",
     event = "InsertEnter",
     after = "nvim-lspconfig",
-  }) ]]
+  })
 
   -- maximizer
   use({
@@ -406,16 +376,7 @@ return require("packer").startup(function(use)
   use({
     "lukas-reineke/lsp-format.nvim",
     config = function()
-      require("me.configs.lsp_format")
-    end,
-  })
-
-  -- CursorHold bug: https://github.com/neovim/neovim/issues/12587
-  use({
-    "antoinemadec/FixCursorHold.nvim",
-    event = { "BufRead", "BufNewFile" },
-    config = function()
-      vim.g.cursorhold_updatetime = 100
+      require("me.configs.format")
     end,
   })
 
@@ -435,10 +396,12 @@ return require("packer").startup(function(use)
     end,
   })
 
+  -- typescript
   use({
     "jose-elias-alvarez/typescript.nvim",
   })
 
+  -- inlayhints for typescript
   use({
     "lvimuser/lsp-inlayhints.nvim",
     config = function()
@@ -446,11 +409,64 @@ return require("packer").startup(function(use)
     end,
   })
 
+  --
   use({
     "folke/todo-comments.nvim",
     config = function()
       require("todo-comments").setup({})
     end,
+  })
+
+  -- annotation Toolkit
+  use({
+    "danymat/neogen",
+    config = function()
+      require("neogen").setup({})
+    end,
+    cmd = "Neogen",
+    requires = "nvim-treesitter/nvim-treesitter",
+  })
+
+  -- winbar
+  use({
+    "SmiteshP/nvim-navic",
+    config = function()
+      require("me.lsp.navic").setup()
+    end,
+  })
+
+  -- debugging with dap.
+  use({
+    {
+      "mfussenegger/nvim-dap",
+      module = "dapui",
+      config = function()
+        require("me.configs.dap").setup()
+      end,
+      requires = "folke/which-key.nvim",
+    },
+    {
+      "rcarriga/nvim-dap-ui",
+      requires = { "mfussenegger/nvim-dap" },
+    },
+    {
+      "theHamsta/nvim-dap-virtual-text",
+      requires = { "mfussenegger/nvim-dap" },
+    },
+    {
+      "nvim-telescope/telescope-dap.nvim",
+      requires = {
+        { "mfussenegger/nvim-dap" },
+        { "nvim-telescope/telescope.nvim" },
+      },
+    },
+    --[[ {
+      "mfussenegger/nvim-dap-python",
+      requires = { "mfussenegger/nvim-dap" },
+      config = function()
+        require("dap-python").setup("~/.local/debugpy/bin/python")
+      end,
+    }, ]]
   })
 
   -- Automatically set up your configuration after cloning packer.nvim
