@@ -8,7 +8,7 @@ map("n", "<Space>", "<NOP>", options)
 vim.g.mapleader = " "
 
 -- Alternate way to save
-map("n", "<C-s>", ":w<CR>", options)
+-- map("n", "<C-s>", ":w<CR>", options)
 
 -- Shortcut to use blackhole register by default
 map("v", "d", '"_d', options)
@@ -39,8 +39,8 @@ map("i", ":", ":<c-g>u", silent)
 -- Use alt + hjkl to resize windows:
 map("n", "<M-j>", ":resize -2<CR>", options)
 map("n", "<M-k>", ":resize +2<CR>", options)
-map("n", "<M-h>", ":vertical resize -2<CR>", options)
-map("n", "<M-l>", ":vertical resize +2<CR>", options)
+map("n", "<M-l>", ":vertical resize -2<CR>", options)
+map("n", "<M-h>", ":vertical resize +2<CR>", options)
 
 -- Keep search results centred
 map("n", "n", "nzzzv", silent)
@@ -55,5 +55,5 @@ map("v", "J", ":move '>+1<CR>gv-gv", {})
 
 -- toggle numbers
 vim.keymap.set("n", "<leader>bt", function()
-	require("me.general.utils").toggle_numbers_mode()
+  require("me.general.utils").toggle_numbers_mode()
 end, { desc = "Toggle numbers" })
