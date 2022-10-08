@@ -1,9 +1,14 @@
 -- Sumneko
-local custom_attach = require("me.lsp.lspconfig").custom_attach
-local capabilities  = require("me.lsp.lspconfig").capabilities()
+local default_on_attach = require("me.lsp.lspconfig").custom_attach
 local lspconfig     = require("lspconfig")
+local coq = require("coq")
+local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-lspconfig.sumneko_lua.setup({
+local custom_attach = function(client, bufnr)
+	default_on_attach(client, bufnr)
+end
+
+lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
   capabilities = capabilities,
   on_attach = custom_attach,
   single_file_support = false,
@@ -27,4 +32,4 @@ lspconfig.sumneko_lua.setup({
       },
     },
   },
-})
+}))

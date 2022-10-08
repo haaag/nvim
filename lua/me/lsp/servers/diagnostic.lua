@@ -50,19 +50,6 @@ M.load_diagnostic_config = function()
     focusable = false,
     close_events = { "InsertCharPre", "CursorMoved" },
   })
-
-  -- mappings
-  --[[ map("n", "[d", function()
-		vim.diagnostic.goto_prev()
-	end, { desc = "Prev diagnostic" })
-
-	map("n", "]d", function()
-		vim.diagnostic.goto_next()
-	end, { desc = "Next diagnostic" })
-
-	map("n", "[D", function()
-		vim.diagnostic.open_float()
-	end, { desc = "Float diagnostic" }) ]]
 end
 
 return M

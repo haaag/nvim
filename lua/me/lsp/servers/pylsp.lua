@@ -1,24 +1,20 @@
 local default_on_attach = require("me.lsp.lspconfig").custom_attach
 local capabilities = require("me.lsp.lspconfig").capabilities()
 local lspconfig = require("lspconfig")
+local coq = require("coq")
 
 local custom_attach = function(client, bufnr)
   default_on_attach(client, bufnr)
-  --[[ client.server_capabilities.renameProvider = false
-  client.server_capabilities.completionProvider = false
-  client.server_capabilities.document_formatting = false -- 0.7 and earlier ]]
-  -- client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
 end
 
-lspconfig.pylsp.setup({
-  on_attach = custom_attach,
-  capabilities = capabilities,
-  settings = {
+local settings = {
     pylsp = {
+      configurationSources = { "mypy" },
       plugins = {
-        pylint = { enabled = true, executable = "pylint" },
+        pylint = { enabled = false, executable = "pylint" },
         pyflakes = { enabled = false },
         pycodestyle = { enabled = false },
+        pylsp_mypy = { enabled = true, live_mode = true },
         jedi_completion = {
           enabled = true,
           fuzzy = true,
@@ -29,10 +25,15 @@ lspconfig.pylsp.setup({
         jedi_signature_help = { enabled = true },
         jedi_symbols = {
           enabled = true,
-          all_scopes = true
+          all_scopes = true,
         },
         flake8 = { enabled = false },
       },
     },
-  },
+  }
+
+lspconfig.pylsp.setup({coq.lsp_ensure_capabilities{
+  capabilities = capabilities},
+  on_attach = custom_attach,
+  settings = settings
 })
