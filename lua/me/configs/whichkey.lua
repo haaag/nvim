@@ -51,12 +51,10 @@ wk.setup({
 
 wk.register({
   ["?"] = { "<CMD>Neotree current %:p:h:h %:p<CR>", "Explore current" },
-  ["bg"] = { '<CMD>lua require("telescope.builtin").buffers(require("telescope.themes").get_dropdown({hidden = true, previewer = false}))<CR>',
-    "Go to buffer" },
+  -- ["bg"] = { '<CMD>lua require("telescope.builtin").buffers(require("telescope.themes").get_dropdown({hidden = true, previewer = false}))<CR>',
+  --   "Go to buffer" },
   ["<F2>"] = { "<CMD>Vista!!<CR>", "Tagbar" },
   ["<F3>"] = { "<Cmd>NeoTreeRevealToggle<CR>", "NeoTree Reveal" },
-  -- ["<A-.>"] = { "<Cmd>BufferNext<CR>", "Next buffer" },
-  -- ["<A-,>"] = { "<Cmd>BufferPrevious<CR>", "Prev buffer" },
   ["<A-.>"] = { "<Cmd>bnext<CR>", "Next buffer" },
   ["<A-,>"] = { "<Cmd>bprevious<CR>", "Prev buffer" },
   ["<C-f>"] = { "<Cmd>Telescope find_files<CR>", "Find files" },

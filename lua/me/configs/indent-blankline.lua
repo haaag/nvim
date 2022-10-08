@@ -48,9 +48,12 @@ indent_blankline.setup({
     "import_statement",
     "operation_type",
   },
-  show_trailing_blankline_indent = false,
   use_treesitter = true,
+  show_trailing_blankline_indent = false,
   char = "▏",
   context_char = "▏",
   show_current_context = true,
+  show_current_context_start = false,
+  show_end_of_line = false,
+  space_char_blankline = " ",
 })
