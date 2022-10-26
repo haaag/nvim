@@ -55,5 +55,5 @@ map("v", "J", ":move '>+1<CR>gv-gv", {})
 
 -- toggle numbers
 vim.keymap.set("n", "<leader>bt", function()
-  require("me.general.utils").toggle_numbers_mode()
+	require("me.general.utils").toggle_numbers_mode()
 end, { desc = "Toggle numbers" })

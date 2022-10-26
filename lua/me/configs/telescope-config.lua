@@ -4,47 +4,47 @@ local actions = require("telescope.actions")
 local finders = require("telescope.builtin")
 
 telescope.setup({
-  defaults = {
-    mappings = {
-      i = {
-        ["<esc>"] = actions.close,
-      },
-    },
-  },
+	defaults = {
+		mappings = {
+			i = {
+				["<esc>"] = actions.close,
+			},
+		},
+	},
 })
 
 local nvim_config = function()
-  finders.find_files({
-    prompt_title = "< nvim config >",
-    cwd = "~/.config/nvim/",
-    layout_strategy = "horizontal",
-    layout_config = { preview_width = 0.65, width = 0.75 },
-  })
+	finders.find_files({
+		prompt_title = "< nvim config >",
+		cwd = "~/.config/nvim/",
+		layout_strategy = "horizontal",
+		layout_config = { preview_width = 0.65, width = 0.75 },
+	})
 end
 
 local search_dotfiles = function()
-  if next(vim.fs.find({ ".git" })) then
-    finders.git_files({
-      show_untracked = true,
-      prompt_title = "< dotfiles >",
-      cwd = "~/.dotfiles/",
-      find_command = { "fd", "--type", "f", "--hidden" },
-    })
-  else
-    finders.find_files({
-      prompt_title = "< dotfiles >",
-      cwd = "~/.dotfiles/",
-      find_command = { "fd", "--type", "f", "--hidden" },
-    })
-  end
+	if next(vim.fs.find({ ".git" })) then
+		finders.git_files({
+			show_untracked = true,
+			prompt_title = "< dotfiles >",
+			cwd = "~/.dotfiles/",
+			find_command = { "fd", "--type", "f", "--hidden" },
+		})
+	else
+		finders.find_files({
+			prompt_title = "< dotfiles >",
+			cwd = "~/.dotfiles/",
+			find_command = { "fd", "--type", "f", "--hidden" },
+		})
+	end
 end
 
 local dev_projects = function()
-  finders.find_files({
-    prompt_title = "< dev files >",
-    cwd = "~/dev/",
-    layout_strategy = "horizontal",
-  })
+	finders.find_files({
+		prompt_title = "< dev files >",
+		cwd = "~/dev/",
+		layout_strategy = "horizontal",
+	})
 end
 
 -- Mappings finders

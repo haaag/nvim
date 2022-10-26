@@ -32,7 +32,7 @@ M.load_autocmd = function()
 	api.nvim_create_autocmd("TextYankPost", {
 		group = misc,
 		callback = function()
-			vim.highlight.on_yank({ on_visual = true, timeout = 150 })
+			vim.highlight.on_yank({ on_visual = true, timeout = 250 })
 		end,
 	})
 
@@ -60,12 +60,14 @@ M.load_autocmd = function()
 		end,
 	})
 
-	--[[ api.nvim_create_autocmd({ "LspAttach"} , {
-		group = misc,
-		pattern = "*",
+	-- Enable spell checking for certain file types
+	api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+		pattern = { "*.txt", "*.md", "*.tex" },
 		callback = function()
-		end
-	}) ]]
+			vim.opt.spell = true
+			vim.opt.spelllang = "en,es"
+		end,
+	})
 end
 
 return M

@@ -38,8 +38,9 @@ M.diagnostic_pop = function(bufnr)
       end
 
       local cursor_pos = vim.api.nvim_win_get_cursor(0)
-      if (cursor_pos[1] ~= vim.b.diagnostics_pos[1] or cursor_pos[2] ~= vim.b.diagnostics_pos[2])
-          and #vim.diagnostic.get() > 0
+      if
+        (cursor_pos[1] ~= vim.b.diagnostics_pos[1] or cursor_pos[2] ~= vim.b.diagnostics_pos[2])
+        and #vim.diagnostic.get() > 0
       then
         vim.diagnostic.open_float(nil, opts)
       end
@@ -88,7 +89,7 @@ M.get_git_status = function(self)
 
   return is_head_empty
       and string.format(" +%s ~%s -%s |  %s ", signs.added, signs.changed, signs.removed, signs.head)
-      or ""
+    or ""
 end
 
 M.lsp_status = function()
@@ -109,8 +110,6 @@ M.load_navic = function(client, bufnr)
   if present then
     if client.server_capabilities.documentSymbolProvider then
       navic.attach(client, bufnr)
-      -- vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
-      -- vim.o.statusline = "%{%v:lua.require'nvim-navic'.get_location()%}"
     end
   end
 end
@@ -118,8 +117,8 @@ end
 M.setup = function(client, bufnr)
   require("me.lsp.keys").lsp_keys(bufnr)
   M.highlight_document(client)
-  M.lsp_signature(bufnr)
   M.load_navic(client, bufnr)
+  -- M.lsp_signature(bufnr)
   -- M.lsp_format(client)
 end
 

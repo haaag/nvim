@@ -1,14 +1,14 @@
 -- Sumneko
 local default_on_attach = require("me.lsp.lspconfig").custom_attach
-local lspconfig     = require("lspconfig")
+local lspconfig = require("lspconfig")
 local coq = require("coq")
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local custom_attach = function(client, bufnr)
-	default_on_attach(client, bufnr)
+  default_on_attach(client, bufnr)
 end
 
-lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
+lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities {
   capabilities = capabilities,
   on_attach = custom_attach,
   single_file_support = false,
@@ -21,6 +21,9 @@ lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
       diagnostics = {
         globals = { "vim" },
       },
+      hint = {
+        enable = false,
+      },
       workspace = {
         library = {
           [vim.fn.expand("$VIMRUNTIME/lua")] = true,
@@ -32,4 +35,4 @@ lspconfig.sumneko_lua.setup(coq.lsp_ensure_capabilities({
       },
     },
   },
-}))
+})
