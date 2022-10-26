@@ -1,8 +1,21 @@
-snippet rcf
-  import React from "react"
+snippet rnfe
+  import React from "react";
+  import { Text, View } from "react-native";
 
-  function ${1:name}() {
-    return <h1>${1:name}</h1>
+  function ${TM_FILENAME_BASE}() {
+    return (
+      <View>
+        <Text
+          style={{
+            fontSize: 30,
+            textAlign: "center",
+            marginTop: "20%",
+          }}
+        >
+          ${TM_FILENAME_BASE}
+        </Text>
+      </View>
+    );
   }
 
-  export default ${1:name};
+  export default ${TM_FILENAME_BASE};
