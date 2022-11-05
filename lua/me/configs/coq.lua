@@ -15,6 +15,12 @@ function M.setup()
         mappings = icons.kind,
       },
     },
+    completion = {
+      skip_after = {
+        "{", "}",
+        "[", "]"
+      }
+    },
     clients = {
       tags = { enabled = true, short_name = "tags" },
       tabnine = { enabled = true },

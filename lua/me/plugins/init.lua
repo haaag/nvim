@@ -2,7 +2,7 @@ local fn = vim.fn
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
   PACKER_BOOTSTRAP =
-    fn.system { "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path }
+  fn.system { "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path }
   vim.cmd([[packadd packer.nvim]])
 end
 
@@ -12,20 +12,22 @@ return require("packer").startup(function(use)
   -- mason
   use {
     "williamboman/mason.nvim",
-    requires = {
-      "williamboman/mason-lspconfig.nvim",
-      "neovim/nvim-lspconfig",
-    },
     config = function()
       require("me.lsp.mason-config")
     end,
   }
 
+  -- mason
+  use { "williamboman/mason-lspconfig.nvim", }
+
+  -- lspconfig
+  use { "neovim/nvim-lspconfig", }
+
   -- impatient
   use { "lewis6991/impatient.nvim" }
 
   -- better filetype.vim
-  -- use { "nathom/filetype.nvim" }
+  use { "nathom/filetype.nvim" }
 
   -- mason lspconfig
   use {
@@ -85,13 +87,13 @@ return require("packer").startup(function(use)
   }
 
   -- indent highlight
-  use {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "BufRead",
-    config = function()
-      require("me.configs.indent-blankline")
-    end,
-  }
+  -- use {
+  --   "lukas-reineke/indent-blankline.nvim",
+  --   event = "BufRead",
+  --   config = function()
+  --     require("me.configs.indent-blankline")
+  --   end,
+  -- }
 
   -- which-key
   use {
@@ -148,7 +150,7 @@ return require("packer").startup(function(use)
       require("catppuccin").setup {
         flavour = "macchiato", -- mocha, macchiato, frappe, latte
         dim_inactive = {
-          enabled = true,
+          enabled = false,
           shade = "dark",
           percentage = 0.15,
         },
@@ -221,6 +223,26 @@ return require("packer").startup(function(use)
     end,
   }
 
+  -- explorer
+  --[[ use {
+    "luukvbaal/nnn.nvim",
+    cmd = { "NnnPicker", "NnnExplorer" },
+    config = function()
+      require("nnn").setup {
+        explorer = {
+          cmd = "nnn -G",
+          width = 34,
+          side = "botright", -- or "topleft", location of the explorer window
+        },
+        picker = {
+          cmd = "nnn -G",
+        },
+        auto_close = true,
+        replace_netrw = "explorer",
+      }
+    end,
+  } ]]
+
   -- statusline - tabline
   use {
     "tamton-aquib/staline.nvim",
@@ -242,14 +264,14 @@ return require("packer").startup(function(use)
   }
 
   -- vim-move
-  use {
+  --[[ use {
     "matze/vim-move",
     config = function()
       local g = vim.g
       g.move_key_modifier = "S-M"
       g.move_key_modifier_visualmode = "S-M"
     end,
-  }
+  } ]]
 
   -- colorizer
   use {
@@ -348,14 +370,14 @@ return require("packer").startup(function(use)
   }
 
   -- null-ls
-  use {
-    "jose-elias-alvarez/null-ls.nvim",
-    requires = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("me.lsp.servers.null-ls")
-    end,
-    disable = false,
-  }
+  -- use {
+  --   "jose-elias-alvarez/null-ls.nvim",
+  --   requires = { "nvim-lua/plenary.nvim" },
+  --   config = function()
+  --     require("me.lsp.servers.null-ls")
+  --   end,
+  --   disable = false,
+  -- }
 
   -- Tagbar
   use {
@@ -403,13 +425,13 @@ return require("packer").startup(function(use)
     "jose-elias-alvarez/typescript.nvim",
   }
 
-  -- inlayhints for typescript
-  --[[ use({
-        "lvimuser/lsp-inlayhints.nvim",
-        config = function()
-            require("lsp-inlayhints").setup()
-        end,
-    }) ]]
+  -- inlay hints
+  use {
+    "lvimuser/lsp-inlayhints.nvim",
+    config = function()
+      require("lsp-inlayhints").setup()
+    end,
+  }
 
   --
   use {
@@ -432,6 +454,9 @@ return require("packer").startup(function(use)
   -- winbar
   use {
     "SmiteshP/nvim-navic",
+    requires = {
+      "kyazdani42/nvim-web-devicons",
+    },
     config = function()
       require("me.lsp.navic").setup()
     end,
@@ -468,14 +493,6 @@ return require("packer").startup(function(use)
     "Abstract-IDE/penvim",
     config = function()
       require("penvim").setup()
-    end,
-  }
-
-  -- inlay hints
-  use {
-    "lvimuser/lsp-inlayhints.nvim",
-    config = function()
-      require("lsp-inlayhints").setup()
     end,
   }
 

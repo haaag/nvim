@@ -112,29 +112,29 @@ M.lsp_keys = function(bufnr)
 	buff_map(bufnr, "n", "<leader>lT", "<cmd>TodoTelescope<CR>", { noremap = true, silent = true, desc = "Todos" })
 
 	-- diagnostic
-	buff_map(
+	--[[ buff_map(
 		bufnr,
 		"n",
 		"[d",
 		"<CMD>lua vim.diagnostic.goto_prev()<CR>",
 		{ noremap = true, silent = true, desc = "Diag. Prev" }
-	)
+	) ]]
 
-	buff_map(
+	--[[ buff_map(
 		bufnr,
 		"n",
 		"]d",
 		"<CMD>lua vim.diagnostic.goto_next()<CR>",
 		{ noremap = true, silent = true, desc = "Diag. Next" }
-	)
+	) ]]
 
-	buff_map(
+	--[[ buff_map(
 		bufnr,
 		"n",
 		"]a",
 		"<CMD>lua vim.diagnostic.open_float()<CR>",
 		{ noremap = true, silent = true, desc = "Diag. Float" }
-	)
+	) ]]
 
 	buff_map(bufnr, "n", "<leader>ld", "<CMD>Neogen<CR>", { noremap = true, silent = true, desc = "Diag. Float" })
 end

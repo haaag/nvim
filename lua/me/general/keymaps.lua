@@ -37,10 +37,10 @@ map("i", ";", ";<c-g>u", silent)
 map("i", ":", ":<c-g>u", silent)
 
 -- Use alt + hjkl to resize windows:
-map("n", "<M-j>", ":resize -2<CR>", options)
-map("n", "<M-k>", ":resize +2<CR>", options)
-map("n", "<M-l>", ":vertical resize -2<CR>", options)
-map("n", "<M-h>", ":vertical resize +2<CR>", options)
+map("n", "<C-j>", ":resize -2<CR>", options)
+map("n", "<C-k>", ":resize +2<CR>", options)
+map("n", "<C-l>", ":vertical resize -2<CR>", options)
+map("n", "<C-h>", ":vertical resize +2<CR>", options)
 
 -- Keep search results centred
 map("n", "n", "nzzzv", silent)

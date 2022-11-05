@@ -8,21 +8,24 @@ require("me.lsp.servers.diagnostic").load_diagnostic_config()
 local custom_attach = require("me.lsp.lspconfig").custom_attach
 local capabilities = require("me.lsp.lspconfig").capabilities()
 
-mason_lspconfig.setup({
+mason_lspconfig.setup {
 	ensure_installed = {
 		"sumneko_lua",
 		"bashls",
 		"pylsp",
 		"tsserver",
+		-- "pyright",
 		-- "dockerls",
 		-- "sqls",
 	},
-})
+}
 
 local simple_servers = {
 	"bashls",
 	"sqls",
 	"clangd",
+	-- "pyright",
+	"jsonls",
 	-- "dockerls",
 	-- "cssls",
 }
